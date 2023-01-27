@@ -62,27 +62,28 @@ flutter:
   assets:
     - asset/image/
     - asset/image/logo/
+    - asset/image/postTest1.jpg
 
   fonts:
     - family: pretendard
       fonts:
-        - asset: asset/font/pretendard/Pretendard-Thin.oft
+        - asset: asset/font/pretendard/Pretendard-Thin.otf
           weight: 100
-        - asset: asset/font/pretendard/Pretendard-ExtraLight.oft
+        - asset: asset/font/pretendard/Pretendard-ExtraLight.otf
           weight: 200
-        - asset: asset/font/pretendard/Pretendard-Light.oft
+        - asset: asset/font/pretendard/Pretendard-Light.otf
           weight: 300
-        - asset: asset/font/pretendard/Pretendard-Regular.oft
+        - asset: asset/font/pretendard/Pretendard-Regular.otf
           weight: 400
-        - asset: asset/font/pretendard/Pretendard-Medium.oft
+        - asset: asset/font/pretendard/Pretendard-Medium.otf
           weight: 500
-        - asset: asset/font/pretendard/Pretendard-SemiBold.oft
+        - asset: asset/font/pretendard/Pretendard-SemiBold.otf
           weight: 600
-        - asset: asset/font/pretendard/Pretendard-Bold.oft
+        - asset: asset/font/pretendard/Pretendard-Bold.otf
           weight: 700
-        - asset: asset/font/pretendard/Pretendard-ExtraBold.oft
+        - asset: asset/font/pretendard/Pretendard-ExtraBold.otf
           weight: 800
-        - asset: asset/font/pretendard/Pretendard-Black.oft
+        - asset: asset/font/pretendard/Pretendard-Black.otf
           weight: 900
 
   # To add assets to your application, add an assets section, like this:
