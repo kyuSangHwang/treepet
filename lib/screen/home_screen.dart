@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/layout/screen_layout.dart';
-import 'package:treepet/screen/community_screen.dart';
+import 'package:treepet/screen/community/community_screen.dart';
 
 class ScreenModel {
   final WidgetBuilder builder;
