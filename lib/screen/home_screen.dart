@@ -3,16 +3,6 @@ import 'package:treepet/const/color.dart';
 import 'package:treepet/layout/screen_layout.dart';
 import 'package:treepet/screen/community/community_screen.dart';
 
-class ScreenModel {
-  final WidgetBuilder builder;
-  final String name;
-
-  ScreenModel({
-    required this.builder,
-    required this.name,
-  });
-}
-
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 

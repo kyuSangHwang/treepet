@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/text_style.dart';
+import 'package:treepet/screen/community/community_post_detail_screen.dart';
 
 class CommunityPost extends StatelessWidget {
   final String title;
@@ -20,34 +21,39 @@ class CommunityPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: PostBorderStyle(),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 4,
-            child: _PostInformation(
-              title: title,
-              nick: nick,
-              given: given,
-              views: views,
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunityPostDetailScreen()));
+      },
+      child: Container(
+        decoration: PostBorderStyle(),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 4,
+              child: _PostInformation(
+                title: title,
+                nick: nick,
+                given: given,
+                views: views,
+              ),
             ),
-          ),
-          PostListImage(),
-          SizedBox(width: 10.0),
-          Container(
-            child: Column(
-              children: [
-                Text('$comment'),
-                Text(
-                  '댓글',
-                  style: sideTextStyle,
-                ),
-              ],
+            PostListImage(),
+            SizedBox(width: 10.0),
+            Container(
+              child: Column(
+                children: [
+                  Text('$comment'),
+                  Text(
+                    '댓글',
+                    style: sideTextStyle,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(width: 10.0),
-        ],
+            SizedBox(width: 10.0),
+          ],
+        ),
       ),
     );
   }
@@ -96,20 +102,6 @@ class _PostInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // // 메인 텍스트 스타일
-    // final mainTextStyle = TextStyle(
-    //   fontWeight: FontWeight.w600,
-    //   color: MAIN_COLOR,
-    //   fontSize: 14.0,
-    // );
-    //
-    // // 사이드 텍스트 스타일
-    // final sideTextStyle = TextStyle(
-    //   fontWeight: FontWeight.w600,
-    //   color: SECOND_COLOR,
-    //   fontSize: 12.0,
-    // );
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
       child: Column(
