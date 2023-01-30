@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
-import 'package:treepet/const/text_style.dart';
+import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/community/community_post_detail_screen.dart';
 
 class CommunityPost extends StatelessWidget {
@@ -46,7 +46,7 @@ class CommunityPost extends StatelessWidget {
                   Text('$comment'),
                   Text(
                     '댓글',
-                    style: sideTextStyle,
+                    style: co_list_post_comment,
                   ),
                 ],
               ),
@@ -109,7 +109,7 @@ class _PostInformation extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(title, style: mainTextStyle),
+              Text(title, style: co_list_post_title),
             ],
           ),
           SizedBox(height: 6.0),
@@ -117,19 +117,19 @@ class _PostInformation extends StatelessWidget {
             children: [
               Text(
                 nick,
-                style: sideTextStyle,
+                style: co_list_post_title_sub,
               ),
               SizedBox(width: 8.0),
               Icon(Icons.timer, size: 16),
               Text(
                 '$given시간 전',
-                style: sideTextStyle,
+                style: co_list_post_title_sub,
               ),
               SizedBox(width: 8.0),
               Icon(Icons.remove_red_eye_sharp, size: 16),
               Text(
                 views.toString(),
-                style: sideTextStyle,
+                style: co_list_post_title_sub,
               ),
             ],
           ),

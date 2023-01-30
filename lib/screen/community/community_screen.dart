@@ -10,16 +10,7 @@ class CommunityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
-        },
-        backgroundColor: MAIN_COLOR,
-        child: Icon(
-          Icons.add,
-        ),
-      ),
+      floatingActionButton: renderFloatingActionButton(context),
       body: ScreenLayout(
         title: '커뮤니티',
         body: renderCommunityPost(),
@@ -27,19 +18,17 @@ class CommunityScreen extends StatelessWidget {
     );
   }
 
-  // FloatingActionButton renderFloatingActionButton() {
-  //   final BuildContext context;
-  //
-  //   return FloatingActionButton(
-  //     onPressed: () {
-  //       Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
-  //     },
-  //     backgroundColor: MAIN_COLOR,
-  //     child: Icon(
-  //       Icons.add,
-  //     ),
-  //   );
-  // }
+  FloatingActionButton renderFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
+      },
+      backgroundColor: MAIN_COLOR,
+      child: Icon(
+        Icons.add,
+      ),
+    );
+  }
 
   renderCommunityPost() {
     return Scrollbar(
@@ -49,7 +38,7 @@ class CommunityScreen extends StatelessWidget {
           return Column(
             children: [
               CommunityPost(
-                title: '우울표정보스 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ',
+                title: '우울표정보스 hello HELLO',
                 nick: '뭉치',
                 given: 3,
                 views: 24,
