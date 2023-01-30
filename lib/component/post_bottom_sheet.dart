@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
+import 'package:treepet/const/style.dart';
 
 class PostBottomSheet extends StatefulWidget {
   const PostBottomSheet({Key? key}) : super(key: key);
@@ -39,9 +40,11 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
     );
   }
 
+  // TODO: 뭐에 선택되어있는 등록화면에서 보여주기
+  // TODO: 선택한 값이 저장되기
   CategoryButton({required String title, required value}) {
     return RadioListTile(
-      title: Text(title),
+      title: Text(title, style: co_create_option_bottom_sheet),
       value: value,
       groupValue: option,
       onChanged: (value) {
