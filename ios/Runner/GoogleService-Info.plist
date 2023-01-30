@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>305098677657-pqf3bdk5c5jta1groa2hi9c66ffuphqu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.305098677657-pqf3bdk5c5jta1groa2hi9c66ffuphqu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD1GzNR1BVFUIeWkTjE9W9Iq19mVpAz7FA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>305098677657</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kr.treepet.treepet</string>
+	<key>PROJECT_ID</key>
+	<string>treepet-e4a36</string>
+	<key>STORAGE_BUCKET</key>
+	<string>treepet-e4a36.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:305098677657:ios:ab8ee5cbec179555bc0708</string>
+</dict>
+</plist>
