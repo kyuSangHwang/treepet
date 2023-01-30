@@ -63,7 +63,6 @@ flutter:
   assets:
     - asset/image/
     - asset/image/logo/
-    - asset/image/postTest1.jpg
 
   fonts:
     - family: pretendard
