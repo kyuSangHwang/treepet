@@ -36,6 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_core: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -66,23 +67,23 @@ flutter:
   fonts:
     - family: pretendard
       fonts:
-        - asset: asset/font/pretendard/Pretendard-Thin.oft
+        - asset: asset/font/pretendard/Pretendard-Thin.otf
           weight: 100
-        - asset: asset/font/pretendard/Pretendard-ExtraLight.oft
+        - asset: asset/font/pretendard/Pretendard-ExtraLight.otf
           weight: 200
-        - asset: asset/font/pretendard/Pretendard-Light.oft
+        - asset: asset/font/pretendard/Pretendard-Light.otf
           weight: 300
-        - asset: asset/font/pretendard/Pretendard-Regular.oft
+        - asset: asset/font/pretendard/Pretendard-Regular.otf
           weight: 400
-        - asset: asset/font/pretendard/Pretendard-Medium.oft
+        - asset: asset/font/pretendard/Pretendard-Medium.otf
           weight: 500
-        - asset: asset/font/pretendard/Pretendard-SemiBold.oft
+        - asset: asset/font/pretendard/Pretendard-SemiBold.otf
           weight: 600
-        - asset: asset/font/pretendard/Pretendard-Bold.oft
+        - asset: asset/font/pretendard/Pretendard-Bold.otf
           weight: 700
-        - asset: asset/font/pretendard/Pretendard-ExtraBold.oft
+        - asset: asset/font/pretendard/Pretendard-ExtraBold.otf
           weight: 800
-        - asset: asset/font/pretendard/Pretendard-Black.oft
+        - asset: asset/font/pretendard/Pretendard-Black.otf
           weight: 900
 
   # To add assets to your application, add an assets section, like this:
