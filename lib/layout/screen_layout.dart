@@ -15,12 +15,13 @@ class ScreenLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(title),
         backgroundColor: WHITE_COLOR,
         titleTextStyle: TextStyle(
           color: BLACK_COLOR,
           fontSize: 20.0,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
       ),
       body: body,
