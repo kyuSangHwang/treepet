@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/layout/screen_layout.dart';
 import 'package:treepet/screen/community/community_screen.dart';
+import 'package:treepet/screen/mypage/mypage_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Text('우리가족'),
     CommunityScreen(),
     Text('쇼핑몰'),
-    Text('마이페이지'),
+    MyPageScreen(),
   ];
 
   // 아이콘이 클릭되었을 때의 이벤트 리스너
