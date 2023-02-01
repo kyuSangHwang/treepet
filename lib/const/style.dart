@@ -97,6 +97,8 @@ final co_post_detail_contetnt = TextStyle(
   fontSize: 14.0,
 );
 
+/* 마이페이지 */
+// 프로필
 
 
 // 커뮤니티 게시글 상세페이지 좋아요
@@ -105,6 +107,10 @@ final co_post_detail_contetnt = TextStyle(
 // 게시글 화면 왼쪽부터 항목들 패딩
 post_item_left_padding() {
   return const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0);
+}
+
+profile_item_left_padding() {
+  return const EdgeInsets.symmetric(horizontal: 16, vertical: 0.0);
 }
 
 /* SizedBox 색 변경 스타일 */
