@@ -45,14 +45,15 @@ class MyPageScreen extends StatelessWidget {
       ),
       actions: [
         IconButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => SettingsScreen()));
-            },
-            icon: Icon(
-              Icons.settings,
-              color: BLACK_COLOR,
-            ))
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => SettingsScreen()));
+          },
+          icon: Icon(
+            Icons.settings,
+            color: BLACK_COLOR,
+          ),
+        ),
       ],
     );
   }

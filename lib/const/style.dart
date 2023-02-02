@@ -101,6 +101,14 @@ final co_post_detail_contetnt = TextStyle(
 /* 마이페이지 영역 */
 // 프로필
 
+// 설정 목록 화면
+final settings_list_textStyle = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 16,
+);
+
 /* 팝업 영역 */
 final more_view_modal_small_title = TextStyle(
   fontFamily: 'pretendard',
@@ -125,7 +133,13 @@ post_item_left_padding() {
   return const EdgeInsets.symmetric(horizontal: 16, vertical: 12.0);
 }
 
+// 마이페이지 프로필 화면 항목들 패딩
 profile_item_left_padding() {
+  return const EdgeInsets.symmetric(horizontal: 16, vertical: 0.0);
+}
+
+// 마이페이지 프로필 화면 항목들 패딩
+settings_item_left_padding() {
   return const EdgeInsets.symmetric(horizontal: 16, vertical: 0.0);
 }
 
