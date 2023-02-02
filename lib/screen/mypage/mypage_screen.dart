@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/screen/mypage/activity_detail_screen.dart';
+import 'package:treepet/screen/mypage/interested_screen.dart';
+import 'package:treepet/screen/mypage/settings_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
   const MyPageScreen({Key? key}) : super(key: key);
@@ -13,14 +16,18 @@ class MyPageScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            ProfileInfo(),
+            ProfileInfo(context),
             SizedBox(height: 40),
             ProfileContent(context),
             Divider(height: 40),
             ProfilePetTree(context),
+            // SizedBox(height: 20),
+            // Divider(height: 40),
+            ProfileSideMenu(context),
             SizedBox(height: 20),
+
             suit_sized_box_style(),
-            ProfileDiary(),
+            ProfileDiary(context),
           ],
         ),
       ),
@@ -36,19 +43,11 @@ class MyPageScreen extends StatelessWidget {
         '마이페이지',
         style: TextStyle(color: BLACK_COLOR),
       ),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        icon: Icon(
-          Icons.arrow_back,
-          color: BLACK_COLOR,
-        ),
-      ),
       actions: [
         IconButton(
             onPressed: () {
-              print('설정 아이콘 클릭');
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => SettingsScreen()));
             },
             icon: Icon(
               Icons.settings,
@@ -59,9 +58,9 @@ class MyPageScreen extends StatelessWidget {
   }
 
   // 프로필 유저 소개 부분 (회원 이미지, 팔로우, 회원 아이디, 회원 소개)
-  Widget ProfileInfo() {
-    return Padding(
-      padding: profile_item_left_padding(),
+  Widget ProfileInfo(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -107,8 +106,8 @@ class MyPageScreen extends StatelessWidget {
   }
 
   Widget ProfileContent(BuildContext context) {
-    return Padding(
-      padding: profile_item_left_padding(),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         children: [
           Row(
@@ -137,8 +136,8 @@ class MyPageScreen extends StatelessWidget {
   }
 
   Widget ProfilePetTree(BuildContext context) {
-    return Padding(
-      padding: profile_item_left_padding(),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         children: [
           Row(
@@ -198,7 +197,7 @@ class MyPageScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
+                // TODO : 가로로 되긴 하는데 가족당 가로 넓이에 문제가 있는듯...
                 Divider(height: 5),
                 // 내 반려동물 가족
                 Container(
@@ -239,38 +238,55 @@ class MyPageScreen extends StatelessWidget {
             ),
           ),
           Divider(height: 40),
-          Column(
-            children: [
-              // 활동내역 타이틀
-              Row(
-                children: [
-                  Icon(Icons.schedule),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('활동내역'),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Icon(Icons.schedule),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text('내가 관심있는 친구'),
-                ],
-              ),
-            ],
+        ],
+      ),
+    );
+  }
+
+  Widget ProfileSideMenu(BuildContext context) {
+    return Padding(
+      padding: profile_item_left_padding(),
+      child: Column(
+        children: [
+          // 활동내역 타이틀
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => ActivityDetailScreen()));
+            },
+            child: Row(
+              children: [
+                Icon(Icons.schedule),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('활동내역'),
+              ],
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => InterestedScreen()));
+            },
+            child: Row(
+              children: [
+                Icon(Icons.schedule),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('내가 관심있는 친구'),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget ProfileDiary() {
-    return Padding(
-      padding: profile_item_left_padding(),
+  Widget ProfileDiary(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         children: [
           SizedBox(height: 20),
@@ -281,9 +297,48 @@ class MyPageScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
           //TODO : 마이페이지쪽 육아일기 UI
-          // GridView.builder(gridDelegate: gridDelegate, )
+          renderBuilder(),
+          // ListView.builder(
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return renderBuilder();
+          //   },
+          // ),
         ],
       ),
+    );
+  }
+
+  // 화면에 보이는것만 그림
+  Widget renderBuilder() {
+    return GridView.builder(
+      primary: false,
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 3.0,
+        mainAxisSpacing: 3.0,
+      ),
+      // 데이터 갯수
+      itemCount: 13,
+      itemBuilder: (context, index) {
+        return renderContainer(
+          color: BLACK_COLOR,
+          index: index,
+        );
+      },
+    );
+  }
+
+  Widget renderContainer({
+    required Color color,
+    required int index,
+    double? height,
+  }) {
+    print(index);
+
+    return Container(
+      height: height ?? 300,
+      color: color,
     );
   }
 }
