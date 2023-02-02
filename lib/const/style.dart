@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 
 /* 텍스트 스타일 */
+/* 커뮤니티 영역 */
 // 커뮤니티 목록형 게시글 제목
 final co_list_post_title = TextStyle(
   fontFamily: 'pretendard',
@@ -97,8 +98,23 @@ final co_post_detail_contetnt = TextStyle(
   fontSize: 14.0,
 );
 
-/* 마이페이지 */
+/* 마이페이지 영역 */
 // 프로필
+
+/* 팝업 영역 */
+final more_view_modal_small_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w200,
+  color: Colors.black54,
+  fontSize: 16,
+);
+
+final more_view_modal = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w300,
+  color: Colors.black87,
+  fontSize: 18,
+);
 
 
 // 커뮤니티 게시글 상세페이지 좋아요
