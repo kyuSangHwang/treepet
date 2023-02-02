@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:treepet/component/more_screen.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 
 const String _name = "망치엄마";
 final List<ChatMessage> _message = <ChatMessage>[];
-
 
 class CommunityPostDetailScreen extends StatefulWidget {
   const CommunityPostDetailScreen({Key? key}) : super(key: key);
@@ -106,7 +106,17 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
                 Text('뭉치아빠', style: co_post_detail_user_nick),
               ],
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
+            IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    context: context,
+                    builder: (_) => MoreScreen());
+              },
+              icon: Icon(Icons.more_horiz),
+            ),
           ],
         ),
       ),
@@ -197,7 +207,7 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
               // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
               onSubmitted: _isComposing ? _handleSubmitted : null,
               // 텍스트 필드에 힌트 텍스트 추가
-              decoration: InputDecoration(hintText: 'Send a message'),
+              decoration: InputDecoration(hintText: '메시지를 입력하세요.'),
             ),
           ),
           // 전송 버튼
@@ -287,7 +297,7 @@ class ChatMessage extends StatelessWidget {
                       Text('좋아요'),
                       SizedBox(width: 8),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           // renderCommentArea()
                           print('네네네네');
                         },
