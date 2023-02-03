@@ -111,38 +111,3 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
-
-/*
-children: screens
-            .map(
-              (screen) => TextButton(
-                onPressed: () {
-                  print(screen.name);
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: screen.builder));
-                },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      // width: MediaQuery.of(context).size.width * 0.92,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            screen.name,
-                            style: settings_list_textStyle,
-                          ),
-                          Icon(Icons.chevron_right)
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-            .toList(),
-*/
