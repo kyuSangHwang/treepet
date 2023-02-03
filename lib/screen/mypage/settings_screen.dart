@@ -76,7 +76,6 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  // TODO : 컨테이너의 왼쪽 여백 (패딩 안주고싶음)
   Widget renderSettingsList(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.92,
