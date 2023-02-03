@@ -43,44 +43,17 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SettingScreenAppBar(context),
-      body: Column(
-        children: screens
-            .map(
-              (screen) => Padding(
-                padding: settings_item_left_padding(),
-                child: TextButton(
-                  onPressed: () {
-                    print(screen.name);
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: screen.builder));
-                  },
-                  child: Row(
-                    children: [
-                      SizedBox(height: 50,),
-                      Text(
-                        screen.name,
-                        style: settings_list_textStyle,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-            .toList(),
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              renderSettingsList(context),
+            ],
+          ),
+        ],
       ),
     );
   }
-
-  // 알림 설정
-  // 이용약관
-  // 개인정보 처리방침
-  // FAQ
-  // 서비스 문의
-  // 차단 목록
-  // 공지사항
-  // 이벤트
-  // 로그아웃
-  // 회원탈퇴
 
   AppBar SettingScreenAppBar(BuildContext context) {
     return AppBar(
@@ -102,4 +75,75 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+
+  // TODO : 컨테이너의 왼쪽 여백 (패딩 안주고싶음)
+  Widget renderSettingsList(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.92,
+      child: Column(
+        children: screens
+            .map(
+              (screen) => TextButton(
+                onPressed: () {
+                  print(screen.name);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: screen.builder));
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      child: Text(
+                        screen.name,
+                        style: settings_list_textStyle,
+                      ),
+                    ),
+                    SizedBox(height: 70,
+                    child: Icon(Icons.chevron_right),)
+                  ],
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
 }
+
+/*
+children: screens
+            .map(
+              (screen) => TextButton(
+                onPressed: () {
+                  print(screen.name);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: screen.builder));
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      // width: MediaQuery.of(context).size.width * 0.92,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            screen.name,
+                            style: settings_list_textStyle,
+                          ),
+                          Icon(Icons.chevron_right)
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+            .toList(),
+*/
