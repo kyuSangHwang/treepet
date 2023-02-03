@@ -60,7 +60,7 @@ class MyPageScreen extends StatelessWidget {
 
   // 프로필 유저 소개 부분 (회원 이미지, 팔로우, 회원 아이디, 회원 소개)
   Widget ProfileInfo(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +137,7 @@ class MyPageScreen extends StatelessWidget {
   }
 
   Widget ProfilePetTree(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         children: [
@@ -245,8 +245,8 @@ class MyPageScreen extends StatelessWidget {
   }
 
   Widget ProfileSideMenu(BuildContext context) {
-    return Padding(
-      padding: profile_item_left_padding(),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
         children: [
           // 활동내역 타이틀
