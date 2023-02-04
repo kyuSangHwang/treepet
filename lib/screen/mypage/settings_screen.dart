@@ -28,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
     ScreenModel(builder: (_) => SettingsTermOfUserScreen(), name: '이용약관'),
     ScreenModel(
         builder: (_) => SettingsPrivacyPolicyScreen(), name: '개인정보 처리방침'),
-    ScreenModel(builder: (_) => SettingsFaqListScreen(), name: 'FAQ'),
+    ScreenModel(builder: (_) => SettingsFaqListScreen(), name: '자주 묻는 질문'),
     ScreenModel(builder: (_) => SettingsServiceInquiryScreen(), name: '서비스 문의'),
     ScreenModel(builder: (_) => SettingsBlockListScreen(), name: '차단 목록'),
     ScreenModel(builder: (_) => SettingsAnnouncementListScreen(), name: '공지사항'),
