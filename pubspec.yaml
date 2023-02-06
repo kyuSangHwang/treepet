@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^2.4.1
+  cloud_firestore: ^4.3.1
   image_picker: ^0.8.6+1
   video_player: ^2.5.1
 
@@ -65,6 +66,10 @@ flutter:
   assets:
     - asset/image/
     - asset/image/logo/
+    - asset/image/treepetMale.jpeg
+    - asset/image/treepetFemale.jpeg
+    - asset/image/jaeHoon.png
+    - asset/image/MongSil.png
 
   fonts:
     - family: pretendard
