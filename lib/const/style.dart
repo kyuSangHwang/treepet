@@ -109,6 +109,141 @@ final settings_list_textStyle = TextStyle(
   fontSize: 16,
 );
 
+/* 이용약관 */
+// 이용약관 제목
+final term_of_user_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 이용약관 내용
+final term_of_user_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+
+/* 개인정보 처리방침 */
+// 개인정보 처리방침 제목
+final privacy_policy_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 개인정보 처리방침 내용
+final privacy_policy_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+/* FAQ */
+// FAQ 제목
+final faq_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 18,
+);
+
+// FAQ 내용
+final faq_concent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+/* Block List */
+// Block List 유저 닉네임
+final block_list_nick = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 18,
+);
+
+// Block List 차단 날짜
+final block_list_day = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 15,
+);
+
+/* announcement */
+// announcement 제목
+final announcement_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 16,
+);
+
+// announcement 날짜
+final announcement_concent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 14,
+);
+
+// announcement 제목
+final announcement_detail_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 20,
+);
+
+// announcement 날짜
+final announcement_detail_sub = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 16,
+);
+
+// announcement 내용
+final announcement_detail_concent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+/* event */
+// event 제목
+final event_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w700,
+  color: BLACK_COLOR,
+  fontSize: 18,
+);
+
+// event 글자
+final event_time_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+// event 날짜
+final event_time_concent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black54,
+  fontSize: 16,
+);
+
 /* 팝업 영역 */
 final more_view_modal_small_title = TextStyle(
   fontFamily: 'pretendard',
@@ -123,7 +258,6 @@ final more_view_modal = TextStyle(
   color: Colors.black87,
   fontSize: 18,
 );
-
 
 // 커뮤니티 게시글 상세페이지 좋아요
 
