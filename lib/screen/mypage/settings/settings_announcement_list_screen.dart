@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/screen/mypage/settings/announcement/announcement_post_detail_screen.dart';
 
 class announcementModel {
   final String title;
@@ -64,7 +65,8 @@ class SettingsAnnouncementListScreen extends StatelessWidget {
             .map(
               (post) => GestureDetector(
                 onTap: () {
-                  print('안클릭클릭녕');
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => AnnouncementPostDetailScreen()));
+
                 },
                 behavior: HitTestBehavior.opaque,
                 child: ListTile(
