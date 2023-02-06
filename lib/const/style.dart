@@ -126,7 +126,6 @@ final term_of_user_content = TextStyle(
   fontSize: 16,
 );
 
-
 /* 개인정보 처리방침 */
 // 개인정보 처리방침 제목
 final privacy_policy_title = TextStyle(
@@ -257,6 +256,47 @@ final more_view_modal = TextStyle(
   fontWeight: FontWeight.w300,
   color: Colors.black87,
   fontSize: 18,
+);
+
+/// Wedding ///
+const wedding_post_detail_18_500_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 18.0,
+  fontWeight: FontWeight.w500,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_detail_14_300_015 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 14.0,
+  fontWeight: FontWeight.w300,
+  height: 1.5,
+  color: Colors.black,
+);
+
+const wedding_post_detail_15_500_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 15.0,
+  fontWeight: FontWeight.w500,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_detail_13_300_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 13.0,
+  fontWeight: FontWeight.w300,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_detail_14_400_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 14.0,
+  fontWeight: FontWeight.w400,
+  height: 1.2,
+  color: Colors.black,
 );
 
 // 커뮤니티 게시글 상세페이지 좋아요
