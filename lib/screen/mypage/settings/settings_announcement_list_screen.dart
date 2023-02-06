@@ -14,10 +14,10 @@ class announcementModel {
 
 class SettingsAnnouncementListScreen extends StatelessWidget {
   final announcementPost = [
-    announcementModel(title: '트리펫 MVP 테스트 오픈', time: '2023.02.05'),
-    announcementModel(title: '트리펫 MVP 테스트 오픈', time: '2023.02.05'),
-    announcementModel(title: '트리펫 MVP 테스트 오픈', time: '2023.02.05'),
-    announcementModel(title: '트리펫 MVP 테스트 오픈', time: '2023.02.05'),
+    announcementModel(title: '1111트리펫 MVP 테스트 오픈', time: '2023.02.05'),
+    announcementModel(title: '2222트리펫 MVP 테스트 오픈', time: '2023.02.05'),
+    announcementModel(title: '3333트리펫 MVP 테스트 오픈', time: '2023.02.05'),
+    announcementModel(title: '4444트리펫 MVP 테스트 오픈', time: '2023.02.05'),
   ];
 
   SettingsAnnouncementListScreen({Key? key}) : super(key: key);
@@ -27,13 +27,9 @@ class SettingsAnnouncementListScreen extends StatelessWidget {
     return Scaffold(
       appBar: SettingAnnouncementScreenAppBar(context),
       body: ListView.builder(
-        itemCount: announcementPost.length,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              RenderAnnouncementPost(context),
-            ],
-          );
+          return RenderAnnouncementPost(context);
         },
       ),
     );
@@ -64,16 +60,16 @@ class SettingsAnnouncementListScreen extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * (0.92),
       child: Column(
-        children: announcementPost
+        children: announcementPost.reversed
             .map(
               (post) => GestureDetector(
-                onTap: (){
+                onTap: () {
                   print('안클릭클릭녕');
                 },
                 behavior: HitTestBehavior.opaque,
                 child: ListTile(
-                  leading: Text(post.title),
-                  trailing: Text(post.time),
+                  leading: Text(post.title, style: announcement_title,),
+                  trailing: Text(post.time, style: announcement_concent,),
                 ),
               ),
             )
@@ -82,38 +78,3 @@ class SettingsAnnouncementListScreen extends StatelessWidget {
     );
   }
 }
-
-// Widget RenderAnnouncementPost(BuildContext context) {
-//   return GestureDetector(
-//     onTap: (){
-//       print('클릭클릭');
-//       print(announcementPost.length);
-//     },
-//     child: SizedBox(
-//       width: MediaQuery.of(context).size.width * 0.92,
-//       child: Column(
-//           children: announcementPost
-//               .map(
-//                 (post) => Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 SizedBox(
-//                   child: Text(
-//                     post.title,
-//                     style: announcement_title,
-//                   ),
-//                 ),
-//                 SizedBox(height: 70,),
-//                 SizedBox(
-//                   child: Text(
-//                     post.time,
-//                     style: announcement_concent,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           )
-//               .toList()),
-//     ),
-//   );
-// }
