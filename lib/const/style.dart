@@ -160,6 +160,47 @@ final faq_concent = TextStyle(
   fontSize: 16,
 );
 
+/* inquiry */
+// inquiry 제목
+final inquiry_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 18,
+);
+
+// inquiry 서브 타이틀
+final inquiry_sub_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[700],
+  fontSize: 14,
+);
+
+// inquiry 상태
+final inquiry_state = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 12,
+);
+
+// inquiry 상태
+final inquiry_bottom_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// inquiry 내용
+final inquiry_concent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 14,
+);
+
 /* Block List */
 // Block List 유저 닉네임
 final block_list_nick = TextStyle(
