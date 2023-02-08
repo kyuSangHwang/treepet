@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
     ScreenModel(builder: (_) => SettingsServiceInquiryScreen(), name: '서비스 문의'),
     ScreenModel(builder: (_) => SettingsBlockListScreen(), name: '차단 목록'),
     ScreenModel(builder: (_) => SettingsAnnouncementListScreen(), name: '공지사항'),
-    ScreenModel(builder: (_) => SettingsEventListScreen(), name: '이벤트'),
+    // ScreenModel(builder: (_) => SettingsEventListScreen(), name: '이벤트'),
     ScreenModel(builder: (_) => SettingsLogOutScreen(), name: '로그아웃'),
     ScreenModel(builder: (_) => SettingsWithdrawalScreen(), name: '회원탈퇴'),
   ];
