@@ -35,7 +35,6 @@ class CustomTextField extends StatelessWidget {
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
           hintText: placeHolder,
-          suffixText: isTitle ? '20자 이내' : '1000자 이내' ,
           suffixStyle: TextStyle(
             fontSize: 12.0,
           )
