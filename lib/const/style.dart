@@ -201,6 +201,14 @@ final inquiry_concent = TextStyle(
   fontSize: 14,
 );
 
+// inquiry 카테고리
+final inquiry_create_category = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 16,
+);
+
 /* Block List */
 // Block List 유저 닉네임
 final block_list_nick = TextStyle(
@@ -377,3 +385,11 @@ SizedBox suit_sized_box_style() {
 big_long_button() {
   return const EdgeInsets.symmetric(horizontal: 16);
 }
+
+final big_long_button_text = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 20.0,
+  fontWeight: FontWeight.w600,
+  height: 1.2,
+  color: Colors.black,
+);
