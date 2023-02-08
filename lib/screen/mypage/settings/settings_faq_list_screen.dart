@@ -88,7 +88,6 @@ class _renderFaqPostState extends State<renderFaqPost> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.92,
         child: _buildPanel(),
       ),
     );
