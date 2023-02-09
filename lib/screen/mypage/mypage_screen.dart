@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
-import 'package:treepet/screen/mypage/activity_detail_screen.dart';
-import 'package:treepet/screen/mypage/interested_screen.dart';
+import 'package:treepet/screen/mypage/activity/activity_detail_screen.dart';
+import 'package:treepet/screen/mypage/interested/interested_screen.dart';
 import 'package:treepet/screen/mypage/settings_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
