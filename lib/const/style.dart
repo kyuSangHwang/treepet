@@ -101,6 +101,14 @@ final co_post_detail_contetnt = TextStyle(
 /* 마이페이지 영역 */
 // 프로필
 
+/* 활동내역 */
+// 활동 내역 1번째 탭바
+final activity_first_tabbar = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  fontSize: 18,
+);
+
 // 설정 목록 화면
 final settings_list_textStyle = TextStyle(
   fontFamily: 'pretendard',
@@ -290,6 +298,23 @@ final event_time_concent = TextStyle(
   fontWeight: FontWeight.w600,
   color: Colors.black54,
   fontSize: 16,
+);
+
+/* 회원탈퇴 */
+// 회원탈퇴 제목
+final withdrawal_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: MAIN_COLOR,
+  fontSize: 18.0,
+);
+
+// 회원탈퇴 카테고리
+final withdrawal_category = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 16.0,
 );
 
 /* 팝업 영역 */
