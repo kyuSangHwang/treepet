@@ -161,7 +161,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                     ),
                   ),
                   SizedBox(width: 8),
-                  // TODO : 나열될 사진들 GridView로 보여주기
+                  //TODO : 나열될 사진들 GridView로 보여주기
                   // 선택한 이미지를 모아둘 리스트 변수를 만든다
                   // 이미지의 경로를 만든 리스트변수에 넣는다
                   // GridView 안에서 mapping 해서 toList 로 만들어 화면에 출력한다
