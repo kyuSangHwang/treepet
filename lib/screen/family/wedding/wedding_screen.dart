@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/screen/family/wedding/wedding_list_post_screen.dart';
+import 'package:treepet/screen/family/wedding/wedding_post_create_screen_1.dart';
 import '../../../const/color.dart';
 import '../../../layout/screen_layout.dart';
-import '../../community/community_post_create_screen.dart';
 
 class WeddingScreen extends StatelessWidget {
   const WeddingScreen({
@@ -16,6 +16,7 @@ class WeddingScreen extends StatelessWidget {
       body: ScreenLayout(
         title: '신랑&신부 찾기',
         body: renderWeddingListPost(),
+        screenKey: 'wedding',
       ),
     );
   }
@@ -24,7 +25,7 @@ class WeddingScreen extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CommunityPostCreateScreen()));
+            MaterialPageRoute(builder: (_) => const WeddingPostCreateScreen1()));
       },
       backgroundColor: MAIN_COLOR,
       child: const Icon(
