@@ -299,6 +299,41 @@ const wedding_post_detail_14_400_012 = TextStyle(
   color: Colors.black,
 );
 
+const wedding_post_22_400_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 22.0,
+  fontWeight: FontWeight.w400,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_create_20_400_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 20.0,
+  fontWeight: FontWeight.w400,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_create_18_400_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 18.0,
+  fontWeight: FontWeight.w400,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_post_15_400_012 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 15.0,
+  fontWeight: FontWeight.w400,
+  height: 1.2,
+  color: Colors.black,
+);
+
+
+
+
 // 커뮤니티 게시글 상세페이지 좋아요
 
 /* Padding 스타일 */
