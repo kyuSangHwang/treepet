@@ -12,8 +12,6 @@ class WeddingPostDetailScreen extends StatefulWidget {
 }
 
 class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
-  final List<Image> _data = [Image.asset('asset/image/dog1.jpeg')];
-
   final String introduceContent =
       "이번이 첫 교배 이구요. 발랄 활달하고 개구장이 같은 성격입니다. 아직 꽃 도장 전이고 미리 구하는 거에용~ 신랑 쪽이 교배 경험 있었으면 좋겠습니다(없어도 상관없음) 저희 아이가 작아서 신랑이 너무 크면 아이가 힘들 것 같아서 신랑 크기가 2키로는 안 넘었으면 좋겠어요~작으면 작을수록 좋을 것 같아요 저희 아이 몸무게는1.8정도 됩니다 짖음도 1도 없고 입질도 없어요 진짜 완전 순둥이 입니다🥰 사진은 애기 때 사진이라 눈물자국이 좀 있는데  지금은 없어용~!ㅎㅎ";
 
@@ -318,20 +316,20 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
                         SizedBox(
                           height: 30,
                           child: Row(
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 80,
                                 child: Text(
                                   '혈통서 유무',
                                   style: wedding_post_detail_14_400_012,
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              const Text(
+                              SizedBox(width: 10),
+                              Text(
                                 '상관없음',
                                 style: wedding_post_detail_13_300_012,
                               ),
-                              _buildPanel(),
+                              // _buildPanel(),
                             ],
                           ),
                         ),
@@ -429,25 +427,6 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
         ],
       ),
       bottomNavigationBar: const _Footer(),
-    );
-  }
-
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {});
-      },
-      children: _data.map<ExpansionPanel>((Image img) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return const Text('title');
-          },
-          body: ListTile(
-            title: Image.asset('asset/image/dog1.jpeg'),
-          ),
-          isExpanded: true,
-        );
-      }).toList(),
     );
   }
 }
