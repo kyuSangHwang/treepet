@@ -22,23 +22,28 @@ class _ServiceInquiryCreateScreenState
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       appBar: ServiceInquiryCreateScreenAppBar(context),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  RenderServiceInquiryCategoryCheck(),
-                  const Divider(height: 20),
-                  RenderServiceInquiryContent(),
-                  const Divider(height: 20),
-                ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    RenderServiceInquiryCategoryCheck(),
+                    const Divider(height: 20),
+                    RenderServiceInquiryContent(),
+                    const Divider(height: 20),
+                  ],
+                ),
               ),
             ),
-          ),
-          RenderServiceInquiryButton(),
-          SizedBox(height: 10),
-        ],
+            RenderServiceInquiryButton(),
+            SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
@@ -127,19 +132,18 @@ class _ServiceInquiryCreateScreenState
   }
 
   Widget RenderServiceInquiryContent() {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(FocusNode());
-      },
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.92,
-        height: 300,
-        // color: BLACK_COLOR,
-        child: CustomTextField(
-            isTitle: false,
-            placeHolder:
-                '문의 내용을 입력해주세요.\n최대한 빨리 답변 드리겠습니다.\n\n글자 수 제한(500자 내)'),
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.black26),
+          borderRadius: BorderRadius.circular(20)
       ),
+      width: MediaQuery.of(context).size.width * 0.92,
+      height: 300,
+      // color: BLACK_COLOR,
+      child: CustomTextField(
+          isTitle: false,
+          placeHolder:
+              '문의 내용을 입력해주세요.\n최대한 빨리 답변 드리겠습니다.\n\n글자 수 제한(500자 내)'),
     );
   }
 
