@@ -28,7 +28,7 @@ class CustomTextField extends StatelessWidget {
       padding: post_item_left_padding(),
       child: TextFormField(
         cursorColor: SECOND_COLOR,
-        style: co_create_textfield_placeholder,
+        style: co_create_textfield_write,
         maxLines: isTitle ? 1 : null,
         minLines: isTitle ? 1 : 12,
         decoration: InputDecoration(
@@ -37,7 +37,7 @@ class CustomTextField extends StatelessWidget {
           hintText: placeHolder,
           suffixStyle: TextStyle(
             fontSize: 12.0,
-          )
+          ),
         ),
       ),
     );

@@ -36,9 +36,10 @@ final co_create_middle_title = TextStyle(
 );
 
 // 커뮤니티 글쓰기 텍스트 필드 PlaceHolder
-final co_create_textfield_placeholder = TextStyle(
+final co_create_textfield_write = TextStyle(
   fontFamily: 'pretendard',
-  color: Colors.grey[100],
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
   fontSize: 16.0,
 );
 

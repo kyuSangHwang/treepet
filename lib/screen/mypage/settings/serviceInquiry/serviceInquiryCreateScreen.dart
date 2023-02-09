@@ -135,7 +135,7 @@ class _ServiceInquiryCreateScreenState
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: Colors.black26),
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(20),
       ),
       width: MediaQuery.of(context).size.width * 0.92,
       height: 300,
