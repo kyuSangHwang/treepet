@@ -3,6 +3,7 @@ import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/mypage/activity/activity_detail_screen.dart';
 import 'package:treepet/screen/mypage/interested/interested_screen.dart';
+import 'package:treepet/screen/mypage/petTree/pet_tree_view_all.dart';
 import 'package:treepet/screen/mypage/settings_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -21,8 +22,6 @@ class MyPageScreen extends StatelessWidget {
             ProfileContent(context),
             Divider(height: 40),
             ProfilePetTree(context),
-            // SizedBox(height: 20),
-            // Divider(height: 40),
             ProfileSideMenu(context),
             SizedBox(height: 20),
 
@@ -147,7 +146,7 @@ class MyPageScreen extends StatelessWidget {
               Text('뭉치아빠의 가족들'),
               GestureDetector(
                 onTap: () {
-                  print('가족 전체보기 클릭');
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => PetTreeViewAll()));
                 },
                 child: Text('전체보기'),
               ),
