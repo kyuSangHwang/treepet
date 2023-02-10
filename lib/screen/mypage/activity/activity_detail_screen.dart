@@ -61,11 +61,6 @@ class ActivityDetailScreen extends StatelessWidget {
     );
   }
 
-  // labelColor: Colors.black,
-  // labelStyle: activity_first_tabbar,
-  // indicatorSize: TabBarIndicatorSize.tab,
-  // indicatorColor: MAIN_COLOR,
-
   Widget RenderActivityCategoryOfCategory() {
     return DefaultTabController(
       length: 2,
