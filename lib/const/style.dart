@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 import 'package:treepet/const/color.dart';
 
 /* 텍스트 스타일 */
+/* 온보딩 */
+PageDecoration getPageDecoration() {
+  return const PageDecoration(
+    titleTextStyle: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+    ),
+    bodyTextStyle: TextStyle(
+      fontSize: 18,
+      color: Colors.blue,
+    ),
+    imagePadding: EdgeInsets.only(top: 40),
+    pageColor: Colors.orange,
+  );
+}
+
 /* 커뮤니티 영역 */
 // 커뮤니티 목록형 게시글 제목
 final co_list_post_title = TextStyle(
@@ -108,6 +125,55 @@ final activity_first_tabbar = TextStyle(
   fontFamily: 'pretendard',
   fontWeight: FontWeight.w600,
   fontSize: 18,
+);
+
+/* 관심 목록 */
+// 관심 목록 탭바
+final interested_tabbar = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  fontSize: 18,
+);
+
+/* 마이페이지 우리 가족 */
+// 우리 가족 최상단 제목 라인
+final pet_tree_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 16.0,
+);
+
+// 우리 가족 해당 반려동물 이름
+final pet_tree_pet_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 20.0,
+);
+
+// 우리 가족 해당 반려동물 정보
+final pet_tree_pet_info = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[700],
+  fontSize: 16.0,
+);
+
+// 우리 가족 해당 반려동물 가족 호칭 제목
+final pet_tree_call_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[600],
+  fontSize: 18.0,
+);
+
+// 우리 가족 해당 반려동물의 가족 반려동물 이름
+final pet_tree_family_pet_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+  fontSize: 16.0,
 );
 
 // 설정 목록 화면
