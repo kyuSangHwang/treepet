@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:treepet/screen/onboarding/onboarding_page.dart';
 import 'firebase_options.dart';
 import 'package:treepet/screen/home_screen.dart';
 
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      // home: HomeScreen(),
+      home: OnboardingPage(),
     );
   }
 }
