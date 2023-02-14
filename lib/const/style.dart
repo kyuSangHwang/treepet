@@ -3,6 +3,31 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:treepet/const/color.dart';
 
 /* 텍스트 스타일 */
+/* 회원가입 */
+// 회원가입 이용약관 동의 제목
+final sign_up_term_agree_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w500,
+  color: MAIN_COLOR,
+  fontSize: 18.0,
+);
+
+// 회원가입 이용약관 동의 제목 강조
+final sign_up_term_agree_title1 = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w800,
+  color: MAIN_COLOR,
+  fontSize: 18.0,
+);
+
+// 회원가입 이용약관 동의 카테고리
+final sign_up_term_agree_category = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 16.0,
+);
+
 /* 온보딩 */
 PageDecoration getPageDecoration() {
   return const PageDecoration(
@@ -118,6 +143,29 @@ final co_post_detail_contetnt = TextStyle(
 
 /* 마이페이지 영역 */
 // 프로필
+
+/* 팔로우 팔로워 */
+// 팔로우 탭바
+final follow_tabbar = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  fontSize: 18,
+);
+
+final follow_list_user_nick = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 18,
+);
+
+// 팔로우 반려동물 이름
+final follow_list_pet_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 15,
+);
 
 /* 활동내역 */
 // 활동 내역 1번째 탭바
