@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/mypage/activity/activity_detail_screen.dart';
+import 'package:treepet/screen/mypage/follow/follow_list_screen.dart';
 import 'package:treepet/screen/mypage/interested/interested_screen.dart';
 import 'package:treepet/screen/mypage/petTree/pet_tree_view_all.dart';
-import 'package:treepet/screen/mypage/settings_screen.dart';
+import 'package:treepet/screen/mypage/settings/settings_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
   const MyPageScreen({Key? key}) : super(key: key);
@@ -24,7 +25,6 @@ class MyPageScreen extends StatelessWidget {
             ProfilePetTree(context),
             ProfileSideMenu(context),
             SizedBox(height: 20),
-
             suit_sized_box_style(),
             ProfileDiary(context),
           ],
@@ -81,10 +81,20 @@ class MyPageScreen extends StatelessWidget {
                     Text('육아일기'),
                     Text('3'),
                     SizedBox(width: 20),
-                    Text('팔로워'),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => FollowListScreen(selectedIndex: 0)));
+                      },
+                      child: Text('팔로워'),
+                    ),
                     Text('20'),
                     SizedBox(width: 20),
-                    Text('팔로우'),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => FollowListScreen(selectedIndex: 1)));
+                      },
+                      child: Text('팔로우'),
+                    ),
                     Text('28'),
                   ],
                 ),
@@ -146,7 +156,8 @@ class MyPageScreen extends StatelessWidget {
               Text('뭉치아빠의 가족들'),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => PetTreeViewAll()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => PetTreeViewAll()));
                 },
                 child: Text('전체보기'),
               ),

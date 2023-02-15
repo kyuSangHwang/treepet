@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/screen/community/community_screen.dart';
+import 'package:treepet/screen/sign/sign_up_term_agree_screen.dart';
 import 'family/family_screen.dart';
 import 'package:treepet/screen/mypage/mypage_screen.dart';
 
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     FamilyScreen(),
     Text('우리가족'),
     CommunityScreen(),
-    Text('쇼핑몰'),
+    SignUpTermAgreeScreen(),
     MyPageScreen(),
   ];
 
