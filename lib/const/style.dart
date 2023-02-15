@@ -28,6 +28,82 @@ final sign_up_term_agree_category = TextStyle(
   fontSize: 16.0,
 );
 
+/* 이용동의 상세 */
+// 이용동의 상세 제목
+final access_agreement_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 이용동의 상세 내용
+final access_agreement_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 16,
+);
+
+/* 휴대폰 인증 */
+// 휴대폰 인증 제목
+final mobile_number_authentication_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 휴대폰 인증 placeholder
+final mobile_number_authentication_placeholder = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[500],
+  fontSize: 18,
+);
+
+// 휴대폰 인증 내용
+final mobile_number_authentication_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[500],
+  fontSize: 18,
+);
+
+// 휴대폰 인증 텍스트 필드 작성 글씨
+final textfield_write_number = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
+  fontSize: 16.0,
+);
+
+/* 프로필 등록 */
+// 프로필 등록 제목
+final register_profile_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 프로필 등록 placeholder
+final register_profile_placeholder = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[500],
+  fontSize: 20,
+);
+
+// 프로필 등록 내용
+final register_profile_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.black87,
+  fontSize: 20,
+);
+
+
 /* 온보딩 */
 PageDecoration getPageDecoration() {
   return const PageDecoration(
