@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_2.dart';
+import 'package:treepet/screen/family/wedding/wedding_post_create_screen_3.dart';
 import '../../../const/style.dart';
 
 class WeddingPostCreateScreen1 extends StatefulWidget {
@@ -78,25 +79,60 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
-                      Text('이름', style: wedding_post_create_20_400_012,),
-                      Text('종', style: wedding_post_create_20_400_012,),
-                      Text('품종', style: wedding_post_create_20_400_012,),
-                      Text('나이', style: wedding_post_create_20_400_012,),
-                      Text('몸무게', style: wedding_post_create_20_400_012,),
-                      Text('털색', style: wedding_post_create_20_400_012,),
-
+                      Text(
+                        '이름',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '종',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '품종',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '나이',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '몸무게',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '털색',
+                        style: wedding_post_create_20_400_012,
+                      ),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
-                      Text('몽실이', style: wedding_post_create_20_400_012,),
-                      Text('강아지', style: wedding_post_create_20_400_012,),
-                      Text('푸들', style: wedding_post_create_20_400_012,),
-                      Text('1년 8개월', style: wedding_post_create_20_400_012,),
-                      Text('1.65kg', style: wedding_post_create_20_400_012,),
-                      Text('흰색', style: wedding_post_create_20_400_012,),
+                      Text(
+                        '몽실이',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '강아지',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '푸들',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '1년 8개월',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '1.65kg',
+                        style: wedding_post_create_20_400_012,
+                      ),
+                      Text(
+                        '흰색',
+                        style: wedding_post_create_20_400_012,
+                      ),
                     ],
                   ),
                 ],
@@ -115,7 +151,10 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const WeddingPostCreateScreen2()));
+              MaterialPageRoute(
+                builder: (_) => const WeddingPostCreateScreen2(),
+              ),
+            );
           },
           child: Container(
             width: double.infinity,
@@ -131,8 +170,4 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
       ),
     );
   }
-
-
 }
-
-
