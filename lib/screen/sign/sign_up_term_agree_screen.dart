@@ -20,7 +20,7 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
   bool checkboxValue3 = false;
   bool checkboxValue4 = false;
 
-  @override료
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SignUpTermAgreeScreenAppBar(context),
