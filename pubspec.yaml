@@ -41,6 +41,14 @@ dependencies:
   cloud_firestore: ^4.3.1
   image_picker: ^0.8.6+1
   video_player: ^2.5.1
+  table_calendar: ^3.0.9
+  drift: ^2.4.2
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.8.3
+
+dependency_overrides:
+  path: ^1.8.3
   kakao_flutter_sdk: ^1.4.0
 
 dev_dependencies:
@@ -53,6 +61,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  drift_dev: ^2.4.1
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
