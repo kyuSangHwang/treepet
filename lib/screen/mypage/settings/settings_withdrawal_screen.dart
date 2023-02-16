@@ -111,7 +111,7 @@ class _SettingsWithdrawalScreenState extends State<SettingsWithdrawalScreen> {
 
   Widget RenderWithdrawalWrite() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.only(left: 16.0,right: 16.0, bottom: 20),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black26),
