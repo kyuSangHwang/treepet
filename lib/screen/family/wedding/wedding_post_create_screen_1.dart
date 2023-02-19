@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:treepet/component/wedding_component.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_2.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_3.dart';
 import '../../../const/style.dart';
@@ -19,31 +20,11 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
     return Scaffold(
       appBar: WeddingPostCreateAppBar(context),
       body: WeddingPostCreateScreenBody(context),
-      bottomNavigationBar: WeddingBottomAppBarButton(context),
+      bottomNavigationBar: WeddingBottomAppBarButton(context, const WeddingPostCreateScreen2()),
     );
   }
 
-  AppBar WeddingPostCreateAppBar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      centerTitle: false,
-      backgroundColor: Colors.white,
-      title: const Text(
-        '신랑&신부 등록',
-        style: TextStyle(color: Colors.black),
-      ),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        icon: const Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-      ),
-    );
-  }
-
+  /// 반려동물 웨딩 등록 시 보여지는 첫 번째 화면의 내용
   Widget WeddingPostCreateScreenBody(BuildContext context) {
     return SafeArea(
       child: SizedBox(
@@ -51,123 +32,80 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 100.0,
-              child: Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  '신랑&신부 정보',
-                  style: wedding_post_22_400_012,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 10.0, 0, 30.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('asset/image/mongSil.png'),
-                radius: 110,
-              ),
-            ),
-            SizedBox(
-              height: 250.0,
-              width: MediaQuery.of(context).size.width * 0.80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        '이름',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '종',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '품종',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '나이',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '몸무게',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '털색',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        '몽실이',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '강아지',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '푸들',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '1년 8개월',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '1.65kg',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                      Text(
-                        '흰색',
-                        style: wedding_post_create_20_400_012,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            const WeddingCreateTitleForm(),
+            WeddingPetCircleAvatar(),
+            WeddingPostCreateScreenBodyContent(),
           ],
         ),
       ),
     );
   }
 
-  BottomAppBar WeddingBottomAppBarButton(BuildContext context) {
-    return BottomAppBar(
-      child: SizedBox(
-        height: 60.0,
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => const WeddingPostCreateScreen2(),
-              ),
-            );
-          },
-          child: Container(
-            width: double.infinity,
-            color: Colors.grey,
-            child: const Center(
-              child: Text(
-                '다 음',
-                style: wedding_post_create_20_400_012,
-              ),
-            ),
-          ),
-        ),
+  /// 화면에 반려동물 프로필 이미지 [CircleAvatar]에 [Padding]으로 감싸서 return
+  Padding WeddingPetCircleAvatar() {
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(0, 10.0, 0, 30.0),
+      child: CircleAvatar(
+        backgroundImage: AssetImage('asset/image/mongSil.png'),
+        radius: 110,
       ),
     );
   }
+
+  /// 반려동물의 기본 정보를 [SizedBox]로 width, height 지정해서 return
+  SizedBox WeddingPostCreateScreenBodyContent() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.80,
+      height: 250.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          WeddingPetInfomation("이름", "종", "품종", "나이", "몸무게", "털색"),
+          WeddingPetInfomation("몽실이", "강아지", "푸들", "1살", "1.65 Kg", "흰색"),
+        ],
+      ),
+    );
+  }
+
+  /// 반려동물의 정보를 보여주는 Widget
+  ///
+  /// [petName] String, 반려동물 이름
+  /// [petSpecies] String, 반려동물 종
+  /// [petBreedOfPets] String, 반려동물 품종
+  /// [petAge] String, 반려동물 나이 ( "*살"로 표현 )
+  /// [petWeight] String, 반려동물 몸무게
+  /// [petHairColor] String, 반려동물 털 색
+  Column WeddingPetInfomation(String petName, String petSpecies, String petBreedOfPets, String petAge, String petWeight, String petHairColor) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          petName,
+          style: wedding_post_create_20_400_012,
+        ),
+        Text(
+          petSpecies,
+          style: wedding_post_create_20_400_012,
+        ),
+        Text(
+          petBreedOfPets,
+          style: wedding_post_create_20_400_012,
+        ),
+        Text(
+          petAge,
+          style: wedding_post_create_20_400_012,
+        ),
+        Text(
+          petWeight,
+          style: wedding_post_create_20_400_012,
+        ),
+        Text(
+          petHairColor,
+          style: wedding_post_create_20_400_012,
+        ),
+      ],
+    );
+  }
+
 }
