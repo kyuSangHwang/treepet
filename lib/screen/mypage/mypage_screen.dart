@@ -17,14 +17,14 @@ class MyPageScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ProfileInfo(context),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ProfileContent(context),
-            Divider(height: 40),
+            const Divider(height: 40),
             ProfilePetTree(context),
             ProfileSideMenu(context),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             suit_sized_box_style(),
             ProfileDiary(context),
           ],
@@ -38,10 +38,7 @@ class MyPageScreen extends StatelessWidget {
       elevation: 0,
       centerTitle: false,
       backgroundColor: WHITE_COLOR,
-      title: Text(
-        '마이페이지',
-        style: TextStyle(color: BLACK_COLOR),
-      ),
+      title: const Text('마이페이지', style: TextStyle(color: BLACK_COLOR)),
       actions: [
         IconButton(
           onPressed: () {
@@ -58,7 +55,7 @@ class MyPageScreen extends StatelessWidget {
   }
 
   // 프로필 유저 소개 부분 (회원 이미지, 팔로우, 회원 아이디, 회원 소개)
-  Widget ProfileInfo(BuildContext context) {
+  SizedBox ProfileInfo(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
@@ -80,20 +77,24 @@ class MyPageScreen extends StatelessWidget {
                   children: [
                     Text('육아일기'),
                     Text('3'),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => FollowListScreen(selectedIndex: 0)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) =>
+                                FollowListScreen(selectedIndex: 0)));
                       },
                       child: Text('팔로워'),
                     ),
                     Text('20'),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => FollowListScreen(selectedIndex: 1)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) =>
+                                FollowListScreen(selectedIndex: 1)));
                       },
-                      child: Text('팔로우'),
+                      child: const Text('팔로우'),
                     ),
                     Text('28'),
                   ],
@@ -101,12 +102,12 @@ class MyPageScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('뭉치아빠'),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text('안녕하세요~! 산책하다가 감자를 마주치면 반갑게 인사해주세요~! 뭉치는 3살 리트리버 아이예요~!'),
             ],
           ),
@@ -115,7 +116,7 @@ class MyPageScreen extends StatelessWidget {
     );
   }
 
-  Widget ProfileContent(BuildContext context) {
+  Container ProfileContent(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.92,
       child: Column(
@@ -128,13 +129,11 @@ class MyPageScreen extends StatelessWidget {
                 onTap: () {
                   print('자세히 보기 클릭');
                 },
-                child: Text('자세히 보기'),
+                child: const Text('자세히 보기'),
               ),
             ],
           ),
-          SizedBox(
-            height: 6,
-          ),
+          const SizedBox(height: 6),
           Container(
             color: BLACK_COLOR,
             width: MediaQuery.of(context).size.width,
@@ -153,102 +152,126 @@ class MyPageScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('뭉치아빠의 가족들'),
+              const Text('뭉치아빠의 가족들'),
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => PetTreeViewAll()));
                 },
-                child: Text('전체보기'),
+                child: const Text('전체보기'),
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Container(
+          const SizedBox(height: 10),
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 180,
-            decoration: BoxDecoration(
-                border: Border.all(width: 1, color: BLACK_COLOR),
-                borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                // 내 반려동물
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  child: Row(
-                    children: [
-                      CircleAvatar(),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('뭉치'),
-                                Row(
-                                  children: [Text('말티즈'), Icon(Icons.man)],
-                                ),
-                                Row(
-                                  children: [
-                                    Text('여아'),
-                                    Text('2살'),
-                                    Text('3kg'),
-                                    Text('중성화 O'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Icon(Icons.settings_ethernet)
-                    ],
-                  ),
-                ),
-                // TODO : 가로로 되긴 하는데 가족당 가로 넓이에 문제가 있는듯...
-                Divider(height: 5),
-                // 내 반려동물 가족
-                Container(
-                  height: 60,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(),
-                              SizedBox(height: 10),
-                              Text('로미'),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        child: Container(
-                          child: Column(
-                            children: [
-                              CircleAvatar(),
-                              SizedBox(height: 10),
-                              Text('로미'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              physics: const PageScrollPhysics(),
+              itemCount: 3,
+              itemBuilder: (BuildContext context, int index) {
+                return _RenderPetFamily(context);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.05,
+                );
+              },
             ),
           ),
           Divider(height: 40),
+        ],
+      ),
+    );
+  }
+
+  Widget _RenderPetFamily(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 180,
+      decoration: BoxDecoration(
+          border: Border.all(width: 1, color: BLACK_COLOR),
+          borderRadius: BorderRadius.circular(20)),
+      child: Column(
+        children: [
+          // 내 반려동물
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            child: Row(
+              children: [
+                CircleAvatar(),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('뭉치'),
+                          Row(
+                            children: [Text('말티즈'), Icon(Icons.man)],
+                          ),
+                          Row(
+                            children: [
+                              Text('여아'),
+                              Text('2살'),
+                              Text('3kg'),
+                              Text('중성화 O'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.settings_ethernet)
+              ],
+            ),
+          ),
+          // TODO : 가로로 되긴 하는데 가족당 가로 넓이에 문제가 있는듯...
+          Divider(height: 5),
+          // 내 반려동물 가족
+          Container(
+            height: 90,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                List pet = [
+                  '안녕',
+                  '로미',
+                  '루이',
+                  '2라ㅣ라라라',
+                  '임꺽정입니다',
+                  '룰루랄ㄹ',
+                  '123123',
+                  '호에호에호에',
+                  '이이이이잉',
+                  '안녕하쇼'
+                ];
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  child: RenderPetBro(pet[index]),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget RenderPetBro(String petName) {
+    return Container(
+      width: 50,
+      child: Column(
+        children: [
+          CircleAvatar(),
+          SizedBox(height: 10),
+          Text(petName, style: TextStyle(overflow: TextOverflow.ellipsis)),
         ],
       ),
     );
