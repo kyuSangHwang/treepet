@@ -125,7 +125,7 @@ class MobileNumberAuthenticationScreen extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => RegisterProfileScreen()));
+                builder: (_) => ProfileRegisterScreen()));
           },
           child: Text(
             '다음',
