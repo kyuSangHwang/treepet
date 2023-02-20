@@ -3,18 +3,20 @@ import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/sign/address_search_screen.dart';
 
-class RegisterProfileScreen extends StatefulWidget {
-  const RegisterProfileScreen({Key? key}) : super(key: key);
+class ProfileRegisterScreen extends StatefulWidget {
+  const ProfileRegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterProfileScreen> createState() => _RegisterProfileScreenState();
+  State<ProfileRegisterScreen> createState() => _ProfileRegisterScreenState();
 }
 
-class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
+class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
+  int selectedSexButtonIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: RegisterProfileScreenAppBar(context),
+      appBar: ProfileRegisterScreenAppBar(context),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
@@ -45,7 +47,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   ),
                 ),
               ),
-              RenderWithdrawalButton(context)
+              RenderProfileRegisterButton(context)
             ],
           ),
         ),
@@ -53,7 +55,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     );
   }
 
-  AppBar RegisterProfileScreenAppBar(BuildContext context) {
+  AppBar ProfileRegisterScreenAppBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       centerTitle: false,
@@ -86,7 +88,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             decoration: InputDecoration(
                 hintText: '이름을 입력해주세요',
                 hintStyle: register_profile_placeholder),
-          )
+          ),
         ],
       ),
     );
@@ -110,9 +112,6 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   }
 
   Widget ProfileUserSex(BuildContext context) {
-    String? sex;
-
-    // TODO : 버튼 색 바뀌는 것도 해야함
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Column(
@@ -128,14 +127,21 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        sex = '남성';
+                        selectedSexButtonIndex = 1;
                       });
-                      print(sex);
                     },
                     child: Text('남성'),
                     style: ElevatedButton.styleFrom(
-                      primary: sex == '남성' ? MAIN_COLOR : Colors.blue,
+                      foregroundColor:
+                      selectedSexButtonIndex == 1
+                          ? Colors.white
+                          : Colors.grey[700],
+                      backgroundColor:
+                      selectedSexButtonIndex == 1
+                          ? Colors.green
+                          : Colors.grey[300],
                     ),
+
                   ),
                 ),
               ),
@@ -146,13 +152,19 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        sex = '여성';
-                        print(sex);
+                        selectedSexButtonIndex = 2;
                       });
                     },
                     child: Text('여성'),
-                    style: ElevatedButton.  styleFrom(
-                        primary: sex  == '여성' ? MAIN_COLOR : null
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor:
+                      selectedSexButtonIndex == 2
+                          ? Colors.white
+                          : Colors.grey[700],
+                      backgroundColor:
+                      selectedSexButtonIndex == 2
+                          ? Colors.green
+                          : Colors.grey[300],
                     ),
                   ),
                 ),
@@ -181,7 +193,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     );
   }
 
-  Widget RenderWithdrawalButton(BuildContext context) {
+  Widget RenderProfileRegisterButton(BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
