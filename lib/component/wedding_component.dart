@@ -44,29 +44,74 @@ AppBar WeddingPostCreateAppBar(BuildContext context) {
 }
 
 /// 반려동물 웨딩 등록 화면의 [BottomAppBar], "다음" [button]으로 [nextPage]로 이동
-BottomAppBar WeddingBottomAppBarButton(BuildContext context, nextPage) {
+Widget WeddingBottomAppBarButton(BuildContext context, String buttonName, nextPage, [Map<String,bool>? checkMap]) {
   return BottomAppBar(
     child: SizedBox(
       height: 60.0,
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => nextPage,
-            ),
-          );
+          bool? allValuesAreTrue = checkMap?.values.every((value) => value == true);
+
+          if (checkMap == null) allValuesAreTrue = true;
+
+          if (allValuesAreTrue != null && allValuesAreTrue) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => nextPage,
+                ),
+              );
+          } else {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: const Text('웨딩 등록 시 확인사항 및 주의사항을\n모두 체크해주세요'),
+                  actions: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextButton(
+                        child: const Text('확인'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+
+          }
         },
         child: Container(
           width: double.infinity,
           color: Colors.grey,
-          child: const Center(
+          child: Center(
             child: Text(
-              '다 음',
+              buttonName,
               style: wedding_post_create_20_400_012,
             ),
           ),
         ),
       ),
+    ),
+  );
+}
+
+/// 카테고리 제목을 넣어주는 Widget.
+///
+/// [categoryTitle] String, 카테고리 제목.
+/// [newWidth] double?, default 넓이가 아닌 넗이.
+/// [newHeight] double?, default 높이가 아닌 높이.
+///
+/// 카테고리 제목을 받아서 사이즈를 지정 후 return.
+SizedBox categoryTitle(String categoryTitle, [double? newWidth,  double? newHeight]) {
+  return SizedBox(
+    width: newWidth ?? 100.0,
+    height: newHeight ?? 22.0,
+    child: Text(
+      categoryTitle,
+      style: wedding_post_15_400_012,
     ),
   );
 }
