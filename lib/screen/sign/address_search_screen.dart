@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
+import 'package:treepet/const/style.dart';
+import 'package:treepet/screen/sign/user_sign_up_complete_screen.dart';
+// import 'package:kopo/kopo.dart';
 
 class AddressSearchScreen extends StatefulWidget {
   const AddressSearchScreen({Key? key}) : super(key: key);
@@ -16,6 +19,8 @@ class _AddressSearchScreenState extends State<AddressSearchScreen> {
   String kakaoLatitude = '-';
   String kakaoLongitude = '-';
 
+  String adressValue = "주소를 검색해주세요";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +32,7 @@ class _AddressSearchScreenState extends State<AddressSearchScreen> {
             SizedBox(height: 20),
             RenderTitle(context),
             SizedBox(height: 20),
-
-
+            RenderAddressSearchButton(context),
           ],
         ),
       ),
@@ -65,9 +69,44 @@ class _AddressSearchScreenState extends State<AddressSearchScreen> {
           Text('회원님의 주소를 입력해주세요'),
           SizedBox(height: 5),
           Text('다른 회원들에게는 지역만 공개됩니다. ex)서울,인천,'),
+
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     var result = await Navigator.of(context).push(
+          //         MaterialPageRoute(
+          //             builder: (context) => Kopo()
+          //         )
+          //     );
+          //
+          //     if(result != null){
+          //       setState(() {
+          //         this.adressValue = result;
+          //       });
+          //     }
+          //   },
+          //   child: Text('주소검색'),
+          // ),
         ],
       ),
     );
   }
-}
 
+  Widget RenderAddressSearchButton(BuildContext context) {
+    return SafeArea(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 70,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => UserSignUpCompleteScreen()));
+          },
+          child: Text(
+            '다음',
+            style: big_long_button_text,
+          ),
+        ),
+      ),
+    );
+  }
+}
