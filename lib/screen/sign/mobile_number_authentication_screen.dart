@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
-import 'package:treepet/screen/sign/register_profile_screen.dart';
+import 'package:treepet/screen/sign/profile_register_screen.dart';
 
 class MobileNumberAuthenticationScreen extends StatelessWidget {
   const MobileNumberAuthenticationScreen({Key? key}) : super(key: key);
