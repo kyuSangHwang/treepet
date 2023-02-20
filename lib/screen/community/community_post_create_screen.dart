@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:treepet/component/custom_image_picker.dart';
 import 'package:treepet/component/custom_text_field.dart';
 import 'package:treepet/component/post_bottom_sheet.dart';
 import 'package:treepet/const/color.dart';
@@ -16,8 +15,16 @@ class CommunityPostCreateScreen extends StatefulWidget {
 }
 
 class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
-  // 이미지와 비디오를 리턴받을 수 있다 (선택 안할수도있으니 ? = null)
-  XFile? image;
+  late File _imageFile = File(" ");
+  List<dynamic> imageFilesList = [];
+  List<Widget> imagesWidgetList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    imageFilesList.add(addButton());
+    imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +42,15 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      CustomTextField(
+                      const CustomTextField(
                         isTitle: true,
                         placeHolder: '제목을 입력하세요. ',
                       ),
                       thin_sized_box_style(),
-                      CustomTextField(
+                      const CustomTextField(
                         isTitle: false,
                         placeHolder:
-                            '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
+                        '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
                       ),
                       thin_sized_box_style(),
                       Column(
@@ -66,12 +73,23 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
+  /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
+  Future<void> _getImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _imageFile = File(pickedFile!.path);
+      imageFilesList.add(_imageFile);
+      imagesWidgetList.add(addImages(imageFilesList.length-1));
+    });
+  }
+
   AppBar CommunityPostCreateAppBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       centerTitle: false,
       backgroundColor: WHITE_COLOR,
-      title: Text(
+      title: const Text(
         '글쓰기',
         style: TextStyle(color: BLACK_COLOR),
       ),
@@ -79,7 +97,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: BLACK_COLOR,
           )),
@@ -96,7 +114,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
             '카테고리 선택',
             style: co_create_middle_title,
           ),
-          Container(
+          SizedBox(
             width: 58,
             height: 26,
             child: ElevatedButton(
@@ -106,11 +124,11 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                 showModalBottomSheet(
                   context: context,
                   builder: (_) {
-                    return PostBottomSheet();
+                    return const PostBottomSheet();
                   },
                 );
               },
-              child: Text('선택'),
+              child: const Text('선택'),
             ),
           ),
         ],
@@ -119,107 +137,35 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   }
 
   Padding ImageVideoSelected() {
-    List<int> numbers = List.generate(4, (index) => index);
+    // List numbers = List.generate(4, (index) => index);
 
     return Padding(
       padding: post_item_left_padding(),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+          Text(
+            '사진/동영상',
+            style: co_create_middle_title,
+          ),
+          const SizedBox(height: 10),
+          Row(
             children: [
-              Text(
-                '사진/동영상',
-                style: co_create_middle_title,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: 79.6,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: imagesWidgetList.map((e) => e,).toList(),
+                ),
               ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      onImageTap();
-                    },
-                    child: Container(
-                      width: 79.6,
-                      height: 79.6,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          // image == null ? renderEmpty() :
-                          onImageTap();
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          size: 40,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  //TODO : 나열될 사진들 GridView로 보여주기
-                  // 선택한 이미지를 모아둘 리스트 변수를 만든다
-                  // 이미지의 경로를 만든 리스트변수에 넣는다
-                  // GridView 안에서 mapping 해서 toList 로 만들어 화면에 출력한다
-                  // if (image != null)
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.width,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   child: GridView.count(
-                  //     primary: false,
-                  //     shrinkWrap: true,
-                  //     crossAxisCount: 4,
-                  //     crossAxisSpacing: 8,
-                  //     children: numbers
-                  //         .map((e) => renderContainer(index: e))
-                  //         .toList(),
-                  //   ),
-                  // ),
-                ],
-              ),
+              // ),
             ],
           ),
         ],
       ),
     );
-  }
-
-  Widget renderEmpty() {
-    return Container(
-      height: 100,
-      width: 100,
-      color: BLACK_COLOR,
-    );
-  }
-
-  // Widget renderImage() {
-  //   return Center(
-  //     child: CustomImagePicker(
-  //       image: image!,
-  //       onNewImagePressed: () {
-  //         onImageTap();
-  //
-  //       },
-  //     ),
-  //   );
-  // }
-
-  void onImageTap() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      setState(() {
-        this.image = image;
-      });
-    } else {
-      if (kDebugMode) {
-        print('이미지 선택 안함');
-      }
-    }
   }
 
   Padding RegisteredButton(BuildContext context) {
@@ -228,13 +174,13 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
       child: Row(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   '등록',
                   style: TextStyle(fontSize: 22),
                 ),
@@ -246,25 +192,43 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  // TODO : 출력되는 이미지 컨테이너
-  // Widget renderContainer({
-  //   required int index,
-  // }) {
-  //   print(index);
-  //
-  //   return Container(
-  //     height: (MediaQuery.of(context).size.width - 32) / 5,
-  //     color: Colors.blueAccent,
-  //     child: Center(
-  //       child: Text(
-  //         index.toString(),
-  //         style: TextStyle(
-  //           color: Colors.white,
-  //           fontWeight: FontWeight.w700,
-  //           fontSize: 30.0,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Container addButton() {
+    return Container(
+      width: 79.6,
+      height: 79.6,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: IconButton(
+        onPressed: () {
+          // image == null ? renderEmpty() :
+          // onImageTap();
+          _getImage();
+        },
+        icon: Icon(
+          Icons.add,
+          size: 40,
+          color: Colors.grey[400],
+        ),
+      ),
+    );
+  }
+
+  Container addImages(index) {
+    return Container(
+      height: 10,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * 0.2,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: FileImage(imageFilesList[index]),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(100),
+      ),
+    );
+  }
 }
