@@ -35,39 +35,44 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PetRegisterScreen2AppBar(context),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10),
-                    RenderTitle2(context),
-                    SizedBox(height: 30),
-                    RenderPetMedicalHistory(context),
-                    SizedBox(height: 10),
-                    RenderPetAllergy(context),
-                    SizedBox(height: 20),
-                    RenderProfileIntroduce(context),
-                    SizedBox(height: 50),
-                    RenderWarning(),
-                    SizedBox(height: 10),
-                    RenderOner(),
-                    SizedBox(height: 20),
-                    RenderRegisterNumber(),
-                    SizedBox(height: 20),
-                    RenderAdoptionRoute(),
-                    SizedBox(height: 40),
-                  ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      RenderTitle2(context),
+                      SizedBox(height: 30),
+                      RenderPetMedicalHistory(context),
+                      SizedBox(height: 10),
+                      RenderPetAllergy(context),
+                      SizedBox(height: 20),
+                      RenderProfileIntroduce(context),
+                      SizedBox(height: 50),
+                      RenderWarning(),
+                      SizedBox(height: 10),
+                      RenderOner(),
+                      SizedBox(height: 20),
+                      RenderRegisterNumber(),
+                      SizedBox(height: 20),
+                      RenderAdoptionRoute(),
+                      SizedBox(height: 40),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          RenderProfileRegisterButton2(context),
-        ],
+            RenderProfileRegisterButton2(context),
+          ],
+        ),
       ),
     );
   }
