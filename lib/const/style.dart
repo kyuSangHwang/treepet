@@ -103,6 +103,90 @@ final register_profile_content = TextStyle(
   fontSize: 20,
 );
 
+/* 프로필 등록 완료 */
+// 반려동물 등록 버튼
+final pet_register_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+// 반려동물 등록 버튼
+final not_pet_register_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 20,
+);
+
+/* 반려동물 등록 화면 */
+// 반려동물 등록 카테고리 타이틀
+final pet_register_category_title = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 18,
+);
+
+// 반려동물 등록 카테고리 선택 버튼
+final pet_register_category_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: BLACK_COLOR,
+  fontSize: 18,
+);
+
+// 반려동물 등록 품종 입력
+final pet_breed = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 20,
+);
+
+// 반려동물 등록 이름 입력
+final pet_name = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 20,
+);
+
+
+// 반려동물 등록 몸무게 입력
+final pet_weight = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 20,
+);
+
+// 반려동물 등록 몸무게 서프
+final pet_weight_suf = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[600],
+  fontSize: 20,
+);
+
+// 반려동물 등록 몸무게 헬퍼
+final pet_weight_hel = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[600],
+  fontSize: 14,
+);
+
+// 옵션 선택
+final option_select = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w500,
+  color: Colors.grey[800],
+  fontSize: 20,
+);
+
+
 
 /* 온보딩 */
 PageDecoration getPageDecoration() {
