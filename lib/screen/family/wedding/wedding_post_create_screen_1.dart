@@ -20,7 +20,7 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
     return Scaffold(
       appBar: WeddingPostCreateAppBar(context),
       body: WeddingPostCreateScreenBody(context),
-      bottomNavigationBar: WeddingBottomAppBarButton(context, const WeddingPostCreateScreen2()),
+가      bottomNavigationBar: WeddingBottomAppBarButton(context, "다 음", const WeddingPostCreateScreen2()),
     );
   }
 
