@@ -18,10 +18,17 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   late File _imageFile = File(" ");
   List<dynamic> imageFilesList = [];
   List<Widget> imagesWidgetList = [];
-
+  List<int> iconButtonKeyIndexList = [];
+  List<int> iconButtonKeyIndexReplaceList = [];
+  // List<Map<dynamic, String>> imageFilesList = [];
+  // List<Map<Widget>> imagesWidgetList = [];
   @override
   void initState() {
     super.initState();
+    // final uniqueKey = DateTime.now().millisecondsSinceEpoch.toString();
+    //
+    // final imageData = {'file': addButton(), 'key': uniqueKey};
+    // imageFilesList.add(imageData);
     imageFilesList.add(addButton());
     imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
   }
@@ -50,7 +57,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                       const CustomTextField(
                         isTitle: false,
                         placeHolder:
-                        '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
+                            '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
                       ),
                       thin_sized_box_style(),
                       Column(
@@ -71,17 +78,6 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
         ),
       ),
     );
-  }
-
-  /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
-  Future<void> _getImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _imageFile = File(pickedFile!.path);
-      imageFilesList.add(_imageFile);
-      imagesWidgetList.add(addImages(imageFilesList.length-1));
-    });
   }
 
   AppBar CommunityPostCreateAppBar(BuildContext context) {
@@ -137,8 +133,6 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   }
 
   Padding ImageVideoSelected() {
-    // List numbers = List.generate(4, (index) => index);
-
     return Padding(
       padding: post_item_left_padding(),
       child: Column(
@@ -153,39 +147,22 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
           Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
+                width: MediaQuery.of(context).size.width * 0.92,
                 height: 79.6,
-                child: ListView(
+                child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  children: imagesWidgetList.map((e) => e,).toList(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return imagesWidgetList[index];
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(width: 5);
+                  },
+                  // itemCount: imagesWidgetList.length,
+                  itemCount: imagesWidgetList.length,
                 ),
               ),
               // ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Padding RegisteredButton(BuildContext context) {
-    return Padding(
-      padding: big_long_button(),
-      child: Row(
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  '등록',
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
           ),
         ],
       ),
@@ -215,19 +192,132 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  Container addImages(index) {
-    return Container(
-      height: 10,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width * 0.2,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: FileImage(imageFilesList[index]),
-          fit: BoxFit.cover,
+  /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
+  Future<void> _getImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _imageFile = File(pickedFile!.path);
+      imageFilesList.add(_imageFile);
+
+      int currentImageIndex = imageFilesList.length - 1;
+
+      iconButtonKeyIndexList.add(currentImageIndex);
+      imagesWidgetList.add(addImages(currentImageIndex, iconButtonKeyIndexList[currentImageIndex - 1]));
+
+      imageFilesList.length == 6 ? imageFilesList.removeAt(0) : null;
+      imagesWidgetList.length == 6 ? imagesWidgetList.removeAt(0) : null;
+    });
+  }
+
+  // 등록된 이미지
+  Stack addImages(index, iconButtonIndex) {
+    return Stack(
+      alignment: AlignmentDirectional.topEnd,
+      children: [
+        Container(
+          width: 79.6,
+          height: 79.6,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: FileImage(imageFilesList[index]),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
-        borderRadius: BorderRadius.circular(100),
+        Positioned(
+          top: 5,
+          right: 5,
+          child: Container(
+            width: 20,
+            height: 20,
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.8),
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              key: Key("$iconButtonIndex"),
+              onPressed: () {
+                setState(() {
+                  int removeIconButtonIndex = iconButtonKeyIndexList[iconButtonIndex - 1] - 1;
+
+                  switch (removeIconButtonIndex) {
+                    case 0 : {
+                      iconButtonKeyIndexList[1] = iconButtonKeyIndexList[1] - 1;
+                      iconButtonKeyIndexList[2] = iconButtonKeyIndexList[2] - 1;
+                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
+                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
+                    }
+                      break;
+                    case 1 :
+                      iconButtonKeyIndexList[2] = iconButtonKeyIndexList[2] - 1;
+                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
+                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
+                      break;
+
+                    case 2 :
+                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
+                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
+                      break;
+
+                    case 3 :
+                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
+                      break;
+
+                    case 4 :
+
+                      break;
+                  }
+
+                  iconButtonKeyIndexList.removeAt(removeIconButtonIndex);
+
+                  imageFilesList.removeAt(removeIconButtonIndex);
+                  imagesWidgetList.removeAt(removeIconButtonIndex);
+
+                  if (imageFilesList[0].runtimeType != addButton().runtimeType) {
+                    imageFilesList.insert(0, addButton());
+                    imagesWidgetList.insert(0, addButton());
+                  } else {
+                    print("object2222");
+                  }
+                });
+              },
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // 등록 버튼
+  Padding RegisteredButton(BuildContext context) {
+    return Padding(
+      padding: big_long_button(),
+      child: Row(
+        children: [
+          Expanded(
+            child: SizedBox(
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  '등록',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
