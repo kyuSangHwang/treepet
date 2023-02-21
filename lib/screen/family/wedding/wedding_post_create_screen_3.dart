@@ -8,6 +8,7 @@ import 'package:treepet/component/wedding_component_functions.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_4.dart';
 import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class WeddingPostCreateScreen3 extends StatefulWidget {
   const WeddingPostCreateScreen3({Key? key}) : super(key: key);
@@ -51,40 +52,37 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
       resizeToAvoidBottomInset: false,
       appBar: WeddingPostCreateAppBar(context),
       body: WeddingPostCreateScreen3Body(),
-      bottomNavigationBar: WeddingBottomAppBarButton(context, MyHomePage11()),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _pickImage,
-      //   tooltip: 'Pick Image',
-      //   child: const Icon(Icons.add_a_photo),
-      // ),
+      bottomNavigationBar: WeddingBottomAppBarButton(context, "다 음", MyHomePage11()),
     );
   }
 
   /// 반려동물 웨딩 등록 시 보여지는 세 번째 화면의 내용
-  SizedBox WeddingPostCreateScreen3Body() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        children: [
-          const WeddingCreateTitleForm(),
-          Expanded(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Column(
-                children: [
-                  WeddingMenstruationArea(), // 꽃도장
-                  const SizedBox(height: 20.0),
-                  WeddingMenstrualCycleArea(), // 꽃 도장 주기
-                  const SizedBox(height: 20.0),
-                  WeddingPedigreeBookArea(), // 혈통서
-                  const SizedBox(height: 20.0),
-                  WeddingDesiredArea(), // 웨딩 희망장소
-                ],
+  SingleChildScrollView WeddingPostCreateScreen3Body() {
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            const WeddingCreateTitleForm(),
+            Expanded(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Column(
+                  children: [
+                    WeddingMenstruationArea(), // 꽃도장
+                    const SizedBox(height: 20.0),
+                    WeddingMenstrualCycleArea(), // 꽃 도장 주기
+                    const SizedBox(height: 20.0),
+                    WeddingPedigreeBookArea(), // 혈통서
+                    const SizedBox(height: 20.0),
+                    WeddingDesiredArea(), // 웨딩 희망장소
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -299,52 +297,32 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      _pickImage();
-                    },
-                    child: Container(
-                      width: 79.6,
-                      height: 79.6,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          // image == null ? renderEmpty() :
-                          _pickImage();
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          size: 40,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ),
-                  ),
                   const SizedBox(width: 8),
-                  //TODO : 나열될 사진들 GridView로 보여주기
+                  //TODO : 상우가 기능 개발 마무리하면 옮겨 넣기
                   Column(
                     children: [
                       ElevatedButton(
                         onPressed: _selectImage,
-                        child: Text('Select Image'),
+                        child: const Text('Select Image'),
                       ),
-                      Visibility(
-                        visible: _selectedImages.isNotEmpty,
-                        child: GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
+                      SizedBox(
+                        height: 100,
+                        width: (MediaQuery.of(context).size.width * 0.9) * 0.1,
+                        child: Visibility(
+                          visible: _selectedImages.isNotEmpty,
+                          child: GridView.builder(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                            ),
+                            itemCount: _selectedImages.length,
+                            itemBuilder: (context, index) {
+                              return Image.network(_selectedImages[index]);
+                            },
                           ),
-                          itemCount: _selectedImages.length,
-                          itemBuilder: (context, index) {
-                            return Image.network(_selectedImages[index]);
-                          },
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ],
@@ -355,7 +333,8 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
   }
 
   void _selectImage() async {
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
     if (pickedFile != null) {
       setState(() {
         _selectedImages.add(pickedFile.path);
@@ -374,35 +353,6 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
       });
     } else if (kDebugMode) {
       print('이미지를 선택하지 않았습니다.');
-    }
-  }
-
-  /// 카테고리 제목을 넣어주는 Widget.
-  ///
-  /// [categoryTitle] String, 카테고리 제목.
-  /// [newWidth] double?, default 넓이가 아닌 넗이.
-  /// [newHeight] double?, default 높이가 아닌 높이.
-  ///
-  /// 카테고리 제목을 받아서 사이즈를 지정 후 return.
-  SizedBox categoryTitle(String categoryTitle, [double? newWidth,  double? newHeight]) {
-    if (newWidth != null) {
-      return SizedBox(
-        width: newWidth,
-        height: 22.0,
-        child: Text(
-          categoryTitle,
-          style: wedding_post_15_400_012,
-        ),
-      );
-    } else {
-      return SizedBox(
-        width: 100.0,
-        height: 22.0,
-        child: Text(
-          categoryTitle,
-          style: wedding_post_15_400_012,
-        ),
-      );
     }
   }
 

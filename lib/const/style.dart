@@ -696,6 +696,14 @@ const wedding_post_create_14_300_012 = TextStyle(
   color: Colors.black,
 );
 
+const wedding_post_detail_135_300_014 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 13.5,
+  fontWeight: FontWeight.w300,
+  height: 1.4,
+  color: Colors.black,
+);
+
 
 
 
