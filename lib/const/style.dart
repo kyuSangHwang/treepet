@@ -704,6 +704,25 @@ const wedding_post_detail_135_300_014 = TextStyle(
   color: Colors.black,
 );
 
+const wedding_post_detail_145_400_02 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 14.5,
+  fontWeight: FontWeight.w400,
+  height: 2,
+  color: Colors.black,
+);
+
+const wedding_post_detail_145_400_02_d = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 14.5,
+  fontWeight: FontWeight.w400,
+  height: 2,
+  color: Colors.black,
+  decoration: TextDecoration.underline,
+  decorationColor: Colors.red,
+  decorationThickness: 1.5,
+);
+
 
 
 
