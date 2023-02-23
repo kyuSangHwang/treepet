@@ -15,10 +15,47 @@ class SignUpTermAgreeScreen extends StatefulWidget {
 }
 
 class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
-  bool checkboxValue1 = false;
-  bool checkboxValue2 = false;
-  bool checkboxValue3 = false;
-  bool checkboxValue4 = false;
+  bool _isChecked1 = false;
+  bool _isChecked2 = false;
+  bool _isChecked3 = false;
+  bool _isChecked4 = false;
+
+  bool _allChecked() {
+    return _isChecked1 && _isChecked2 && _isChecked3 || _isChecked4;
+  }
+
+  void _toggleCheck1(bool? value) {
+    setState(() {
+      _isChecked1 = value!;
+      if (_isChecked1) {
+        _isChecked2 = true;
+        _isChecked3 = true;
+        _isChecked4 = true;
+      } else {
+        _isChecked2 = false;
+        _isChecked3 = false;
+        _isChecked4 = false;
+      }
+    });
+  }
+
+  void _toggleCheck2(bool? value) {
+    setState(() {
+      _isChecked2 = value!;
+    });
+  }
+
+  void _toggleCheck3(bool? value) {
+    setState(() {
+      _isChecked3 = value!;
+    });
+  }
+
+  void _toggleCheck4(bool? value) {
+    setState(() {
+      _isChecked4 = value!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,62 +139,147 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          TermAgreeCheckBox(
-            title: '약관 전체 동의',
-            value: checkboxValue1,
-            all: true,
-            initialValue: false,
-            index: 0,
-            onChanged: (bool? value) {},
+          CheckboxListTile(
+            title: Text('약관 전체 동의'),
+            value: _isChecked1,
+            onChanged: _toggleCheck1,
+            controlAffinity: ListTileControlAffinity.leading,
+            // 왼쪽 배치 옵션
+            contentPadding: EdgeInsets.only(left: 5),
           ),
-          Divider(height: 10),
-          TermAgreeCheckBox(
-            title: '이용약관 동의 (필수)',
-            value: checkboxValue2,
-            all: false,
-            index: 1,
-            initialValue: false,
-
-            onChanged: (bool? value) {},
+          thin_sized_box_style(),
+          CheckboxListTile(
+            title: Text('이용약관 동의 (필수)'),
+            value: _isChecked2,
+            onChanged: _toggleCheck2,
+            controlAffinity: ListTileControlAffinity.leading,
+            // 왼쪽 배치 옵션
+            contentPadding: EdgeInsets.only(left: 5),
+            secondary: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => TermConditionsAgreeDetailScreen()));
+              },
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+              ),
+            ),
           ),
-          TermAgreeCheckBox(
-            title: '개인정보 수집 및 이용동의 (필수)',
-            value: checkboxValue3,
-            all: false,
-            initialValue: false,
-            index: 2,
-            onChanged: (bool? value) {},
+          CheckboxListTile(
+            title: Text('개인정보 수집 및 이용동의 (필수)'),
+            value: _isChecked3,
+            onChanged: _toggleCheck3,
+            controlAffinity: ListTileControlAffinity.leading,
+            // 왼쪽 배치 옵션
+            contentPadding: EdgeInsets.only(left: 5),
+            secondary: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) =>
+                        PersonalInformationCollectionDetailScreen()));
+              },
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+              ),
+            ),
           ),
-          TermAgreeCheckBox(
-            title: '마케팅 목적 개인정보 수집 및 이용동의 (선택)',
-            value: checkboxValue4,
-            all: false,
-            initialValue: false,
-            index: 3,
-            onChanged: (bool? value) {},
+          CheckboxListTile(
+            title: Text('마케팅 목적 개인정보 수집 및 이용동의 (선택)'),
+            value: _isChecked4,
+            onChanged: _toggleCheck4,
+            controlAffinity: ListTileControlAffinity.leading,
+            // 왼쪽 배치 옵션
+            contentPadding: EdgeInsets.only(left: 5),
+            secondary: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) =>
+                        PersonalInformationMarketingPurposesDetailScreen()));
+              },
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget RenderTermAgree({required String title}) {
-    return Row(
-      children: [
-        Checkbox(
-          value: checkboxValue1,
-          onChanged: (bool? newValue) {
-            setState(() {
-              checkboxValue1 = newValue!;
-            });
-            print(checkboxValue1);
-          },
-        ),
-        Text(title),
-      ],
-    );
-  }
-
+  // Widget RenderTermAgreeCategory() {
+  //    return Padding(
+  //      padding: const EdgeInsets.symmetric(horizontal: 10),
+  //      child: Column(
+  //        children: [
+  //          TermAgreeCheckBox(
+  //            title: '약관 전체 동의',
+  //            value: _isChecked1!,
+  //            all: true,
+  //            initialValue: false,
+  //            index: 0,
+  //            onChanged: (bool? value) {
+  //              setState(() {
+  //                _isChecked1 = value;
+  //                if (_isChecked1!) {
+  //                  _onCheckboxChanged(true);
+  //                }
+  //              });
+  //            },
+  //          ),
+  //          Divider(height: 10),
+  //          TermAgreeCheckBox(
+  //            title: '이용약관 동의 (필수)',
+  //            value: _isChecked2!,
+  //            all: false,
+  //            index: 1,
+  //            initialValue: false,
+  //            onChanged: (bool? value) {
+  //              setState(() {
+  //                _isChecked2 = value;
+  //                if (_isChecked2!) {
+  //                  _onCheckboxChanged(true);
+  //                }
+  //              });
+  //            },
+  //          ),
+  //          TermAgreeCheckBox(
+  //            title: '개인정보 수집 및 이용동의 (필수)',
+  //            value: _isChecked3!,
+  //            all: false,
+  //            initialValue: false,
+  //            index: 2,
+  //            onChanged: (bool? value) {
+  //              setState(() {
+  //                _isChecked3 = value;
+  //                if (_isChecked3!) {
+  //                  _onCheckboxChanged(true);
+  //                }
+  //              });
+  //            },
+  //          ),
+  //          TermAgreeCheckBox(
+  //            title: '마케팅 목적 개인정보 수집 및 이용동의 (선택)',
+  //            value: _isChecked4!,
+  //            all: false,
+  //            initialValue: false,
+  //            index: 3,
+  //            onChanged: (bool? value) {
+  //              setState(() {
+  //                _isChecked4 = value;
+  //                if (_isChecked4!) {
+  //                  _onCheckboxChanged(true);
+  //                }
+  //              });
+  //            },
+  //          ),
+  //        ],
+  //      ),
+  //    );
+  //  }
+  //
   // 버튼
   Widget RenderWithdrawalButton(BuildContext context) {
     return SafeArea(
@@ -165,14 +287,19 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
         width: MediaQuery.of(context).size.width,
         height: 70,
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => MobileNumberAuthenticationScreen()));
-          },
-          child: Text(
-            '다음',
-            style: big_long_button_text,
-          ),
+          child: Text('다음', style: big_long_button_text,),
+          onPressed: (_isChecked1 == true) ||
+                  (_isChecked2 == true && _isChecked3 == true)
+              ? () {
+                  // 모든 체크박스가 선택되어 있을 때만 실행됨
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MobileNumberAuthenticationScreen()),
+                  );
+                }
+              : null, // 모든 체크박스가 선택되어 있지 않으면 버튼이 비활성화됨
         ),
       ),
     );
@@ -182,7 +309,7 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
 // 체크 박스 모델
 class TermAgreeCheckBox extends StatefulWidget {
   List number = List.generate(3, (index) => index);
-  
+
   final String title;
   final bool value;
   final ValueChanged<bool?> onChanged;
@@ -250,14 +377,19 @@ class _TermAgreeCheckBoxState extends State<TermAgreeCheckBox> {
             ? const SizedBox()
             : IconButton(
                 onPressed: () {
-                  if(widget.index == 1) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => TermConditionsAgreeDetailScreen()));
+                  if (widget.index == 1) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => TermConditionsAgreeDetailScreen()));
                   }
-                  if(widget.index == 2) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => PersonalInformationCollectionDetailScreen()));
+                  if (widget.index == 2) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) =>
+                            PersonalInformationCollectionDetailScreen()));
                   }
-                  if(widget.index == 3) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => PersonalInformationMarketingPurposesDetailScreen()));
+                  if (widget.index == 3) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) =>
+                            PersonalInformationMarketingPurposesDetailScreen()));
                   }
                 },
                 icon: Icon(
