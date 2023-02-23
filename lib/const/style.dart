@@ -468,7 +468,7 @@ final inquiry_state = TextStyle(
   fontSize: 12,
 );
 
-// inquiry 상태
+// inquiry 버튼
 final inquiry_bottom_button = TextStyle(
   fontFamily: 'pretendard',
   fontWeight: FontWeight.w600,
@@ -490,6 +490,55 @@ final inquiry_create_category = TextStyle(
   fontWeight: FontWeight.w600,
   color: BLACK_COLOR,
   fontSize: 16,
+);
+
+/* inquiry 상세화면 */
+// inquiry 카테고리
+final inquiry_detail_category = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[700],
+  fontSize: 18,
+);
+
+// inquiry 문의 작성 시간
+final inquiry_detail_post_wrtie_time = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[700],
+  fontSize: 18,
+);
+
+// inquiry 상세 페이지 문의 내용
+final inquiry_detail_cotent = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 18,
+);
+
+// inquiry 댓글 작성자
+final inquiry_detail_comment_author = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: MAIN_COLOR,
+  fontSize: 17,
+);
+
+// inquiry 댓글 작성 내용
+final inquiry_detail_comment_content = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.black87,
+  fontSize: 16,
+);
+
+// inquiry 댓글 작성 시간
+final inquiry_detail_comment_wrtie_time = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w600,
+  color: Colors.grey[500],
+  fontSize: 15,
 );
 
 /* Block List */

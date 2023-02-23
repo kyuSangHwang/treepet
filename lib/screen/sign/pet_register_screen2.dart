@@ -11,6 +11,7 @@ class PetRegisterScreen2 extends StatefulWidget {
 }
 
 class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
+  String _selectedMedicalHistory = '선택해주세요';
   final List<String> _medicalHistoryList = [
     '선택해주세요',
     '감기',
@@ -19,17 +20,28 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
     '골드 리트리버',
     '파피용'
   ];
-  String _selectedMedicalHistory = '선택해주세요';
 
+  String _selectedAllergy = '선택해주세요';
   final List<String> _AllergyList = [
     '선택해주세요',
-    '감기',
-    '몸살',
-    '코로나',
-    '골드 리트리버',
-    '파피용'
+    '치즈',
+    '고등어',
+    '참치',
+    '우유',
+    '황태'
   ];
-  String _selectedAllergy = '선택해주세요';
+
+  String _selectedAdoptionRoute = '선택해주세요';
+  final List<String> _AdoptionRouteList = [
+    '선택해주세요',
+    '가족',
+    '지인',
+    '이웃',
+    '친구',
+    '보호소',
+    '펫샵',
+    '브리더',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +150,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
                 });
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -150,7 +162,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('병력 (선택)', style: pet_register_category_title),
+          Text('알러지 (선택)', style: pet_register_category_title),
           SizedBox(height: 5),
           SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -172,7 +184,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
               }).toList(),
               onChanged: (value) {
                 setState(() {
-                  _selectedMedicalHistory = value!;
+                  _selectedAllergy = value!;
                 });
               },
             ),
@@ -269,12 +281,30 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
         children: [
           Text('입양경로', style: pet_register_category_title),
           SizedBox(height: 5),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: '입양경로를 입력해주세요',
-              hintStyle: register_profile_placeholder,
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 60,
+            child: DropdownButton(
+              style: option_select,
+              underline: Container(
+                height: 1,
+                color: Colors.black54,
+              ),
+              hint: Text('선택해주세요'),
+              isExpanded: true,
+              value: _selectedAdoptionRoute,
+              items: _AdoptionRouteList.map((value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedAdoptionRoute = value!;
+                });
+              },
             ),
-
           ),
         ],
       ),

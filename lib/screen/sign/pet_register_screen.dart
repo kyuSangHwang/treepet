@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:treepet/component/image_pick.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:intl/intl.dart';
@@ -45,7 +46,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                       SizedBox(height: 10),
                       RenderTitle(context),
                       SizedBox(height: 10),
-                      CircleAvatar(radius: 60),
+                      ImagePickerButton(),
                       SizedBox(height: 20),
                       RenderPetType(context),
                       SizedBox(height: 20),
@@ -316,7 +317,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('성별', style: pet_register_category_title),
+          Text('중성화 유무', style: pet_register_category_title),
           SizedBox(height: 5),
           Row(
             children: [
@@ -378,7 +379,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('성별', style: pet_register_category_title),
+          Text('예방접종 유무', style: pet_register_category_title),
           SizedBox(height: 5),
           Row(
             children: [
