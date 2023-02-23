@@ -85,8 +85,37 @@ class SettingsScreen extends StatelessWidget {
               (screen) => TextButton(
                 onPressed: () {
                   print(screen.name);
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: screen.builder));
+                  if (screen.name == '로그아웃') {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('로그아웃 하시겠습니까?'),
+                        actions: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('아니오'),
+                                ),
+                              ),
+                              Expanded(
+                                child: TextButton(
+                                  onPressed: () {},
+                                  child: Text('네'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: screen.builder));
+                  }
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
@@ -100,8 +129,10 @@ class SettingsScreen extends StatelessWidget {
                         style: settings_list_textStyle,
                       ),
                     ),
-                    SizedBox(height: 70,
-                    child: Icon(Icons.chevron_right),)
+                    SizedBox(
+                      height: 70,
+                      child: Icon(Icons.chevron_right),
+                    )
                   ],
                 ),
               ),

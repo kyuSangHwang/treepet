@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
-import 'package:treepet/screen/mypage/settings/serviceInquiry/serviceInquiryCreateScreen.dart';
+import 'package:treepet/screen/mypage/settings/serviceInquiry/service_inquiry_create_screen.dart';
+import 'package:treepet/screen/mypage/settings/serviceInquiry/service_inquiry_detail_screen.dart';
 
 class serviceInquiryModel {
   final String title;
@@ -72,7 +73,7 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
           child: ListView.builder(
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {
-              return RenderServiceInquiryList();
+              return RenderServiceInquiryList(context);
             },
           ),
         ),
@@ -81,14 +82,14 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
     );
   }
 
-  Widget RenderServiceInquiryList() {
+  Widget RenderServiceInquiryList(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: ServiceInquiry.map(
           (inquiry) => GestureDetector(
             onTap: () {
-              print('안녕하세요ㅕ');
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => ServiceInquiryDetailScreen()));
             },
             behavior: HitTestBehavior.opaque,
             child: Column(
