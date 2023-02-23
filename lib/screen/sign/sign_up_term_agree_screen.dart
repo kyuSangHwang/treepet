@@ -42,18 +42,27 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
   void _toggleCheck2(bool? value) {
     setState(() {
       _isChecked2 = value!;
+      if (!_isChecked2) {
+        _isChecked1 = false;
+      }
     });
   }
 
   void _toggleCheck3(bool? value) {
     setState(() {
       _isChecked3 = value!;
+      if (!_isChecked3) {
+        _isChecked1 = false;
+      }
     });
   }
 
   void _toggleCheck4(bool? value) {
     setState(() {
       _isChecked4 = value!;
+      if (!_isChecked4) {
+        _isChecked1 = false;
+      }
     });
   }
 
@@ -209,77 +218,6 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
     );
   }
 
-  // Widget RenderTermAgreeCategory() {
-  //    return Padding(
-  //      padding: const EdgeInsets.symmetric(horizontal: 10),
-  //      child: Column(
-  //        children: [
-  //          TermAgreeCheckBox(
-  //            title: '약관 전체 동의',
-  //            value: _isChecked1!,
-  //            all: true,
-  //            initialValue: false,
-  //            index: 0,
-  //            onChanged: (bool? value) {
-  //              setState(() {
-  //                _isChecked1 = value;
-  //                if (_isChecked1!) {
-  //                  _onCheckboxChanged(true);
-  //                }
-  //              });
-  //            },
-  //          ),
-  //          Divider(height: 10),
-  //          TermAgreeCheckBox(
-  //            title: '이용약관 동의 (필수)',
-  //            value: _isChecked2!,
-  //            all: false,
-  //            index: 1,
-  //            initialValue: false,
-  //            onChanged: (bool? value) {
-  //              setState(() {
-  //                _isChecked2 = value;
-  //                if (_isChecked2!) {
-  //                  _onCheckboxChanged(true);
-  //                }
-  //              });
-  //            },
-  //          ),
-  //          TermAgreeCheckBox(
-  //            title: '개인정보 수집 및 이용동의 (필수)',
-  //            value: _isChecked3!,
-  //            all: false,
-  //            initialValue: false,
-  //            index: 2,
-  //            onChanged: (bool? value) {
-  //              setState(() {
-  //                _isChecked3 = value;
-  //                if (_isChecked3!) {
-  //                  _onCheckboxChanged(true);
-  //                }
-  //              });
-  //            },
-  //          ),
-  //          TermAgreeCheckBox(
-  //            title: '마케팅 목적 개인정보 수집 및 이용동의 (선택)',
-  //            value: _isChecked4!,
-  //            all: false,
-  //            initialValue: false,
-  //            index: 3,
-  //            onChanged: (bool? value) {
-  //              setState(() {
-  //                _isChecked4 = value;
-  //                if (_isChecked4!) {
-  //                  _onCheckboxChanged(true);
-  //                }
-  //              });
-  //            },
-  //          ),
-  //        ],
-  //      ),
-  //    );
-  //  }
-  //
   // 버튼
   Widget RenderWithdrawalButton(BuildContext context) {
     return SafeArea(
