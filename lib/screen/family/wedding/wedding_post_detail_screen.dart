@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treepet/screen/family/wedding/wedding_proposal_request_screen.dart';
 import 'package:treepet/screen/family/wedding/wedding_screen.dart';
 import '../../../component/more_screen.dart';
 import '../../../const/style.dart';
@@ -18,417 +19,461 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 400.0,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                ),
-                child: Text(
-                  '예쁘디 예쁜 우리 몽실이 신부찾아요~!',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
-                ),
-              ),
-              background: Image.asset(
-                'asset/image/mongSil.png',
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 5,
-            ),
-            // child: Center(
-            //   child: Text('Scroll to see the SliverAppBar in effect.'),
-            // ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Container(
-                  // 회원정보 영역
-                  // TODO: topRight, topLeft 모서리 둥글게 하기 decoration 안됨 (KS)
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => const WeddingScreen()));
-                              },
-                              iconSize: 40,
-                              icon: const CircleAvatar(
-                                radius: 40,
-                                backgroundImage:
-                                    AssetImage('asset/image/jaeHoon.png'),
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  '야무진개발자',
-                                  style: wedding_post_detail_15_500_012,
-                                ),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.location_on,
-                                      size: 14,
-                                    ),
-                                    Text(
-                                      '서울시 은평구',
-                                      style: wedding_post_detail_13_300_012,
-                                    ),
-                                    SizedBox(width: 4.0),
-                                    Icon(
-                                      Icons.remove_red_eye_sharp,
-                                      size: 14,
-                                    ),
-                                    Text(
-                                      '125',
-                                      style: wedding_post_detail_13_300_012,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          // 더보기 Button
-                          onPressed: () {
-                            showModalBottomSheet(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                context: context,
-                                builder: (_) => const MoreScreen());
-                          },
-                          icon: const Icon(Icons.more_horiz),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  // 신랑소개 영역
-                  color: Colors.white,
-                  // height: 100.0,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0, vertical: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          '신랑소개',
-                          style: wedding_post_detail_18_500_012,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          introduceContent,
-                          style: wedding_post_detail_14_300_015,
-                        ),
-                        const SizedBox(height: 5),
-                        const Divider(
-                          height: 10,
-                          color: Colors.teal,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          '신랑정보',
-                          style: wedding_post_detail_18_500_012,
-                        ),
-                        const SizedBox(height: 15),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '이름',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '몽실이',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '종/품종',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '강아지/푸들',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '성별/나이',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Icon(
-                                Icons.male,
-                                size: 15.0,
-                              ),
-                              SizedBox(width: 3),
-                              Text(
-                                '1년 6개월 (만 1살)',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '몸무게/털색',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '1.6kg / 흰색',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '병력',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '감기, 슬개골 탈구, 광견병',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '알레르기',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '오이, 감자, 오리고기, 소고기, 빙어, 가지, 생선',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '희망장소',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '상관없음',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '혈통서 유무',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '상관없음',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                              // _buildPanel(),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '털빠짐 정도',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '몽실이',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '친화력 정도',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '몽실이',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '낮가림 정도',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '몽실이',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 30,
-                          child: Row(
-                            children: const [
-                              SizedBox(
-                                width: 80,
-                                child: Text(
-                                  '짖음 정도',
-                                  style: wedding_post_detail_14_400_012,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                '몽실이',
-                                style: wedding_post_detail_13_300_012,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const Divider(
-                  height: 10,
-                  color: Colors.teal,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: _WeddingPostDetailScreenWidget(),
       bottomNavigationBar: const _Footer(),
     );
   }
+
+  /// 웨딩 게시물 조회 화면
+  CustomScrollView _WeddingPostDetailScreenWidget() {
+    return CustomScrollView(
+      slivers: <Widget>[
+        _WeddingPostDetailScreenSliverAppBar(),
+        const SliverToBoxAdapter(child: SizedBox(height: 5)),
+        _WeddingPostDetailScreenBody(),
+      ],
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 전용 AppBar
+  SliverAppBar _WeddingPostDetailScreenSliverAppBar() {
+    return SliverAppBar(
+      expandedHeight: 400.0,
+      pinned: true,
+      flexibleSpace: FlexibleSpaceBar(
+        title: const Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 10.0,
+          ),
+          child: Text(
+            '예쁘디 예쁜 우리 몽실이 신부찾아요~!',
+            style: TextStyle(
+              fontSize: 18.0,
+            ),
+          ),
+        ),
+        background: Image.asset(
+          'asset/image/mongSil.png',
+          width: 200,
+          height: 200,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 내용
+  SliverList _WeddingPostDetailScreenBody() {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          _MemberInfoAndSeeMoreButton(),
+          _IntroductionBrideGroom(),
+          _InformationBrideGroom(),
+        ],
+      ),
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 회원 정보 및 더 보기 버튼
+  Container _MemberInfoAndSeeMoreButton() {
+    return Container(
+      // TODO: topRight, topLeft 모서리 둥글게 하기 decoration 안됨 (KS)
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _MemberInfo(),
+            _SeeMoreButton(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 회원 정보
+  Row _MemberInfo() {
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => const WeddingScreen()));
+          },
+          iconSize: 40,
+          icon: const CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage('asset/image/jaeHoon.png'),
+          ),
+        ),
+        const SizedBox(width: 5),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '야무진개발자',
+              style: wedding_post_detail_15_500_012,
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: const [
+                Icon(
+                  Icons.location_on,
+                  size: 14,
+                ),
+                Text(
+                  '서울시 은평구',
+                  style: wedding_post_detail_13_300_012,
+                ),
+                SizedBox(width: 4.0),
+                Icon(
+                  Icons.remove_red_eye_sharp,
+                  size: 14,
+                ),
+                Text(
+                  '125',
+                  style: wedding_post_detail_13_300_012,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 더보기 버튼
+  IconButton _SeeMoreButton() {
+    return IconButton(
+      // 더보기 Button
+      onPressed: () {
+        showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            context: context,
+            builder: (_) => const MoreScreen());
+      },
+      icon: const Icon(Icons.more_horiz),
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 신랑 소개 영역
+  Container _IntroductionBrideGroom() {
+    return Container(
+      color: Colors.white,
+      // height: 100.0,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _WeddingPostDetailScreenCategoryTitle(true, "소개"),
+            const SizedBox(height: 10),
+            Text(
+              introduceContent,
+              style: wedding_post_detail_14_300_015,
+            ),
+            const SizedBox(height: 5),
+            const Divider(
+              height: 10,
+              color: Colors.teal,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container _InformationBrideGroom() {
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _WeddingPostDetailScreenCategoryTitle(false, "정보"),
+            const SizedBox(height: 15),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '이름',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '몽실이',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '종/품종',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '강아지/푸들',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '성별/나이',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Icon(
+                    Icons.male,
+                    size: 15.0,
+                  ),
+                  SizedBox(width: 3),
+                  Text(
+                    '1년 6개월 (만 1살)',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '몸무게/털색',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '1.6kg / 흰색',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '병력',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '감기, 슬개골 탈구, 광견병',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '알레르기',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '오이, 감자, 오리고기, 소고기, 빙어, 가지, 생선',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '희망장소',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '상관없음',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '혈통서 유무',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '상관없음',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                  // _buildPanel(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 5),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '털빠짐 정도',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '몽실이',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '친화력 정도',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '몽실이',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '낮가림 정도',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '몽실이',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 30,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 80,
+                    child: Text(
+                      '짖음 정도',
+                      style: wedding_post_detail_14_400_012,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    '몽실이',
+                    style: wedding_post_detail_13_300_012,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 웨딩 게시물 조회 화면, 카테고리 이름 넣어주기
+  ///
+  /// [brideGroomCheck] int,
+  /// [categoryTitle] String,
+  Text _WeddingPostDetailScreenCategoryTitle(bool brideGroomCheck, String categoryTitle) {
+    return Text(
+      brideGroomCheck == true ? "신랑$categoryTitle" : "신부$categoryTitle",
+      style: wedding_post_detail_18_500_012,
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 class _Footer extends StatefulWidget {
@@ -464,8 +509,10 @@ class _FooterState extends State<_Footer> {
                         height: 40.0,
                         child: ElevatedButton(
                           onPressed: () {
-                            print(
-                              '프로포즈 신청!',
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const WeddingProposalReQuestScreen(),
+                              ),
                             );
                           },
                           child: const Text(
