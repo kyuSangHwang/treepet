@@ -62,6 +62,22 @@ final mobile_number_authentication_placeholder = TextStyle(
   fontSize: 18,
 );
 
+// 휴대폰 인증 아래 알림
+final mobile_number_authentication_warning = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[500],
+  fontSize: 15,
+);
+
+// 선택하라고 경고
+final wrong_input_warning = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.redAccent,
+  fontSize: 12,
+);
+
 // 휴대폰 인증 내용
 final mobile_number_authentication_content = TextStyle(
   fontFamily: 'pretendard',
