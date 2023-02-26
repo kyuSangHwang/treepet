@@ -22,14 +22,14 @@ class WeddingCreateTitleForm extends StatelessWidget {
 }
 
 /// 반려동물 웨딩 등록 화면의 [AppBar]
-AppBar WeddingPostCreateAppBar(BuildContext context) {
+AppBar WeddingPostCreateAppBar(BuildContext context, String appBarTitle) {
   return AppBar(
     elevation: 0,
     centerTitle: false,
     backgroundColor: Colors.white,
-    title: const Text(
-      '신랑&신부 등록',
-      style: TextStyle(color: Colors.black),
+    title: Text(
+      appBarTitle,
+      style: const TextStyle(color: Colors.black),
     ),
     leading: IconButton(
       onPressed: () {
