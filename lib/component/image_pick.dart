@@ -39,7 +39,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           image: DecorationImage(
-            image: _imageFile.path.isNotEmpty ? FileImage(_imageFile) : AssetImage('asset/image/default.png') as ImageProvider,
+            image: _imageFile.path.isNotEmpty ? FileImage(_imageFile) : AssetImage('asset/image/dog1.jpeg') as ImageProvider,
             fit: BoxFit.cover,
           ),
         ),
