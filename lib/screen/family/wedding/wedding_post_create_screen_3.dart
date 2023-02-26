@@ -7,8 +7,6 @@ import 'package:treepet/component/wedding_component.dart';
 import 'package:treepet/component/wedding_component_functions.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_4.dart';
-import 'dart:io';
-import 'package:http/http.dart' as http;
 
 class WeddingPostCreateScreen3 extends StatefulWidget {
   const WeddingPostCreateScreen3({Key? key}) : super(key: key);
@@ -50,7 +48,7 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: WeddingPostCreateAppBar(context),
+      appBar: WeddingPostCreateAppBar(context, '신랑&신부 등록'),
       body: WeddingPostCreateScreen3Body(),
       bottomNavigationBar: WeddingBottomAppBarButton(context, "다 음", MyHomePage11()),
     );
@@ -397,18 +395,6 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
       this.selectedDay = selectedDay;
       this.focusedDay = selectedDay;
       formattedDate = DateFormat('yyyy년 MM월 dd일').format(selectedDay);
-    });
-  }
-
-  void toggleRowVisibility1() {
-    setState(() {
-      if (checkMenstrualCycleStartedRowVisibility == 1 &&
-          isMenstrualCycleStartedRowVisible == false) {
-        isMenstrualCycleStartedRowVisible = !isMenstrualCycleStartedRowVisible;
-      } else if (checkMenstrualCycleStartedRowVisibility == 2 &&
-          isMenstrualCycleStartedRowVisible == true) {
-        isMenstrualCycleStartedRowVisible = !isMenstrualCycleStartedRowVisible;
-      }
     });
   }
 

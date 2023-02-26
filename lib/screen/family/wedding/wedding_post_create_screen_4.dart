@@ -30,7 +30,7 @@ class _MyHomePage11State extends State<MyHomePage11> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WeddingPostCreateAppBar(context),
+      appBar: WeddingPostCreateAppBar(context, '신랑&신부 등록'),
       body: WeddingPostCreateScreen4Body(),
       bottomNavigationBar:
           WeddingBottomAppBarButton(context, "완 료", const WeddingScreen(), checkedList),

@@ -46,7 +46,7 @@ class _WeddingPostCreateScreen2State extends State<WeddingPostCreateScreen2> {
     return Scaffold(
       resizeToAvoidBottomInset:
           false, // Scaffold 의 높이를 조정하지 않고 텍스트 필드 또는 폼 항목을 가리는 것을 허용
-      appBar: WeddingPostCreateAppBar(context),
+      appBar: WeddingPostCreateAppBar(context, '신랑&신부 등록'),
       body: WeddingPostCreateScreen2Body(),
       bottomNavigationBar: WeddingBottomAppBarButton(context, "다 음", const WeddingPostCreateScreen3()),
     );

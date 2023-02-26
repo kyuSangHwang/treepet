@@ -18,7 +18,7 @@ class _WeddingPostCreateScreen1State extends State<WeddingPostCreateScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WeddingPostCreateAppBar(context),
+      appBar: WeddingPostCreateAppBar(context, '신랑&신부 등록'),
       body: WeddingPostCreateScreenBody(context),
       bottomNavigationBar: WeddingBottomAppBarButton(context, "다 음", const WeddingPostCreateScreen2()),
     );
