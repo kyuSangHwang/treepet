@@ -46,8 +46,7 @@ class _MobileNumberAuthenticationScreenState
                     SizedBox(height: 20),
                     MobileNumber(context),
                     SizedBox(height: 40),
-                    _receiveMobileNumber == true ?
-                    AuthenticationNumber(context) : Container(),
+                    AuthenticationNumber(context),
                   ],
                 ),
               ),

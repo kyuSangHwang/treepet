@@ -29,10 +29,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
   String _profileUserSexController = '';
   String _profileUserNickController = '';
 
-  bool _showError1 = false;
-  bool _showError2 = false;
-  bool _showError3 = false;
-  bool _showError4 = false;
+  bool _showError = false;
 
   @override
   void initState() {
@@ -240,7 +237,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                       setState(() {
                         selectedSexButtonIndex = 1;
                         _profileUserSexController = '남성';
-                        _showError3 = false;
+                        _showError = false;
                       });
                     },
                     child: Text('남성'),
@@ -264,7 +261,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                       setState(() {
                         selectedSexButtonIndex = 2;
                         _profileUserSexController = '여성';
-                        _showError3 = false;
+                        _showError = false;
                       });
                     },
                     child: Text('여성'),
@@ -281,7 +278,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
               ),
             ],
           ),
-          _showError3 == true
+          _showError == true
               ? RenderWrongInput()
               : const SizedBox(),
         ],
@@ -297,7 +294,6 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
         children: [
           Text('활동명', style: register_profile_title),
           TextFormField(
-            // controller: _profileUserNickController,
             style: register_profile_content,
             inputFormatters: [
               LengthLimitingTextInputFormatter(8),
@@ -305,14 +301,10 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
             decoration: InputDecoration(
               hintText: '2글자 이상 8글자 이하로 입력해주세요',
               hintStyle: register_profile_placeholder,
-              // errorText: _showError4 == true ? '잘못입력됐어요' : null,
             ),
             onChanged: (value) {
               setState(() {
                 _profileUserNickController = value;
-                if (_profileUserNickController.length <= 2 ||
-                    _profileUserNickController.length >= 8) _showError4 = true;
-                _showError4 == true ? RenderWrongInput() : null;
               });
             },
             autovalidateMode: autovalidateMode,
@@ -342,7 +334,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
               });
             }
 
-            if (_profileUserSexController.isEmpty) _showError3 = true;
+            if (_profileUserSexController.isEmpty) _showError = true;
 
             (_profileUserNameController.isNotEmpty &&
                         _profileUserBirthController.length == 8 &&
