@@ -1,100 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:treepet/screen/family/wedding/wedding_proposal_request_screen.dart';
+import 'package:treepet/component/more_screen.dart';
+import 'package:treepet/component/wedding_component.dart';
+import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/family/wedding/wedding_screen.dart';
-import '../../../component/more_screen.dart';
-import '../../../const/style.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
-class WeddingPostDetailScreen extends StatefulWidget {
-  const WeddingPostDetailScreen({Key? key}) : super(key: key);
+class WeddingProposeDetailScreen extends StatefulWidget {
+  const WeddingProposeDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<WeddingPostDetailScreen> createState() =>
-      _WeddingPostDetailScreenState();
+  State<WeddingProposeDetailScreen> createState() =>
+      _WeddingProposeDetailScreenState();
 }
 
-class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
+class _WeddingProposeDetailScreenState
+    extends State<WeddingProposeDetailScreen> {
+  final List<String> _images = [
+    'asset/image/dog1.jpeg',
+    'asset/image/dog2.jpeg',
+    'asset/image/dog3.jpeg',
+  ];
+  final PageController _pageController = PageController(initialPage: 0);
+  double _currentPage = 0;
+  final String _selectedRadio = "autoMessage";
   final String introduceContent =
       "이번이 첫 교배 이구요. 발랄 활달하고 개구장이 같은 성격입니다. 아직 꽃 도장 전이고 미리 구하는 거에용~ 신랑 쪽이 교배 경험 있었으면 좋겠습니다(없어도 상관없음) 저희 아이가 작아서 신랑이 너무 크면 아이가 힘들 것 같아서 신랑 크기가 2키로는 안 넘었으면 좋겠어요~작으면 작을수록 좋을 것 같아요 저희 아이 몸무게는1.8정도 됩니다 짖음도 1도 없고 입질도 없어요 진짜 완전 순둥이 입니다🥰 사진은 애기 때 사진이라 눈물자국이 좀 있는데  지금은 없어용~!ㅎㅎ";
+
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page ?? 0;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _WeddingPostDetailScreenWidget(),
-      bottomNavigationBar: const _Footer(),
+      appBar: WeddingPostCreateAppBar(context, '프로포즈 받은/보낸 게시물'),
+      body: _WeddingProposeDetailScreenBody(context),
+      bottomNavigationBar:
+          WeddingBottomAppBarButton(context, "확 인", const WeddingScreen()),
     );
   }
 
-  /// 웨딩 게시물 조회 화면
-  CustomScrollView _WeddingPostDetailScreenWidget() {
-    return CustomScrollView(
-      slivers: <Widget>[
-        _WeddingPostDetailScreenSliverAppBar(),
-        const SliverToBoxAdapter(child: SizedBox(height: 5)),
-        _WeddingPostDetailScreenBody(),
-      ],
-    );
-  }
-
-  /// 웨딩 게시물 조회 화면, 전용 AppBar
-  SliverAppBar _WeddingPostDetailScreenSliverAppBar() {
-    return SliverAppBar(
-      expandedHeight: 400.0,
-      pinned: true,
-      flexibleSpace: FlexibleSpaceBar(
-        title: const Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 10.0,
-          ),
-          child: Text(
-            '예쁘디 예쁜 우리 몽실이 신부찾아요~!',
-            style: TextStyle(
-              fontSize: 18.0,
-            ),
-          ),
-        ),
-        background: Image.asset(
-          'asset/image/mongSil.png',
-          width: 200,
-          height: 200,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  /// 웨딩 게시물 조회 화면, 내용
-  SliverList _WeddingPostDetailScreenBody() {
-    return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          _MemberInfoAndSeeMoreButton(),
-          _IntroductionBrideGroom(),
-          _InformationBrideGroom(),
-        ],
-      ),
-    );
-  }
-
-  /// 웨딩 게시물 조회 화면, 회원 정보 및 더 보기 버튼
-  Container _MemberInfoAndSeeMoreButton() {
-    return Container(
-      // TODO: topRight, topLeft 모서리 둥글게 하기 decoration 안됨 (KS)
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  SizedBox _WeddingProposeDetailScreenBody(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: SingleChildScrollView(
+        child: Column(
           children: [
-            _MemberInfo(),
-            _SeeMoreButton(),
+            _MemberInfoAndSeeMoreButton(context),
+            _ProposePetImages(),
+            _ProposeMessage(),
+            _IntroductionBrideGroom(),
+            _InformationBrideGroom(),
+
+
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text("프로포즈 메시지"),
+                Text("프로포즈 메시지 내용"),
+              ],
+            ),
+
+
+
+
+            const Text("신랑 소개 영역, 신랑&신부 조회 내용 이어서 보여주기")
           ],
         ),
       ),
     );
   }
 
-  /// 웨딩 게시물 조회 화면, 회원 정보
-  Row _MemberInfo() {
+  /// 회원 정보 및 더 보기 버튼
+  Padding _MemberInfoAndSeeMoreButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _MemberInfo(context),
+          _SeeMoreButton(context),
+        ],
+      ),
+    );
+  }
+
+  /// 회원 정보
+  Row _MemberInfo(BuildContext context) {
     return Row(
       children: [
         IconButton(
@@ -145,10 +146,9 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
     );
   }
 
-  /// 웨딩 게시물 조회 화면, 더보기 버튼
-  IconButton _SeeMoreButton() {
+  /// 더보기 버튼
+  IconButton _SeeMoreButton(BuildContext context) {
     return IconButton(
-      // 더보기 Button
       onPressed: () {
         showModalBottomSheet(
             shape: RoundedRectangleBorder(
@@ -158,6 +158,180 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
             builder: (_) => const MoreScreen());
       },
       icon: const Icon(Icons.more_horiz),
+    );
+  }
+
+  /// 반려동물 이미지 영역
+  Padding _ProposePetImages() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      child: SizedBox(
+        height: 300,
+        width: MediaQuery.of(context).size.width * 0.85,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            PageView.builder(
+              controller: _pageController,
+              itemCount: _images.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(_images[index]),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                );
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: DotsIndicator(
+                dotsCount: _images.length,
+                position: _currentPage,
+                decorator: const DotsDecorator(
+                  activeColor: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 프로포즈 메시지 자동 또는 작성하는 Form 보여주는 영역
+  SizedBox _ProposeMessage() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.22,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          categoryTitle("프로포즈 메시지", 130.0),
+          const Divider(
+            color: Colors.grey,
+            thickness: 0.5,
+          ),
+          const SizedBox(height: 5.0),
+          if (_selectedRadio == 'autoMessage')
+            Text.rich(
+              _AutoMessageContent(),
+            )
+          else if (_selectedRadio == 'writeMessage')
+            _WriteMessageContent(),
+          const SizedBox(height: 5.0),
+          const Divider(
+            color: Colors.grey,
+            thickness: 0.5,
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 프로포즈 메시지 자동으로 보여주는 내용
+  /// TODO: 보내는 고객의 회원 정보를 mapping 해줘야 한다.
+  TextSpan _AutoMessageContent() {
+    return const TextSpan(
+      text: '안녕하세요 저는 ',
+      style: wedding_post_detail_145_400_02,
+      children: <TextSpan>[
+        TextSpan(
+          text: '예삐',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: ' 보호자 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '규상어',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '입니다.\n',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '예삐',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '는 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '2.85kg',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '의 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: ' 회색털',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '을 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '가진 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '푸들 ',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '이에요.\n',
+          style: wedding_post_detail_145_400_02,
+        ),
+        // \n야무진개발자 보호자님의 몽실이와 웨딩을 하고 싶어요!', style: wedding_post_detail_145_400_02)
+        TextSpan(
+          text: '야무진개발자',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: ' 보호자님의 ',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '몽실이',
+          style: wedding_post_detail_145_400_02_d,
+        ),
+        TextSpan(
+          text: '와',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: ' 웨딩을 하고 싶어요!\n',
+          style: wedding_post_detail_145_400_02,
+        ),
+        TextSpan(
+          text: '잘 부탁드립니다.',
+          style: wedding_post_detail_145_400_02,
+        ),
+
+      ],
+    );
+  }
+
+  /// 프로포즈 메시지를 직접 입력하는 영역
+  TextFormField _WriteMessageContent() {
+    return TextFormField(
+      minLines: 10,
+      maxLines: 10,
+      decoration: const InputDecoration(
+        hintText: '로미를 소개해주세요!',
+        border: InputBorder.none,
+      ),
+      cursorColor: Colors.green,
+      style: wedding_post_detail_135_300_014,
     );
   }
 
@@ -460,162 +634,4 @@ class _WeddingPostDetailScreenState extends State<WeddingPostDetailScreen> {
     );
   }
 
-}
-
-class _Footer extends StatefulWidget {
-  const _Footer({Key? key}) : super(key: key);
-
-  @override
-  State<_Footer> createState() => _FooterState();
-}
-
-class _FooterState extends State<_Footer> {
-  int _likeCnt = 0;
-  bool _likeCntCheck = false;
-  bool _bookMarkCheck = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0),
-        child: OverflowBar(
-          overflowAlignment: OverflowBarAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.92,
-                        height: 40.0,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const WeddingProposalReQuestScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            '프로포즈 신청하기',
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: _incrementLikeCounter,
-                                icon: (_likeCntCheck
-                                    ? const Icon(Icons.favorite,
-                                        color: Colors.redAccent)
-                                    : const Icon(Icons.favorite_border)),
-                              ),
-                              Text(
-                                _likeCnt.toString(),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 15.0),
-                          const VerticalDivider(
-                            //TODO: VerticalDivider 가 화면에 보이지 않음 (KS)
-                            thickness: 10,
-                            width: 5,
-                            color: Colors.redAccent,
-                          ),
-                          const SizedBox(width: 15.0),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.chat_bubble_outline),
-                              ),
-                              const Text('53'),
-                            ],
-                          ),
-                          const SizedBox(width: 15.0),
-                          const VerticalDivider(
-                            //TODO: VerticalDivider 가 화면에 보이지 않음 (KS)
-                            thickness: 10,
-                            width: 5,
-                            color: Colors.redAccent,
-                          ),
-                          const SizedBox(width: 15.0),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: _checkBookMark,
-                                icon: (_bookMarkCheck
-                                    ? const Icon(Icons.bookmark)
-                                    : const Icon(Icons.bookmark_border)),
-                              ),
-                              const Text('북마크'),
-                            ],
-                          ),
-                          const SizedBox(width: 15.0),
-                          const VerticalDivider(
-                            //TODO: VerticalDivider 가 화면에 보이지 않음 (KS)
-                            thickness: 10,
-                            width: 5,
-                            color: Colors.redAccent,
-                          ),
-                          const SizedBox(width: 15.0),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.share),
-                              ),
-                              const Text('공유'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _incrementLikeCounter() {
-    setState(() {
-      if (!_likeCntCheck) {
-        _likeCntCheck = !_likeCntCheck;
-        _likeCnt++;
-      } else {
-        _likeCntCheck = !_likeCntCheck;
-        _likeCnt--;
-      }
-    });
-  }
-
-  void _checkBookMark() {
-    setState(() {
-      if (!_bookMarkCheck) {
-        _bookMarkCheck = !_bookMarkCheck;
-      } else {
-        _bookMarkCheck = !_bookMarkCheck;
-      }
-    });
-  }
 }
