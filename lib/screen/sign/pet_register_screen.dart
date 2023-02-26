@@ -21,9 +21,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
 
   TextEditingController tec = TextEditingController();
 
-  // final weightFormat = NumberFormat('##,#');
-
-  final List<String> _breedList = ['선택해주세요','말티즈', '비숑', '시츄', '골드 리트리버', '파피용'];
+가  final List<String> _breedList = ['선택해주세요','말티즈', '비숑', '시츄', '골드 리트리버', '파피용'];
   String _selectedBreed = '선택해주세요';
 
   @override
