@@ -186,6 +186,12 @@ final option_select = TextStyle(
   fontSize: 20,
 );
 
+final option_select_k = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: Colors.grey[700],
+  fontSize: 15,
+);
 
 
 /* 온보딩 */
@@ -770,6 +776,22 @@ const wedding_post_detail_145_400_02_d = TextStyle(
   decoration: TextDecoration.underline,
   decorationColor: Colors.red,
   decorationThickness: 1.5,
+);
+
+const wedding_propose_list_post = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const wedding_propose_list_post_2 = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+  height: 1.2,
+  color: Colors.black,
 );
 
 
