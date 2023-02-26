@@ -18,20 +18,6 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   late File _imageFile = File(" ");
   List<dynamic> imageFilesList = [];
   List<Widget> imagesWidgetList = [];
-  List<int> iconButtonKeyIndexList = [];
-  List<int> iconButtonKeyIndexReplaceList = [];
-  // List<Map<dynamic, String>> imageFilesList = [];
-  // List<Map<Widget>> imagesWidgetList = [];
-  @override
-  void initState() {
-    super.initState();
-    // final uniqueKey = DateTime.now().millisecondsSinceEpoch.toString();
-    //
-    // final imageData = {'file': addButton(), 'key': uniqueKey};
-    // imageFilesList.add(imageData);
-    imageFilesList.add(addButton());
-    imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +133,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
           Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.92,
+                width: MediaQuery.of(context).size.width * 0.9,
                 height: 79.6,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -192,6 +178,17 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    imageFilesList.add(addButton());
+    imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
+  }
+
+  List<int> iconButtonKeyIndexList = [];
+  List<int> iconButtonKeyIndexReplaceList = [];
+
+
   /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
   Future<void> _getImage() async {
     final pickedFile =
@@ -201,10 +198,9 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
       _imageFile = File(pickedFile!.path);
       imageFilesList.add(_imageFile);
 
-      int currentImageIndex = imageFilesList.length - 1;
+      final int currentImageIndex = imageFilesList.length - 1;
 
-      iconButtonKeyIndexList.add(currentImageIndex);
-      imagesWidgetList.add(addImages(currentImageIndex, iconButtonKeyIndexList[currentImageIndex - 1]));
+      imagesWidgetList.add(addImages(currentImageIndex));
 
       imageFilesList.length == 6 ? imageFilesList.removeAt(0) : null;
       imagesWidgetList.length == 6 ? imagesWidgetList.removeAt(0) : null;
@@ -212,7 +208,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   }
 
   // 등록된 이미지
-  Stack addImages(index, iconButtonIndex) {
+  Stack addImages(index) {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
@@ -239,49 +235,15 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
             ),
             child: IconButton(
               padding: EdgeInsets.zero,
-              key: Key("$iconButtonIndex"),
+              // key: Key("$index"),
               onPressed: () {
                 setState(() {
-                  int removeIconButtonIndex = iconButtonKeyIndexList[iconButtonIndex - 1] - 1;
-
-                  switch (removeIconButtonIndex) {
-                    case 0 : {
-                      iconButtonKeyIndexList[1] = iconButtonKeyIndexList[1] - 1;
-                      iconButtonKeyIndexList[2] = iconButtonKeyIndexList[2] - 1;
-                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
-                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
-                    }
-                      break;
-                    case 1 :
-                      iconButtonKeyIndexList[2] = iconButtonKeyIndexList[2] - 1;
-                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
-                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
-                      break;
-
-                    case 2 :
-                      iconButtonKeyIndexList[3] = iconButtonKeyIndexList[3] - 1;
-                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
-                      break;
-
-                    case 3 :
-                      iconButtonKeyIndexList[4] = iconButtonKeyIndexList[4] - 1;
-                      break;
-
-                    case 4 :
-
-                      break;
-                  }
-
-                  iconButtonKeyIndexList.removeAt(removeIconButtonIndex);
-
-                  imageFilesList.removeAt(removeIconButtonIndex);
-                  imagesWidgetList.removeAt(removeIconButtonIndex);
+                  imageFilesList.removeAt(index);
+                  imagesWidgetList.removeAt(index);
 
                   if (imageFilesList[0].runtimeType != addButton().runtimeType) {
                     imageFilesList.insert(0, addButton());
                     imagesWidgetList.insert(0, addButton());
-                  } else {
-                    print("object2222");
                   }
                 });
               },
