@@ -52,7 +52,8 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
   String _petVaccinationController = '';
 
   String _previousValue = '';
-  bool contain = false;
+  bool determiningStartingNumber = false;
+  bool firstNumber = false;
 
   @override
   Widget build(BuildContext context) {
@@ -422,16 +423,9 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
           Text('몸무게', style: pet_register_category_title),
           SizedBox(height: 5),
           TextFormField(
-            controller: tec
-              ..selection = TextSelection.fromPosition(
-                  TextPosition(offset: tec.text.length)),
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            inputFormatters: [
-              // FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,1}')),
-              contain == true ? LengthLimitingTextInputFormatter(3) : LengthLimitingTextInputFormatter(4),
-              // DecimalTextInputFormatter(),
-              // FilteringTextInputFormatter.digitsOnly
-            ],
+            controller: tec..selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length)),
+            keyboardType: TextInputType.number,
+            inputFormatters: [determiningStartingNumber == true ? LengthLimitingTextInputFormatter(3) : LengthLimitingTextInputFormatter(4)],
             style: pet_weight,
             decoration: InputDecoration(
               hintText: '3.2',
@@ -440,86 +434,56 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
               helperStyle: pet_weight_hel,
             ),
             onChanged: (newValue) {
-              /// 입력할 때
               if(newValue.length > _previousValue.length) {
-                /// 1. 0을 클릭 했을 때
-                if(newValue[0] == '0') {
-                  ///   1-1. 길이가 2일 때 ( 0,다음 아무 숫자를 입력 했을때 ))
-                  if(newValue.length > 1) {
-                    ///     1-1-1. 소수점 2번째 자리까지 입력 가능하게 (앞에 입력한 "0." 이거 유지되게)
-                    contain = true;
+                if(newValue.substring(0, 1) == "0" && newValue.length == 1) {
+                  setState(() {
+                    determiningStartingNumber = true;
+                  });
 
-                    if(newValue[1] == '0') {
-                      newValue = '0';
-                    } else {
-                      newValue = '${newValue.substring(0, newValue.length-1)}.${newValue.substring(newValue.length-1)}';
-                      // newValue = '0.$newValue[1]';
-                      // newValue[0] = '0';
+                  tec.text = "0.";
+                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                  firstNumber = true;
 
-                    }
+                } else if (newValue.isNotEmpty && double.tryParse(newValue) == null) {
+                  tec.text = "0.";
+                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
 
-
-
-
-                    ///   1-2. 길이가 3이하일 때
-                  } else {
-                    ///     1-2-1. 아래 짜놓은 로직(전부가 필요한 건 아닐 수 있음)
-                    if (newValue.length == 1) {
-                      newValue = newValue;
-                    } else if (newValue.length == 2) {
-                      newValue = (double.parse(newValue) / 10).toString();
-                    } else if (newValue.length == 4) {
-                      newValue = (double.parse(newValue.replaceAll(RegExp(r'\D'), '')) / 10).toString();
-                    }
+                } else if (double.tryParse(newValue) != null) {
+                  if (firstNumber != true) {
+                    setState(() {
+                      determiningStartingNumber = false;
+                    });
                   }
 
-                  /// 2. 0 이외의 수를 클릭 했을 때
-                // } else if(newValue[0] != '0') {
-                } else {
-
-                  ///   2-1. 아래 짜놓은 로직(전부가 필요한 건 아닐 수 있음)
-                  if (newValue.length == 1) {
-                    newValue = newValue;
-                  } else if (newValue.length == 2) {
-                    newValue = (double.parse(newValue) / 10).toString();
+                  if (newValue.length == 2) {
+                    tec.text = "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
+                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
                   } else if (newValue.length == 4) {
-                    newValue = (double.parse(newValue.replaceAll(RegExp(r'\D'), '')) / 10).toString();
+                    tec.text = "${newValue.substring(0, 1)}${newValue.substring(2, 3)}.${newValue.substring(3, 4)}";
+                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                  } else {
+                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
                   }
 
                 }
+                _previousValue = newValue;
 
-              /// 지울 때
               } else if(newValue.length < _previousValue.length) {
-              /// 1. 입력되어 있는 수의 맨 앞자리가 0일 때
-              ///   1-1. 길이가 3일 될 때
-              ///     1-1-1. 소수점 유지된 채로 맨 뒤에 값만 지우기
-              ///   1-2. 길이가 2가 될 때
-              ///     1-2-1. 입력창에 있는 값 다 지우기
-              ///
-              /// 2. 입력되어 있는 수의 맨 앞자리가 0이 아닐 때
-              ///   2-1. 길이가 3이 될 때
-              ///     2-1-1. 맨 뒷 자리 수를 지우고 남은 수의 맨 뒤에 있는 소수점 제거하고 남은 두 수로 /10 해줘서 소수점 만들어주기 (예. 32.5 -> 32.(X), 3.2(O) )
-              ///   2-2. 길이가 2가 될 때 (앞의 말이 정확하지 않음, 정확하게는 내가 입력한 수가 1개 남을 때)
-              ///     2-2-1. 앞에 소수점 빼고 입력했던 수(남아있는 수)만 보여주기
+                if (newValue.isEmpty) firstNumber = false;
+
+                if (newValue.length == 3 && newValue.substring(2, 3) == ".") {
+                  tec.text = "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
+                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                }
+
+                if (newValue.length == 2 && newValue.substring(0, 1) != "0" && newValue.substring(1, 2) == ".") {
+                  tec.text = newValue.substring(0, 1);
+                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                }
+
+                _previousValue = newValue;
 
               }
-
-
-
-              // if (newValue.length == 1) {
-              //   newValue = newValue;
-              // } else if (newValue.length == 2) {
-              //   newValue = (double.parse(newValue) / 10).toString();
-              // } else if (newValue.length == 4) {
-              //   newValue = (double.parse(newValue.replaceAll(RegExp(r'\D'), '')) / 10).toString();
-              // }
-              //
-              // setState(() {
-              //   tec.text = newValue.toString();
-              //
-              //   _petWeightController = newValue;
-              //   _showError6 = false;
-              // });
             },
           ),
           _showError6 == true ? RenderWrongInput() : const SizedBox(),
@@ -652,26 +616,3 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
     );
   }
 }
-
-// class DecimalTextInputFormatter extends TextInputFormatter {
-//   @override
-//   TextEditingValue formatEditUpdate(
-//       TextEditingValue oldValue, TextEditingValue newValue) {
-//     if (newValue.text.isEmpty) {
-//       return newValue.copyWith(text: '');
-//     } else if (newValue.text.length == 1) {
-//       return newValue.copyWith(text: '${newValue.text}');
-//     } else {
-//       String newText = newValue.text;
-//       if (newText.contains('.')) {
-//         newText = newText.replaceAll('.', '');
-//       }
-//       int value = int.parse(newText);
-//       String formattedValue = (value / 10).toStringAsFixed(1);
-//       return newValue.copyWith(
-//         text: formattedValue,
-//         selection: TextSelection.collapsed(offset: formattedValue.length),
-//       );
-//     }
-//   }
-// }
