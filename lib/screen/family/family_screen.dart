@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:treepet/screen/family/wedding/wedding_screen.dart';
 import '../../layout/screen_layout.dart';
 import '../community/community_post_create_screen.dart';
-import '../community/community_screen.dart';
 
 class FamilyScreen extends StatelessWidget {
   const FamilyScreen({Key? key}) : super(key: key);
