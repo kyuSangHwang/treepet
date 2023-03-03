@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:treepet/component/calender.dart';
 import 'package:treepet/component/wedding_component.dart';
-import 'package:treepet/component/wedding_component_functions.dart';
+import 'package:treepet/component/component_functions.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_4.dart';
 
