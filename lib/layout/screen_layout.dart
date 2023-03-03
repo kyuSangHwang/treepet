@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
+import 'package:treepet/screen/community/community_search_screen.dart';
+import 'package:treepet/screen/family/family_screen.dart';
 import 'package:treepet/screen/family/wedding/wedding_filter_screen.dart';
 
 class ScreenLayout extends StatelessWidget {
@@ -25,6 +27,7 @@ class ScreenLayout extends StatelessWidget {
         elevation: 0,
         title: Text(title),
         backgroundColor: WHITE_COLOR,
+        centerTitle: screenKey == "signUpTermAgree" ? false : true,
         titleTextStyle: const TextStyle(
           color: BLACK_COLOR,
           fontSize: 20.0,
@@ -33,15 +36,27 @@ class ScreenLayout extends StatelessWidget {
         leading: screenKey == 'wedding' || screenKey == "weddingFilter"
             ? IconButton(
                 onPressed: () {
-                  if (screenKey != null && (screenKey == "wedding" || screenKey == "weddingFilter")) {
-                    Navigator.of(context).pop();
+                  if (screenKey != null &&
+                      (screenKey == "wedding" ||
+                          screenKey == "weddingFilter")) {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (_) => FamilyScreen()), (route) => false);
                   } else {
                     Navigator.of(context).maybePop();
                   }
                 },
                 icon: const Icon(Icons.arrow_back, color: BLACK_COLOR),
               )
-            : null,
+            : screenKey == "signUpTermAgree"
+                ? IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: BLACK_COLOR,
+                    ),
+                  ) : null,
         actions: screenKey == "wedding"
             ? [
                 IconButton(
@@ -63,16 +78,32 @@ class ScreenLayout extends StatelessWidget {
                       },
                       child: const Text(
                         '초기화',
-                        style: TextStyle(fontSize: 14, color: Colors.green,),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.green,
+                        ),
                       ),
                     ),
                   ]
-                : null,
+                : screenKey == "community"
+                    ? [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => CommunitySearchScreen()));
+                          },
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ]
+                    : null,
         bottom: appBarBottom != null
             ? PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: appBarBottom!,
-        )
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: appBarBottom!,
+              )
             : null,
       ),
       body: body,

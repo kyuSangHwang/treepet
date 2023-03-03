@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treepet/component/custom_text_field.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/layout/screen_layout.dart';
 import 'package:treepet/screen/sign/mobile_number_authentication_screen.dart';
 import 'package:treepet/screen/sign/detail/personal_infomation_collection_detail_screen.dart';
 import 'package:treepet/screen/sign/detail/personal_information_marketing_purposes_detail_screen.dart';
@@ -19,10 +20,6 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
   bool _isChecked2 = false;
   bool _isChecked3 = false;
   bool _isChecked4 = false;
-
-  bool _allChecked() {
-    return _isChecked1 && _isChecked2 && _isChecked3 || _isChecked4;
-  }
 
   void _toggleCheck1(bool? value) {
     setState(() {
@@ -69,31 +66,38 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SignUpTermAgreeScreenAppBar(context),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RenderSignUpTermAgreeTitle(),
-                    RenderTermAgreeCategory(),
-                  ],
-                ),
-              ),
-            ),
-            RenderWithdrawalButton(context),
-            const SizedBox(height: 10),
-          ],
-        ),
+      body: ScreenLayout(
+        title: '약관동의',
+        body: SignUpTermAgreeScreenBody(),
+        screenKey: 'signUpTermAgree',
+        bottomNavigationBar: RenderWithdrawalButton(context),
       ),
     );
   }
+
+  GestureDetector SignUpTermAgreeScreenBody() {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RenderSignUpTermAgreeTitle(),
+                  RenderTermAgreeCategory(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   AppBar SignUpTermAgreeScreenAppBar(BuildContext context) {
     return AppBar(
@@ -220,7 +224,7 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
 
   // 버튼
   Widget RenderWithdrawalButton(BuildContext context) {
-    return SafeArea(
+    return BottomAppBar(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 70,

@@ -6,7 +6,7 @@ import 'family/family_screen.dart';
 import 'package:treepet/screen/mypage/mypage_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key,}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

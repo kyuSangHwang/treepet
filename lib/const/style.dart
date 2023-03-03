@@ -312,7 +312,14 @@ final co_post_detail_sub_text = TextStyle(
   fontFamily: 'pretendard',
   fontWeight: FontWeight.w400,
   color: BLACK_COLOR,
-  fontSize: 13.0,
+  fontSize: 15.0,
+);
+
+final co_post_detail_image_paging = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w500,
+  color: Colors.white,
+  fontSize: 14.0,
 );
 
 // 커뮤니티 게시글 상세페이지 컨텐츠내용
@@ -372,6 +379,14 @@ final pet_tree_title = TextStyle(
   fontWeight: FontWeight.w600,
   color: BLACK_COLOR,
   fontSize: 16.0,
+);
+
+// 우리 가족 최상단 반려동물 추가
+final pet_tree_pet_add = TextStyle(
+  fontFamily: 'pretendard',
+  fontWeight: FontWeight.w400,
+  color: BLACK_COLOR,
+  fontSize: 19.0,
 );
 
 // 우리 가족 해당 반려동물 이름

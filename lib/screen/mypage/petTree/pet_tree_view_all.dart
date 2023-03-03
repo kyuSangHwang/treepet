@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/screen/sign/pet_register_screen.dart';
 
 class PetTreeViewAll extends StatefulWidget {
   const PetTreeViewAll({Key? key}) : super(key: key);
@@ -47,6 +48,24 @@ class _PetTreeViewAllState extends State<PetTreeViewAll> {
         '가족 전체보기',
         style: TextStyle(color: BLACK_COLOR),
       ),
+      actions: [
+        GestureDetector(
+        behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => PetRegisterScreen()));
+          },
+          child: SizedBox(
+            width: 80,
+            child: Center(
+              child: Text(
+                '추가',
+                style: pet_tree_pet_add,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -55,7 +74,7 @@ class _PetTreeViewAllState extends State<PetTreeViewAll> {
       children: [
         // 최상단
         PetTreeRepresentation(
-          index: index,
+          index: index + 1,
           value: null,
           title: '감자로 활동하기',
         ),
@@ -109,7 +128,7 @@ class _PetTreeViewAllState extends State<PetTreeViewAll> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 10.0, bottom: 5, left: 15.0),
-                        child: Text('아빠', style: pet_tree_call_name),
+                        child: Text('부견', style: pet_tree_call_name),
                       ),
                     ),
                     SizedBox(
@@ -117,7 +136,7 @@ class _PetTreeViewAllState extends State<PetTreeViewAll> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 10.0, bottom: 5, left: 15.0),
-                        child: Text('엄마', style: pet_tree_call_name),
+                        child: Text('모견', style: pet_tree_call_name),
                       ),
                     ),
                   ],

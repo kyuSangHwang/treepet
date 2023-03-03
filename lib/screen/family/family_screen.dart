@@ -11,6 +11,7 @@ class FamilyScreen extends StatelessWidget {
     return Scaffold(
       body: ScreenLayout(
         title: '가족 만들기',
+        screenKey: 'familyScreen',
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

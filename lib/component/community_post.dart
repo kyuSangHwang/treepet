@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/community/community_post_detail_screen.dart';
+import 'package:treepet/test.dart';
 
 class CommunityPost extends StatelessWidget {
   final String title;
@@ -24,6 +25,7 @@ class CommunityPost extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunityPostDetailScreen()));
+        // Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyHomePage()));
       },
       child: Container(
         decoration: PostBorderStyle(),

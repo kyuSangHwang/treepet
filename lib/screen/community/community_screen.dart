@@ -12,28 +12,11 @@ class CommunityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: renderFloatingActionButton(context),
-      appBar: CommunityAppBar(context),
-      body: renderCommunityPost(),
-    );
-  }
-
-  AppBar CommunityAppBar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      centerTitle: true,
-      backgroundColor: WHITE_COLOR,
-      title: const Text(
-        '커뮤니티',
-        style: TextStyle(color: BLACK_COLOR),
+      body: ScreenLayout(
+        title: '커뮤니티',
+        body: renderCommunityPost(),
+        screenKey: 'community',
       ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunitySearchScreen()));
-          },
-          icon: Icon(Icons.search,color: Colors.black,),
-        ),
-      ],
     );
   }
 
@@ -50,7 +33,7 @@ class CommunityScreen extends StatelessWidget {
     );
   }
 
-  renderCommunityPost() {
+  Scrollbar renderCommunityPost() {
     return Scrollbar(
       child: ListView.builder(
         itemCount: 30,

@@ -20,7 +20,7 @@ class MyPageScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ProfileInfo(context),
             const SizedBox(height: 40),
-            ProfileContent(context),
+            // ProfileContent(context),
             const Divider(height: 40),
             ProfilePetTree(context),
             ProfileSideMenu(context),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:treepet/component/image_pick.dart';
+import 'package:treepet/component/warning_text.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/sign/address_search_screen.dart';
@@ -16,7 +17,7 @@ class ProfileRegisterScreen extends StatefulWidget {
 }
 
 class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   final _formKey = GlobalKey<FormState>();
 
   late File _imageFile = File(" ");
@@ -72,12 +73,13 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                     ),
                   ),
                 ),
-                RenderProfileRegisterButton(context)
+                RenderProfileRegisterButton(context),
               ],
             ),
           ),
         ),
       ),
+        // bottomNavigationBar: RenderProfileRegisterButton(context),
     );
   }
 
@@ -172,7 +174,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                 _profileUserNameController = value;
               });
             },
-            autovalidateMode: autovalidateMode,
+            autovalidateMode: autoValidateMode,
             validator: (value) {
               if (value?.isEmpty ?? true) {
                 return '올바른 형식으로 입력해주세요';
@@ -207,7 +209,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                 _profileUserBirthController = value;
               });
             },
-            autovalidateMode: autovalidateMode,
+            autovalidateMode: autoValidateMode,
             validator: (value) {
               if (value?.length != 8) {
                 return '올바른 형식으로 입력해주세요';
@@ -278,9 +280,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
               ),
             ],
           ),
-          _showError == true
-              ? RenderWrongInput()
-              : const SizedBox(),
+          _showError == true ? RenderWrongInput() : const SizedBox(),
         ],
       ),
     );
@@ -307,7 +307,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                 _profileUserNickController = value;
               });
             },
-            autovalidateMode: autovalidateMode,
+            autovalidateMode: autoValidateMode,
             validator: (value) {
               if ((value?.length == 0 || value?.length == 1) ?? true) {
                 return '올바른 형식으로 입력해주세요';
@@ -320,21 +320,23 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
   }
 
   Widget RenderProfileRegisterButton(BuildContext context) {
-    return SafeArea(
+    return BottomAppBar(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 70,
         child: ElevatedButton(
           onPressed: () {
-            if(_formKey.currentState!.validate()) {
+            if (_formKey.currentState!.validate()) {
               print('성공');
             } else {
               setState(() {
-                autovalidateMode = AutovalidateMode.always;
+                autoValidateMode = AutovalidateMode.always;
               });
             }
 
-            if (_profileUserSexController.isEmpty) _showError = true;
+            setState(() {
+              if (_profileUserSexController.isEmpty) _showError = true;
+            });
 
             (_profileUserNameController.isNotEmpty &&
                         _profileUserBirthController.length == 8 &&
@@ -360,15 +362,6 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget RenderWrongInput() {
-    return Column(
-      children: [
-        SizedBox(height: 5),
-        Text('올바른 형식으로 입력해주세요', style: wrong_input_warning),
-      ],
     );
   }
 }

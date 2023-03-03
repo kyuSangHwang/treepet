@@ -32,10 +32,11 @@ class _AddressSearchScreenState extends State<AddressSearchScreen> {
             SizedBox(height: 20),
             RenderTitle(context),
             SizedBox(height: 20),
-            RenderAddressSearchButton(context),
+            // RenderAddressSearchButton(context),
           ],
         ),
       ),
+      bottomNavigationBar: RenderAddressSearchButton(context),
     );
   }
 

@@ -22,14 +22,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
   ];
 
   String _selectedAllergy = '선택해주세요';
-  final List<String> _AllergyList = [
-    '선택해주세요',
-    '치즈',
-    '고등어',
-    '참치',
-    '우유',
-    '황태'
-  ];
+  final List<String> _AllergyList = ['선택해주세요', '치즈', '고등어', '참치', '우유', '황태'];
 
   String _selectedAdoptionRoute = '선택해주세요';
   final List<String> _AdoptionRouteList = [
@@ -41,6 +34,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
     '보호소',
     '펫샵',
     '브리더',
+    '기타(직접 입력)',
   ];
 
   @override
@@ -86,6 +80,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
           ],
         ),
       ),
+      // bottomNavigationBar: RenderProfileRegisterButton2(context),
     );
   }
 
@@ -114,7 +109,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
   Widget RenderTitle2(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.9,
-      child: Text('추가 정보', style: pet_register_category_title),
+      child: Text('추가 정보(선택)', style: pet_register_category_title),
     );
   }
 
@@ -246,7 +241,6 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
               hintText: '반려동물의 소유주를 입력해주세요',
               hintStyle: register_profile_placeholder,
             ),
-
           ),
         ],
       ),
@@ -266,7 +260,6 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
               hintText: '등록번호를 입력해주세요',
               hintStyle: register_profile_placeholder,
             ),
-
           ),
         ],
       ),
@@ -306,15 +299,31 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
               },
             ),
           ),
+          _selectedAdoptionRoute == '기타(직접 입력)'
+              ? RenderSelfInput()
+              : Container()
         ],
       ),
     );
   }
 
+  Widget RenderSelfInput() {
+    return Column(
+      children: [
+        SizedBox(height: 5),
+        TextField(
+          decoration: InputDecoration(
+            hintText: '직접 입력해주세요',
+            hintStyle: register_profile_placeholder,
+          ),
+        ),
+      ],
+    );
+  }
 
   // 다음 버튼
   Widget RenderProfileRegisterButton2(BuildContext context) {
-    return SafeArea(
+    return BottomAppBar(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 70,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 import 'package:treepet/component/more_screen.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/src/widgets/scroll_controller.dart';
 
 const String _name = "망치엄마";
 final List<ChatMessage> _message = <ChatMessage>[];
@@ -16,40 +19,82 @@ class CommunityPostDetailScreen extends StatefulWidget {
 
 class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
     with TickerProviderStateMixin {
+  double _currentIndex = 0;
+  final PageController _pageController = PageController(initialPage: 0);
+
+  // 이미지를 저장하는 리스트
+  final List imageList = [
+    'asset/image/dog1.jpeg',
+    'asset/image/dog2.jpeg',
+    'asset/image/dog3.jpeg',
+    'asset/image/dog4.png'
+  ];
+
+  int _likeCnt = 0;
+  bool _likeCntCheck = false;
+
   // 입력한 메시지를 저장하는 리스트
   final List<ChatMessage> _message = <ChatMessage>[];
 
-  // 텍스트필드 제어용 컨트롤러
-  final TextEditingController _textController = TextEditingController();
-
   // 텍스트필드에 입력된 데이터의 존재 여부
   bool _isComposing = false;
+
+  // ScrollController 초기화
+  FocusNode _focusNode = FocusNode();
+
+  // 텍스트필드 제어용 컨트롤러
+  final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentIndex = _pageController.page ?? 0;
+      });
+    });
+
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommunityPostDetailAppBar(context),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 10),
-                    renderTitle(context),
-                    renderUserInfo(context),
-                    renderImage(context),
-                    renderIcon(context),
-                    renderContent(context),
-                    suit_sized_box_style(),
-                    renderCommentArea(context),
-                  ],
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      renderTitle(context),
+                      renderUserInfo(context),
+                      renderImage(context),
+                      renderIcon(context),
+                      renderContent(context),
+                      suit_sized_box_style(),
+                      renderCommentArea(context),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            renderComment(context),
-          ],
+              renderComment(context),
+            ],
+          ),
         ),
       ),
     );
@@ -131,9 +176,50 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
             height: 400,
             width: MediaQuery.of(context).size.width,
             color: WHITE_COLOR,
-            child: Image.asset(
-              'asset/image/dog1.jpeg',
-              fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                PageView(
+                  children: imageList
+                      .map((image) => Image.asset(
+                            image,
+                            fit: BoxFit.cover,
+                          ))
+                      .toList(),
+                  onPageChanged: (value) {
+                    setState(() {
+                      _currentIndex = double.parse(value.toString());
+                    });
+                  },
+                ),
+                Positioned(
+                  top: 20,
+                  right: 20,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(500),
+                    ),
+                    child: Text(
+                      '${(_currentIndex + 1).toInt()} / ${imageList.length}',
+                      style: co_post_detail_image_paging,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: DotsIndicator(
+                      dotsCount: imageList.length,
+                      position: _currentIndex,
+                      decorator: const DotsDecorator(
+                        activeColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -148,9 +234,14 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
         children: [
           Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.pets)),
+              IconButton(
+                onPressed: _incrementLikeCounter,
+                icon: (_likeCntCheck
+                    ? const Icon(Icons.favorite, color: Colors.redAccent)
+                    : const Icon(Icons.favorite_border)),
+              ),
               Text(
-                '좋아요 3개',
+                '좋아요 ' '${_likeCnt.toString()}' '개',
                 style: co_post_detail_sub_text,
               ),
             ],
@@ -164,6 +255,18 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
         ],
       ),
     );
+  }
+
+  void _incrementLikeCounter() {
+    setState(() {
+      if (!_likeCntCheck) {
+        _likeCntCheck = !_likeCntCheck;
+        _likeCnt++;
+      } else {
+        _likeCntCheck = !_likeCntCheck;
+        _likeCnt--;
+      }
+    });
   }
 
   Padding renderContent(BuildContext context) {
@@ -184,6 +287,7 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
       primary: false,
       reverse: true,
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: _message.length,
       itemBuilder: (context, index) => _message[index],
     );
@@ -198,11 +302,19 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
           Flexible(
             child: TextField(
               controller: _textController,
+              scrollController: _scrollController,
+              focusNode: _focusNode,
               //입려된 텍스트에 변화가 있을 때 마다
-              onChanged: (text) {
+              onChanged: (value) {
                 setState(() {
-                  _isComposing = text.length > 0;
+                  _isComposing = value.length > 0;
                 });
+                // 댓글이 변경될 때마다 텍스트필드의 값을 갱신합니다.
+                _textController.value =
+                    _textController.value.copyWith(text: value);
+                // 댓글이 추가되면 텍스트필드에 포커스를 맞춥니다.
+                _textController.selection = TextSelection.fromPosition(
+                    TextPosition(offset: value.length));
               },
               // 키보드상에서 확인을 누를 경우. 입력값이 있을 때에만 _handleSubmitted 호출
               onSubmitted: _isComposing ? _handleSubmitted : null,
@@ -229,10 +341,15 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
   void _handleSubmitted(String text) {
     // 텍스트 필드의 내용 삭제
     _textController.clear();
+
     // _isComposing을 다시 false로 설정
     setState(() {
       _isComposing = false;
     });
+
+    // 추가된 댓글 위젯에 포커스를 줍니다.
+    FocusNode focusNode = FocusNode();
+    FocusScope.of(context).requestFocus(focusNode);
 
     // 입력받은 텍스트를 이용해서 리스트에 추가할 메시지 생성
     ChatMessage message = ChatMessage(
@@ -244,6 +361,7 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
         duration: Duration(milliseconds: 700),
         vsync: this,
       ),
+      focusNode: focusNode,
     );
 
     // 리스트에 메시지 추가
@@ -253,6 +371,9 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
 
     // 위젯의 애니메이션 효과 발생
     message.animationController.forward();
+
+    _scrollController.jumpTo(1000);
+
   }
 }
 
@@ -260,9 +381,13 @@ class _CommunityPostDetailScreenState extends State<CommunityPostDetailScreen>
 class ChatMessage extends StatelessWidget {
   final String text; // 출력할 메시지
   final AnimationController animationController; // 리스트뷰에 등록될때 보여질 효과
+  final FocusNode focusNode;
 
   const ChatMessage(
-      {required this.text, required this.animationController, Key? key})
+      {required this.text,
+      required this.animationController,
+      required this.focusNode,
+      Key? key})
       : super(key: key);
 
   //TODO : 여기여기여기
@@ -299,7 +424,7 @@ class ChatMessage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           // renderCommentArea()
-                          print('네네네네');
+                          // focusNode.requestFocus();
                         },
                         child: Text('답글 달기'),
                       ),

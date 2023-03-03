@@ -14,7 +14,8 @@ class WeddingScreen extends StatefulWidget {
   State<WeddingScreen> createState() => _WeddingScreenState();
 }
 
-class _WeddingScreenState extends State <WeddingScreen> with TickerProviderStateMixin {
+class _WeddingScreenState extends State<WeddingScreen>
+    with TickerProviderStateMixin {
   TabController? _tabController;
   bool isTextVisible = true;
   bool _isExpanded1 = false;
@@ -50,12 +51,13 @@ class _WeddingScreenState extends State <WeddingScreen> with TickerProviderState
     // 추가 항목들
   ];
 
-
+  bool isFind = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: renderFloatingActionButton(context),
+      floatingActionButton: isFind == true ? renderFloatingActionButton(context) : null,
+      // floatingActionButton: renderFloatingActionButton(context),
       body: ScreenLayout(
         title: 'Wedding',
         body: _WeddingScreenBody(),
@@ -74,7 +76,8 @@ class _WeddingScreenState extends State <WeddingScreen> with TickerProviderState
       duration: const Duration(milliseconds: 10),
       reverseDuration: const Duration(milliseconds: 100000),
     );
-    _heightFactorAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _heightFactorAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
   }
 
   @override
@@ -124,9 +127,27 @@ class _WeddingScreenState extends State <WeddingScreen> with TickerProviderState
         fontSize: 18,
       ),
       labelColor: Colors.black,
-      tabs: const [
+      onTap: (index) {
+        setState(() {
+          if(index == 0) isFind = true;
+          if(index == 1) isFind = false;
+        });
+      },
+      tabs: [
         Tab(text: "신랑&신부 찾기"),
         Tab(text: "프로포즈 List"),
+        // GestureDetector(
+        //   onTap: () {
+        //     isFind = true;
+        //   },
+        //   child: Tab(text: "신랑&신부 찾기"),
+        // ),
+        // GestureDetector(
+        //   onTap: () {
+        //     isFind = false;
+        //   },
+        //   child: Tab(text: "프로포즈 List"),
+        // ),
       ],
     );
   }
@@ -188,7 +209,8 @@ class _WeddingScreenState extends State <WeddingScreen> with TickerProviderState
                           itemList.removeAt(index);
                         });
                       },
-                      confirmDismiss: (direction) => _confirmDismiss(direction, context, index),
+                      confirmDismiss: (direction) =>
+                          _confirmDismiss(direction, context, index),
                       background: Container(
                         color: Colors.red,
                         alignment: Alignment.centerLeft,
@@ -251,11 +273,11 @@ class _WeddingScreenState extends State <WeddingScreen> with TickerProviderState
     );
   }
 
-    Future<bool> _confirmDismiss(
-      DismissDirection direction,
-      BuildContext context,
-      int index,
-      ) {
+  Future<bool> _confirmDismiss(
+    DismissDirection direction,
+    BuildContext context,
+    int index,
+  ) {
     if (direction == DismissDirection.endToStart) {
       return showDialog(
           context: context,

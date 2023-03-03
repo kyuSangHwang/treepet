@@ -55,11 +55,19 @@ Widget WeddingBottomAppBarButton(BuildContext context, String buttonName, nextPa
           if (checkMap == null) allValuesAreTrue = true;
 
           if (allValuesAreTrue != null && allValuesAreTrue) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => nextPage,
-                ),
-              );
+              if(buttonName == "완 료" || buttonName == "프로포즈 신청하기" || buttonName == "확 인") {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (_) => nextPage,
+                  ),(route) => false
+                );
+              } else {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => nextPage,
+                  ),
+                );
+              }
           } else {
             showDialog(
               context: context,

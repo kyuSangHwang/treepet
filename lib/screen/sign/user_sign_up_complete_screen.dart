@@ -53,7 +53,7 @@ class UserSignUpCompleteScreen extends StatelessWidget {
           backgroundColor: Colors.grey[300],
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomeScreen()), (route) => false);
         },
         child: Text('트리펫 시작하기', style: not_pet_register_button),
       ),
