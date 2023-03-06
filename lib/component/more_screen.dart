@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treepet/component/more_report_screen.dart';
 import 'package:treepet/const/style.dart';
 
 class MoreScreen extends StatelessWidget {
@@ -6,14 +7,13 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyMoreScreen();
-    // return OtherMoreScreen();
+    return MyMoreScreen(context);
   }
 
   // 작성자 입장에서의 더보기 팝업
-  Widget MyMoreScreen() {
+  Widget MyMoreScreen(BuildContext context) {
     return Container(
-      height: 250,
+      height: 340,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -39,6 +39,22 @@ class MoreScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       '수정하기',
+                      style: more_view_modal,
+                    ),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (_) => MoreReportCreateScreen()));
+                  Navigator.of(context).pushNamed('MoreReportCreateScreen');
+                },
+                child: SizedBox(
+                  height: 60,
+                  child: Center(
+                    child: Text(
+                      '신고하기',
                       style: more_view_modal,
                     ),
                   ),
