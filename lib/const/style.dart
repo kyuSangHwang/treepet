@@ -825,6 +825,23 @@ const wedding_propose_list_post_2 = TextStyle(
   color: Colors.black,
 );
 
+/// OnBoarding ///
+const on_boarding_login_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  height: 1.2,
+  color: Colors.black,
+);
+
+const on_boarding_join_button = TextStyle(
+  fontFamily: 'pretendard',
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
+  height: 1.2,
+  color: Colors.white,
+);
+
 
 
 

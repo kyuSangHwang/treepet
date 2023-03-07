@@ -5,6 +5,7 @@ import 'package:treepet/component/custom_text_field.dart';
 import 'package:treepet/component/post_bottom_sheet.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/layout/screen_layout.dart';
 
 class CommunityPostCreateScreen extends StatefulWidget {
   const CommunityPostCreateScreen({Key? key}) : super(key: key);
@@ -18,75 +19,89 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   late File _imageFile = File(" ");
   List<dynamic> imageFilesList = [];
   List<Widget> imagesWidgetList = [];
+  List<int> iconButtonKeyIndexList = [];
+  List<int> iconButtonKeyIndexReplaceList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommunityPostCreateAppBar(context),
-      body: GestureDetector(
-        // 다른 화면 클릭했을때 텍스트 필드 닫히게하기
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const CustomTextField(
-                        isTitle: true,
-                        placeHolder: '제목을 입력하세요. ',
-                      ),
-                      thin_sized_box_style(),
-                      const CustomTextField(
-                        isTitle: false,
-                        placeHolder:
-                            '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
-                      ),
-                      thin_sized_box_style(),
-                      Column(
-                        children: [
-                          CategorySelected(context),
-                          thin_sized_box_style(),
-                          ImageVideoSelected(),
-                        ],
-                      ),
-                    ],
-                  ),
+      body: ScreenLayout(
+          title: "글쓰기",
+          body: _CommunityPostCreateScreenBody(context),
+          screenKey: "communityPostCreate",
+          bottomNavigationBar: _RegisteredButton(context),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    imageFilesList.add(_AddButton());
+    imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
+  }
+
+  /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
+  Future<void> _GetImage() async {
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _imageFile = File(pickedFile!.path);
+      imageFilesList.add(_imageFile);
+
+      final int currentImageIndex = imageFilesList.length - 1;
+
+      imagesWidgetList.add(_AddImages(currentImageIndex));
+
+      imageFilesList.length == 6 ? imageFilesList.removeAt(0) : null;
+      imagesWidgetList.length == 6 ? imagesWidgetList.removeAt(0) : null;
+    });
+  }
+
+  /// 커뮤니티 글 등록 화면
+  GestureDetector _CommunityPostCreateScreenBody(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const CustomTextField(
+                      isTitle: true,
+                      placeHolder: '제목을 입력하세요.',
+                    ),
+                    thin_sized_box_style(),
+                    const CustomTextField(
+                      isTitle: false,
+                      placeHolder:
+                      '내용을 작성해주세요. \n\n상대방을 불쾌하게 하는 내용은 삼가해주세요.\n신고를 당하면 커뮤니티 이용이 제한될 수 있어요.',
+                    ),
+                    thin_sized_box_style(),
+                    Column(
+                      children: [
+                        _CategorySelected(context),
+                        thin_sized_box_style(),
+                        _ImageVideoSelected(),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              // SizedBox(height: 10.0),
-              RegisteredButton(context),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  AppBar CommunityPostCreateAppBar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      centerTitle: false,
-      backgroundColor: WHITE_COLOR,
-      title: const Text(
-        '글쓰기',
-        style: TextStyle(color: BLACK_COLOR),
-      ),
-      leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: BLACK_COLOR,
-          )),
-    );
-  }
-
-  Padding CategorySelected(BuildContext context) {
+  /// 카테고리 선택 영역
+  Padding _CategorySelected(BuildContext context) {
     return Padding(
       padding: post_item_left_padding(),
       child: Row(
@@ -118,7 +133,8 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  Padding ImageVideoSelected() {
+  /// 사진/동영상 선택 영역
+  Padding _ImageVideoSelected() {
     return Padding(
       padding: post_item_left_padding(),
       child: Column(
@@ -141,13 +157,11 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                     return imagesWidgetList[index];
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(width: 5);
+                    return const SizedBox(width: 5);
                   },
-                  // itemCount: imagesWidgetList.length,
                   itemCount: imagesWidgetList.length,
                 ),
               ),
-              // ),
             ],
           ),
         ],
@@ -155,7 +169,8 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  Container addButton() {
+  /// 사진/동영상 선택 버튼
+  Container _AddButton() {
     return Container(
       width: 79.6,
       height: 79.6,
@@ -165,9 +180,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
       ),
       child: IconButton(
         onPressed: () {
-          // image == null ? renderEmpty() :
-          // onImageTap();
-          _getImage();
+          _GetImage();
         },
         icon: Icon(
           Icons.add,
@@ -178,37 +191,8 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    imageFilesList.add(addButton());
-    imagesWidgetList = imageFilesList.map((item) => item as Widget).toList();
-  }
-
-  List<int> iconButtonKeyIndexList = [];
-  List<int> iconButtonKeyIndexReplaceList = [];
-
-
-  /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
-  Future<void> _getImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _imageFile = File(pickedFile!.path);
-      imageFilesList.add(_imageFile);
-
-      final int currentImageIndex = imageFilesList.length - 1;
-
-      imagesWidgetList.add(addImages(currentImageIndex));
-
-      imageFilesList.length == 6 ? imageFilesList.removeAt(0) : null;
-      imagesWidgetList.length == 6 ? imagesWidgetList.removeAt(0) : null;
-    });
-  }
-
-  // 등록된 이미지
-  Stack addImages(index) {
+  /// 등록된 이미지 보여지는 영역
+  Stack _AddImages(index) {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
@@ -241,9 +225,9 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
                   imageFilesList.removeAt(index);
                   imagesWidgetList.removeAt(index);
 
-                  if (imageFilesList[0].runtimeType != addButton().runtimeType) {
-                    imageFilesList.insert(0, addButton());
-                    imagesWidgetList.insert(0, addButton());
+                  if (imageFilesList[0].runtimeType != _AddButton().runtimeType) {
+                    imageFilesList.insert(0, _AddButton());
+                    imagesWidgetList.insert(0, _AddButton());
                   }
                 });
               },
@@ -259,10 +243,10 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
     );
   }
 
-  // 등록 버튼
-  Padding RegisteredButton(BuildContext context) {
+  /// 등록 버튼
+  Padding _RegisteredButton(BuildContext context) {
     return Padding(
-      padding: big_long_button(),
+      padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 25.0),
       child: Row(
         children: [
           Expanded(

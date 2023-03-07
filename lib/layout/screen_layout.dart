@@ -27,7 +27,7 @@ class ScreenLayout extends StatelessWidget {
         elevation: 0,
         title: Text(title),
         backgroundColor: WHITE_COLOR,
-        centerTitle: screenKey == "signUpTermAgree" ? false : true,
+        centerTitle: (screenKey == "signUpTermAgree" || screenKey ==  "communityPostCreate") ? false : true,
         titleTextStyle: const TextStyle(
           color: BLACK_COLOR,
           fontSize: 20.0,
@@ -40,14 +40,14 @@ class ScreenLayout extends StatelessWidget {
                       (screenKey == "wedding" ||
                           screenKey == "weddingFilter")) {
                     Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (_) => FamilyScreen()), (route) => false);
+                        MaterialPageRoute(builder: (_) => const FamilyScreen()), (route) => false);
                   } else {
                     Navigator.of(context).maybePop();
                   }
                 },
                 icon: const Icon(Icons.arrow_back, color: BLACK_COLOR),
               )
-            : screenKey == "signUpTermAgree"
+            : (screenKey == "signUpTermAgree" || screenKey == "communityPostCreate")
                 ? IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -90,9 +90,9 @@ class ScreenLayout extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => CommunitySearchScreen()));
+                                builder: (_) => const CommunitySearchScreen()));
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.search,
                             color: Colors.black,
                           ),

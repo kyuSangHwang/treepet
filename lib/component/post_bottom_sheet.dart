@@ -18,7 +18,7 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.25,
+        height: MediaQuery.of(context).size.height * 0.3,
         color: WHITE_COLOR,
         child: Column(
           children: [
@@ -33,6 +33,10 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
             CategoryButton(
               title: '질문',
               value: '3',
+            ),
+            CategoryButton(
+              title: '육아일기',
+              value: '4',
             ),
           ],
         ),

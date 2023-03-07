@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:treepet/component/wedding_component.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/layout/screen_layout.dart';
-import 'package:treepet/screen/family/wedding/wedding_screen_backup.dart';
+import 'package:treepet/screen/family/wedding/wedding_screen.dart';
 
 class WeddingFilterScreen extends StatefulWidget {
   const WeddingFilterScreen({Key? key}) : super(key: key);
