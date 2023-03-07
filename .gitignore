@@ -46,3 +46,4 @@ app.*.map.json
 google-service.json
 firebase_options.dart
 GoogleService-Info.plist
+firebase_auth_remote_data_source.dart

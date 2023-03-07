@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 class FirebaseAuthRemoteDataSource {
-  final String url = '';
+  final String url = 'https://us-central1-treepet--official.cloudfunctions.net/createCustomToken';
 
   Future<String> createCustomToken(Map<String, dynamic> user) async {
     final customTokenResponse = await http.post(Uri.parse(url), body: user);

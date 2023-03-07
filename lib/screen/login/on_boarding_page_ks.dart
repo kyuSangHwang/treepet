@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/const/style.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:treepet/screen/login/sns_login_kakao.dart';
+
 
 class OnBoardingPageKS extends StatefulWidget {
   const OnBoardingPageKS({Key? key}) : super(key: key);
@@ -208,7 +210,7 @@ class _OnBoardingPageKSState extends State<OnBoardingPageKS> {
         fixedSize: const Size(160, 48),
       ),
       onPressed: () {
-        buttonName == "login" ? _LoginBottomSheet(context) : null;
+        buttonName == "login" ? _LoginBottomSheet(context) : Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SnsLoginKakao(title: 'test')));
       },
       child: Text(
         buttonName == "login"
@@ -245,6 +247,7 @@ class _OnBoardingPageKSState extends State<OnBoardingPageKS> {
                 Column(
                   children: [
                     Row(
+
                       children: [
 
                       ],
@@ -264,3 +267,4 @@ class _OnBoardingPageKSState extends State<OnBoardingPageKS> {
     );
   }
 }
+
