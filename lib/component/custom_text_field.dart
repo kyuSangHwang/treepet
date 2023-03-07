@@ -35,7 +35,7 @@ class CustomTextField extends StatelessWidget {
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
           hintText: placeHolder,
-          suffixStyle: TextStyle(
+          suffixStyle: const TextStyle(
             fontSize: 12.0,
           ),
         ),
