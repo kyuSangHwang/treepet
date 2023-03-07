@@ -77,7 +77,9 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
             },
           ),
         ),
-        RenderServiceInquiryBottomButton(context),
+        Text('트리펫 이용 중 궁금하신 사항 또는\n문의사항이 있으시면 언제든 문의해주세요!',textAlign: TextAlign.center,),
+        SizedBox(height: 10),
+        RenderServiceInquiryButton(context),
       ],
     );
   }
@@ -146,38 +148,19 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
     );
   }
 
-  Widget RenderServiceInquiryBottomButton(BuildContext context) {
-    return BottomAppBar(
-      padding: EdgeInsets.zero,
-      height: 170,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Text('트리펫 이용 중 궁금하신 사항 또는\n문의사항이 있으시면 언제든 문의해주세요!',textAlign: TextAlign.center,),
-            SizedBox(height: 10),
-            Expanded(
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => ServiceInquiryCreateScreen()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.indigo,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "서비스 문의하기",
-                      style: inquiry_bottom_button,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+  Widget RenderServiceInquiryButton(BuildContext context) {
+    return SafeArea(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 70,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: MAIN_COLOR,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => ServiceInquiryCreateScreen()));
+          },
+          child: Text('등록하기', style: big_long_button_text),
         ),
       ),
     );

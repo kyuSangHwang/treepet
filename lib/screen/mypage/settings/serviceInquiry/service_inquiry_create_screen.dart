@@ -40,7 +40,7 @@ class _ServiceInquiryCreateScreenState
                 ),
               ),
             ),
-            RenderServiceInquiryButton(),
+            RenderServiceInquiryCreateButton(context),
             SizedBox(height: 10),
           ],
         ),
@@ -147,10 +147,10 @@ class _ServiceInquiryCreateScreenState
     );
   }
 
-  Widget RenderServiceInquiryButton() {
+  Widget RenderServiceInquiryCreateButton(BuildContext context) {
     return SafeArea(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.92,
+        width: MediaQuery.of(context).size.width,
         height: 70,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(

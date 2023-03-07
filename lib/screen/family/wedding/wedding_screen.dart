@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treepet/component/bottom_button.dart';
 import 'package:treepet/screen/family/wedding/wedding_list_post_screen.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_1.dart';
 import 'package:treepet/screen/family/wedding/wedding_propose_list_post_screen.dart';
@@ -53,16 +54,30 @@ class _WeddingScreenState extends State<WeddingScreen>
 
   bool isFind = true;
 
+  /// BottomNavaigationBar 를 위한 변수와 함수
+  /// 화면마다 추가해줘야함
+  int _bottomNavagationBarSelectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _bottomNavagationBarSelectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: isFind == true ? renderFloatingActionButton(context) : null,
+      floatingActionButton:
+          isFind == true ? renderFloatingActionButton(context) : null,
       // floatingActionButton: renderFloatingActionButton(context),
       body: ScreenLayout(
         title: 'Wedding',
         body: _WeddingScreenBody(),
         appBarBottom: _WeddingScreenAppBarBottom(),
         screenKey: 'wedding',
+        // bottomNavigationBar: MyBottomNavigationBar(
+        //   currentIndex: _bottomNavagationBarSelectedIndex,
+        //   onTap: _onItemTapped,
+        // ),
       ),
     );
   }
@@ -129,8 +144,8 @@ class _WeddingScreenState extends State<WeddingScreen>
       labelColor: Colors.black,
       onTap: (index) {
         setState(() {
-          if(index == 0) isFind = true;
-          if(index == 1) isFind = false;
+          if (index == 0) isFind = true;
+          if (index == 1) isFind = false;
         });
       },
       tabs: [

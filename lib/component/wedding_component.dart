@@ -56,11 +56,12 @@ Widget WeddingBottomAppBarButton(BuildContext context, String buttonName, nextPa
 
           if (allValuesAreTrue != null && allValuesAreTrue) {
               if(buttonName == "완 료" || buttonName == "프로포즈 신청하기" || buttonName == "확 인") {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (_) => nextPage,
-                  ),(route) => false
-                );
+                // Navigator.of(context).pushAndRemoveUntil(
+                //   MaterialPageRoute(
+                //     builder: (_) => nextPage,
+                //   ),(route) => false
+                // );
+                Navigator.of(context).popUntil((route) => route.settings.name == '/WeddingScreen');
               } else {
                 Navigator.of(context).push(
                   MaterialPageRoute(
