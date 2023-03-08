@@ -23,16 +23,25 @@ class _WeddingProposalReQuestScreenState extends State<WeddingProposalReQuestScr
   }
 
   /// 프로포즈 신청 화면
-  SizedBox _WeddingProposalReQuestScreenBody() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        children: [
-          _SelectProposalMethod(),
-          _ProposeMessage(),
-          _CautionGuidanceProposal(),
-        ],
+  GestureDetector _WeddingProposalReQuestScreenBody() {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: ListView(
+          children: [
+            Column(
+              children: [
+                _SelectProposalMethod(),
+                _ProposeMessage(),
+                _CautionGuidanceProposal(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
