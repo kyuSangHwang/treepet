@@ -68,6 +68,8 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                         ProfileUserSex(context),
                         SizedBox(height: 40),
                         ProfileUserNick(context),
+                        SizedBox(height: 40),
+                        ProfileUserSelfIntroduction(context),
                         SizedBox(height: 20),
                       ],
                     ),
@@ -313,6 +315,41 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                 return '올바른 형식으로 입력해주세요';
               }
             },
+          ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox ProfileUserSelfIntroduction(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('소개', style: register_profile_title),
+          SizedBox(height: 10),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[200],
+            ),
+            child: TextFormField(
+              cursorColor: SECOND_COLOR,
+              style: co_create_textfield_write,
+              maxLines: null,
+              minLines: 12,
+              decoration: InputDecoration(
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                hintText: 'dddd',
+                suffixStyle: const TextStyle(
+                  fontSize: 12.0,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 15, horizontal: 20), // 내부 패딩 설정
+              ),
+            ),
           ),
         ],
       ),
