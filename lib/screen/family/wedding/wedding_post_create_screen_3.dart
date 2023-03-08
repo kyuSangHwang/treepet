@@ -214,9 +214,10 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
                                 /// TODO: 1. 캘린더에서 날짜 클릭하면 클릭한 날 on 되게 하기
                                 /// TODO: 2. 꽃도장 -> 하고 있음 으로 되어 있는데 시작일 선택 안되어 있는 것 -> 다음 버튼 클릭할 때 Null Check
                                 child: Calendar(
-                                  selectedDay: selectedDay,
-                                  focusedDay: focusedDay,
-                                  onDaySelected: onDaySelected,
+                                  // selectedDay: selectedDay,
+                                  // focusedDay: focusedDay,
+                                  // onDaySelected: onDaySelected,
+                                  // formattedDate: formattedDate,
                                 ),
                               );
                             },
@@ -393,7 +394,7 @@ class _WeddingPostCreateScreen3State extends State<WeddingPostCreateScreen3> {
   onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       this.selectedDay = selectedDay;
-      this.focusedDay = selectedDay;
+      this.focusedDay = focusedDay;
       formattedDate = DateFormat('yyyy년 MM월 dd일').format(selectedDay);
     });
   }

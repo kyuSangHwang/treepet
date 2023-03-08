@@ -47,7 +47,7 @@ class MoreScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-가                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => MoreReportCreateScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => MoreReportCreateScreen()));
                   // Navigator.of(context).pushNamed('MoreReportCreateScreen');
                 },
                 child: SizedBox(
