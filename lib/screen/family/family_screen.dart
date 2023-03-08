@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/screen/family/wedding/wedding_screen.dart';
-import 'package:treepet/screen/login/treepet_login.dart';
 import '../../layout/screen_layout.dart';
 import '../community/community_post_create_screen.dart';
 
@@ -63,8 +62,7 @@ class FamilyScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      // Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CommunityPostCreateScreen()));
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => TreepetLoginScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CommunityPostCreateScreen()));
                     },
                     iconSize: 150,
                     icon: const CircleAvatar(
