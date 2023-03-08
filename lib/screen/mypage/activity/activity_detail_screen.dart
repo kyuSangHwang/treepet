@@ -8,7 +8,7 @@ class ActivityDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+      length: 4,
       child: Scaffold(
         appBar: SettingActivityDetailScreenAppBar(context),
         body: TabBarView(
@@ -17,8 +17,8 @@ class ActivityDetailScreen extends StatelessWidget {
             RenderActivityCategoryOfCategory(),
             RenderActivityCategoryOfCategory(),
             RenderActivityCategoryOfCategory(),
-            RenderActivityCategoryOfCategory(),
-            RenderActivityCategoryOfCategory(),
+            // RenderActivityCategoryOfCategory(),
+            // RenderActivityCategoryOfCategory(),
           ],
         ),
       ),
@@ -54,8 +54,8 @@ class ActivityDetailScreen extends StatelessWidget {
           Tab(text: "입양/분양"),
           Tab(text: "자유게시판"),
           Tab(text: "육아일기"),
-          Tab(text: "질문방"),
-          Tab(text: "찾아주세요"),
+          // Tab(text: "질문방"),
+          // Tab(text: "찾아주세요"),
         ],
       ),
     );
@@ -63,7 +63,7 @@ class ActivityDetailScreen extends StatelessWidget {
 
   Widget RenderActivityCategoryOfCategory() {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: WHITE_COLOR,
@@ -77,13 +77,15 @@ class ActivityDetailScreen extends StatelessWidget {
             tabs: [
               Tab(text: "작성글"),
               Tab(text: "댓글 단 글"),
+              Tab(text: "스크랩"),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            ForthTab(),
-            FifthTab(),
+            FirstTab(),
+            SecondTab(),
+            ThirdTab(),
           ],
         ),
       ),
@@ -91,7 +93,7 @@ class ActivityDetailScreen extends StatelessWidget {
   }
 }
 
-class ForthTab extends StatelessWidget {
+class FirstTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,7 +102,16 @@ class ForthTab extends StatelessWidget {
   }
 }
 
-class FifthTab extends StatelessWidget {
+class SecondTab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellow,
+    );
+  }
+}
+
+class ThirdTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
