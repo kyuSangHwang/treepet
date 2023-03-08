@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:treepet/component/alarm_screen.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/mypage/activity/activity_detail_screen.dart';
 import 'package:treepet/screen/mypage/follow/follow_list_screen.dart';
 import 'package:treepet/screen/mypage/interested/interested_screen.dart';
 import 'package:treepet/screen/mypage/petTree/pet_tree_view_all.dart';
+import 'package:treepet/screen/mypage/profile_update_screen.dart';
 import 'package:treepet/screen/mypage/settings/settings_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -40,6 +42,16 @@ class MyPageScreen extends StatelessWidget {
       backgroundColor: WHITE_COLOR,
       title: const Text('마이페이지', style: TextStyle(color: BLACK_COLOR)),
       actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => AlarmScreen()));
+          },
+          icon: Icon(
+            Icons.doorbell,
+            color: Colors.black,
+          ),
+        ),
         IconButton(
           onPressed: () {
             Navigator.of(context)
@@ -106,6 +118,12 @@ class MyPageScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ProfileUpdateScreen()));
+                },
+                child: Text('프로필 수정'),
+              ),
               Text('뭉치아빠'),
               const SizedBox(height: 10),
               Text('안녕하세요~! 산책하다가 감자를 마주치면 반갑게 인사해주세요~! 뭉치는 3살 리트리버 아이예요~!'),
