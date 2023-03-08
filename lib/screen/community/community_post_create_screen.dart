@@ -16,11 +16,13 @@ class CommunityPostCreateScreen extends StatefulWidget {
 }
 
 class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
-  late File _imageFile = File(" ");
   List<dynamic> imageFilesList = [];
   List<Widget> imagesWidgetList = [];
   List<int> iconButtonKeyIndexList = [];
   List<int> iconButtonKeyIndexReplaceList = [];
+  String _selectedCategoryOption = '';
+  String _selectedBeforeCategoryOption = '';
+  List<XFile>? _imageList;
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +45,16 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
 
   /// 이미지 선택 했을 때 [imagesWidgetList]에 넣어서 화면에 뿌려주기
   Future<void> _GetImage() async {
-    final pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+    final List<XFile> pickedFile = await ImagePicker().pickMultiImage(imageQuality: 50,);
 
     setState(() {
-      _imageFile = File(pickedFile!.path);
-      imageFilesList.add(_imageFile);
+      for (int i = 0; i < pickedFile.length; i++) {
+        imageFilesList.add(File(pickedFile[i].path));
+      }
 
-      final int currentImageIndex = imageFilesList.length - 1;
-
-      imagesWidgetList.add(_AddImages(currentImageIndex));
+      for (int i = 1; i < imageFilesList.length; i++) {
+        imagesWidgetList.add(_AddImages(i, imageFilesList[i]));
+      }
 
       imageFilesList.length == 6 ? imageFilesList.removeAt(0) : null;
       imagesWidgetList.length == 6 ? imagesWidgetList.removeAt(0) : null;
@@ -111,26 +113,42 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
             '카테고리 선택',
             style: co_create_middle_title,
           ),
-          SizedBox(
-            width: 58,
-            height: 26,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[300], onPrimary: BLACK_COLOR),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (_) {
-                    return const PostBottomSheet();
+          Row(
+            children: [
+              Text(_selectedCategoryOption == "1" ? "자유" : _selectedCategoryOption == "2" ? "일상" : _selectedCategoryOption == "3" ? "질문" : _selectedCategoryOption == "4" ? "육아일기" : "카테고리를 선택해주세요"),
+              const SizedBox(width:15.0),
+              SizedBox(
+                width: 58,
+                height: 26,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: BLACK_COLOR, backgroundColor: Colors.grey[300]),
+                  onPressed: () {
+                    setState(() {
+                      _selectedBeforeCategoryOption == "" ? _selectedCategoryOption = '1' : _selectedCategoryOption = _selectedBeforeCategoryOption;
+                    });
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return PostBottomSheet(onCategoryOptionChanged: selectedCategoryOption, selectedBeforeCategoryOption : _selectedBeforeCategoryOption);
+                      },
+                    );
                   },
-                );
-              },
-              child: const Text('선택'),
-            ),
+                  child: const Text('선택'),
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
+  }
+
+  void selectedCategoryOption(String value) {
+    setState(() {
+      _selectedCategoryOption = value;
+      _selectedBeforeCategoryOption = value;
+    });
   }
 
   /// 사진/동영상 선택 영역
@@ -182,6 +200,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
         onPressed: () {
           _GetImage();
         },
+        tooltip: 'Pick Images',
         icon: Icon(
           Icons.add,
           size: 40,
@@ -192,7 +211,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
   }
 
   /// 등록된 이미지 보여지는 영역
-  Stack _AddImages(index) {
+  Stack _AddImages(int index, File imageFile) {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
@@ -201,7 +220,7 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
           height: 79.6,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: FileImage(imageFilesList[index]),
+              image: FileImage(imageFile),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(10),
@@ -219,11 +238,35 @@ class _CommunityPostCreateScreen extends State<CommunityPostCreateScreen> {
             ),
             child: IconButton(
               padding: EdgeInsets.zero,
-              // key: Key("$index"),
               onPressed: () {
                 setState(() {
-                  imageFilesList.removeAt(index);
-                  imagesWidgetList.removeAt(index);
+                  int removeImageFilesListIndex = 0;
+                  int removeImagesWidgetListIndex = 0;
+
+                  for (int i = 1; i < imageFilesList.length; i++) {
+                    if (imageFilesList[i].path != null) {
+                      if (imageFile.path == imageFilesList[i].path) {
+                        removeImageFilesListIndex = i;
+                      }
+                    }
+                  }
+
+                  for (int i = 1; i < imageFilesList.length; i++) {
+
+                    Stack stack = imagesWidgetList[i] as Stack;
+                    Container container = stack.children[0] as Container;
+                    BoxDecoration decoration = container.decoration as BoxDecoration;
+                    DecorationImage fileImage11 = decoration.image as DecorationImage;
+                    FileImage? fileImage = fileImage11.image as FileImage;
+                    File imageFile1 = fileImage.file;
+
+                    if (imageFile.path == imageFile1.path) {
+                      removeImagesWidgetListIndex = i;
+                    }
+                  }
+
+                  imageFilesList.removeAt(removeImageFilesListIndex);
+                  imagesWidgetList.removeAt(removeImagesWidgetListIndex);
 
                   if (imageFilesList[0].runtimeType != _AddButton().runtimeType) {
                     imageFilesList.insert(0, _AddButton());

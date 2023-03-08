@@ -22,12 +22,12 @@ class CommunityScreen extends StatelessWidget {
   FloatingActionButton renderFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        // Navigator.of(context).push(
-        //     MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
-        Navigator.of(context).pushNamed('CommunityPostCreateScreen');
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
+        // Navigator.of(context).pushNamed('CommunityPostCreateScreen');
       },
       backgroundColor: MAIN_COLOR,
-      child: Icon(
+      child: const Icon(
         Icons.add,
       ),
     );
@@ -39,7 +39,7 @@ class CommunityScreen extends StatelessWidget {
         itemCount: 30,
         itemBuilder: (context, index) {
           return Column(
-            children: [
+            children: const [
               CommunityPost(
                 title: '우울표정보스 hello HELLO',
                 nick: '뭉치',

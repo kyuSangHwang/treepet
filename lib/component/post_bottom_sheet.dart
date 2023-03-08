@@ -3,14 +3,21 @@ import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 
 class PostBottomSheet extends StatefulWidget {
-  const PostBottomSheet({Key? key}) : super(key: key);
+  final void Function(String value) onCategoryOptionChanged;
+  final String selectedBeforeCategoryOption;
+
+  const PostBottomSheet({
+    required this.onCategoryOptionChanged,
+    required this.selectedBeforeCategoryOption,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PostBottomSheet> createState() => _PostBottomSheetState();
 }
 
 class _PostBottomSheetState extends State<PostBottomSheet> {
-  late String option = '1';
+  late String option = widget.selectedBeforeCategoryOption.isNotEmpty ? widget.selectedBeforeCategoryOption : "1";
   late final String title;
   late final String value;
 
@@ -22,19 +29,19 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
         color: WHITE_COLOR,
         child: Column(
           children: [
-            CategoryButton(
+            _CategoryButton(
               title: '자유',
               value: '1',
             ),
-            CategoryButton(
+            _CategoryButton(
               title: '일상',
               value: '2',
             ),
-            CategoryButton(
+            _CategoryButton(
               title: '질문',
               value: '3',
             ),
-            CategoryButton(
+            _CategoryButton(
               title: '육아일기',
               value: '4',
             ),
@@ -44,9 +51,7 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
     );
   }
 
-  // TODO: 뭐에 선택되어있는 등록화면에서 보여주기
-  // TODO: 선택한 값이 저장되기
-  CategoryButton({required String title, required value}) {
+  RadioListTile _CategoryButton({required String title, required value}) {
     return RadioListTile(
       title: Text(title, style: co_create_option_bottom_sheet),
       value: value,
@@ -54,9 +59,10 @@ class _PostBottomSheetState extends State<PostBottomSheet> {
       onChanged: (value) {
         setState(() {
           option = value!;
+          widget.onCategoryOptionChanged(value);
         });
       },
-      secondary: option == value ? Icon(Icons.check) : null,
+      secondary: option == value ? const Icon(Icons.check) : null,
     );
   }
 }
