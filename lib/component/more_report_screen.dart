@@ -70,17 +70,17 @@ class _MoreReportCreateScreenState
     );
   }
 
-  Widget RenderServiceInquiryCategoryCheck() {
+  Column RenderServiceInquiryCategoryCheck() {
     return Column(
       children: [
         Row(
           children: [
             ServiceInquiryCategory(
-              title: '오류•불편 신고',
+              title: '폭력적인 내용',
               value: '1',
             ),
             ServiceInquiryCategory(
-              title: '컨텐츠 추가 요청',
+              title: '광고성 홍보',
               value: '2',
             ),
           ],
@@ -88,11 +88,11 @@ class _MoreReportCreateScreenState
         Row(
           children: [
             ServiceInquiryCategory(
-              title: '정보 수정 요청',
+              title: '부적합한 내용',
               value: '3',
             ),
             ServiceInquiryCategory(
-              title: '제휴 문의',
+              title: '욕설',
               value: '4',
             ),
           ],
@@ -100,7 +100,7 @@ class _MoreReportCreateScreenState
         Row(
           children: [
             ServiceInquiryCategory(
-              title: '이벤트',
+              title: '업자 문의 신고',
               value: '5',
             ),
             ServiceInquiryCategory(
@@ -132,7 +132,7 @@ class _MoreReportCreateScreenState
     );
   }
 
-  Widget RenderServiceInquiryContent() {
+  Container RenderServiceInquiryContent() {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black26),
@@ -141,14 +141,14 @@ class _MoreReportCreateScreenState
       width: MediaQuery.of(context).size.width * 0.92,
       height: 300,
       // color: BLACK_COLOR,
-      child: CustomTextField(
+      child: const CustomTextField(
           isTitle: false,
           placeHolder:
-          '신고 내용을 입력해주세요.\n최대한 빨리 답변 드리겠습니다.\n\n글자 수 제한(500자 내)'),
+          '신고 내용을 입력해주세요.\n최대한 빨리 대응하겠습니다.\n\n글자 수 제한(500자 내)'),
     );
   }
 
-  Widget RenderServiceInquiryCreateButton(BuildContext context) {
+  SafeArea RenderServiceInquiryCreateButton(BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
