@@ -56,6 +56,7 @@ Widget WeddingBottomAppBarButton(BuildContext context, String buttonName, nextPa
 
           if (allValuesAreTrue != null && allValuesAreTrue) {
               if(buttonName == "완 료" || buttonName == "프로포즈 신청하기") {
+                ///TODO: popUntil로 변경해야해서 namedParameter 설정해야해!! 상우쓰
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (_) => nextPage,

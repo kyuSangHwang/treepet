@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/component/bottom_button.dart';
+import 'package:treepet/component/treepet_bottom_navigation_bar.dart';
 import 'package:treepet/screen/family/wedding/wedding_list_post_screen.dart';
 import 'package:treepet/screen/family/wedding/wedding_post_create_screen_1.dart';
 import 'package:treepet/screen/family/wedding/wedding_propose_list_post_screen.dart';
@@ -74,6 +75,8 @@ class _WeddingScreenState extends State<WeddingScreen>
         body: _WeddingScreenBody(),
         appBarBottom: _WeddingScreenAppBarBottom(),
         screenKey: 'wedding',
+        bottomNavigationBar: TreepetBottomNavigationBar(selectedIndex: 0),
+
         // bottomNavigationBar: MyBottomNavigationBar(
         //   currentIndex: _bottomNavagationBarSelectedIndex,
         //   onTap: _onItemTapped,

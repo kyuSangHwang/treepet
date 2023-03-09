@@ -5,14 +5,14 @@ import 'package:treepet/screen/family/family_screen.dart';
 import 'package:treepet/screen/family/wedding/wedding_filter_screen.dart';
 
 class ScreenLayout extends StatelessWidget {
-  final String title;
+  final String? title;
   final Widget body;
   final String? screenKey;
   final Widget? bottomNavigationBar;
   final Widget? appBarBottom;
 
   const ScreenLayout({
-    required this.title,
+    this.title,
     required this.body,
     this.screenKey,
     this.bottomNavigationBar,
@@ -23,9 +23,9 @@ class ScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: title != null ? AppBar(
         elevation: 0,
-        title: Text(title),
+        title: Text(title!),
         backgroundColor: WHITE_COLOR,
         centerTitle: (screenKey == "signUpTermAgree" || screenKey ==  "communityPostCreate") ? false : true,
         titleTextStyle: const TextStyle(
@@ -39,8 +39,8 @@ class ScreenLayout extends StatelessWidget {
                   if (screenKey != null &&
                       (screenKey == "wedding" ||
                           screenKey == "weddingFilter")) {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (_) => const FamilyScreen()), (route) => false);
+                    Navigator.of(context).pop(
+                        MaterialPageRoute(builder: (_) => const FamilyScreen()));
                   } else {
                     Navigator.of(context).maybePop();
                   }
@@ -105,7 +105,7 @@ class ScreenLayout extends StatelessWidget {
                 child: appBarBottom!,
               )
             : null,
-      ),
+      ) : null,
       body: body,
       bottomNavigationBar: bottomNavigationBar ?? bottomNavigationBar,
     );
