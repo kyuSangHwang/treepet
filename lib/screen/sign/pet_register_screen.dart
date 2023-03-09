@@ -73,29 +73,29 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Column(
                       children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         RenderTitle(context),
-                        SizedBox(height: 10),
-                        ImagePickerButton(),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 10),
+                        const ImagePickerButton(),
+                        const SizedBox(height: 20),
                         RenderPetType(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         RenderPetBreed(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         RenderPetName(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         RenderPetSex(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         RenderPetNeutered(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             RenderPetWeight(context),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         RenderPetVaccination(context),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
@@ -118,12 +118,12 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         onPressed: () {
           Navigator.of(context).pop();
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           color: BLACK_COLOR,
         ),
       ),
-      title: Text(
+      title: const Text(
         '반려동물 등록',
         style: TextStyle(color: BLACK_COLOR),
       ),
@@ -144,7 +144,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('반려동물', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             children: [
               Expanded(
@@ -158,7 +158,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError1 = false;
                       });
                     },
-                    child: Text('강아지', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetTypeButtonIndex == 1
@@ -168,10 +167,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('강아지', style: pet_register_category_button),
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: SizedBox(
                   height: 50,
@@ -183,7 +183,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError1 = false;
                       });
                     },
-                    child: Text('고양이', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetTypeButtonIndex == 2
@@ -193,6 +192,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('고양이', style: pet_register_category_button),
                   ),
                 ),
               ),
@@ -211,7 +211,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('품종', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 60,
@@ -221,7 +221,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                 height: 1,
                 color: Colors.black54,
               ),
-              hint: Text('선택해주세요'),
+              hint: const Text('선택해주세요'),
               isExpanded: true,
               value: _selectedBreed,
               items: _breedList.map((value) {
@@ -257,11 +257,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('이름', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextFormField(
             controller: nameController,
             style: pet_name,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: '이름을 입력하세요',
             ),
             onChanged: (value) {
@@ -286,7 +286,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('성별', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             children: [
               Expanded(
@@ -300,7 +300,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError4 = false;
                       });
                     },
-                    child: Text('남아', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetSexButtonIndex == 1
@@ -310,10 +309,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('남아', style: pet_register_category_button),
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: SizedBox(
                   height: 50,
@@ -325,7 +325,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError4 = false;
                       });
                     },
-                    child: Text('여아', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetSexButtonIndex == 2
@@ -335,6 +334,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('여아', style: pet_register_category_button),
                   ),
                 ),
               ),
@@ -353,7 +353,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('중성화 유무', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             children: [
               Expanded(
@@ -367,7 +367,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError5 = false;
                       });
                     },
-                    child: Text('중성화 전', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetNeuteredButtonIndex == 1
@@ -377,10 +376,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('중성화 전', style: pet_register_category_button),
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: SizedBox(
                   height: 50,
@@ -392,7 +392,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError5 = false;
                       });
                     },
-                    child: Text('중성화 완료', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetNeuteredButtonIndex == 2
@@ -402,6 +401,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('중성화 완료', style: pet_register_category_button),
                   ),
                 ),
               ),
@@ -421,7 +421,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('몸무게', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextFormField(
             controller: tec..selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length)),
             keyboardType: TextInputType.number,
@@ -473,16 +473,23 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
 
                 if (newValue.length == 3 && newValue.substring(2, 3) == ".") {
                   tec.text = "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
+                  newValue = tec.text;
                   tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
                 }
 
                 if (newValue.length == 2 && newValue.substring(0, 1) != "0" && newValue.substring(1, 2) == ".") {
                   tec.text = newValue.substring(0, 1);
+                  newValue = tec.text;
                   tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
                 }
 
                 _previousValue = newValue;
 
+              }
+
+              if (newValue.isNotEmpty) {
+                _petWeightController = newValue;
+                _showError6 = false;
               }
             },
           ),
@@ -499,7 +506,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('예방접종 유무', style: pet_register_category_title),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             children: [
               Expanded(
@@ -513,7 +520,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError7 = false;
                       });
                     },
-                    child: Text('접종 전', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetVaccinationButtonIndex == 1
@@ -523,10 +529,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('접종 전', style: pet_register_category_button),
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: SizedBox(
                   height: 50,
@@ -538,7 +545,6 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _showError7 = false;
                       });
                     },
-                    child: Text('접종 완료', style: pet_register_category_button),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: selectedPetVaccinationButtonIndex == 2
@@ -548,6 +554,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                           ? Colors.green
                           : Colors.grey[700],
                     ),
+                    child: Text('접종 완료', style: pet_register_category_button),
                   ),
                 ),
               ),
@@ -592,7 +599,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _petVaccinationController.isNotEmpty) ==
                     true
                 ? Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => PetRegisterScreen2()))
+                    MaterialPageRoute(builder: (_) => const PetRegisterScreen2()))
                 : null;
           },
           style: ElevatedButton.styleFrom(

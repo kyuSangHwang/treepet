@@ -205,7 +205,7 @@ class _MobileNumberAuthenticationScreenState
         height: 70,
         child: ElevatedButton(
           onPressed: () {
-            (_AuthenticationNumber == '111111') == true
+            _receiveAuthenticationNumber == true
                 ? Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => ProfileRegisterScreen()))
                 : null;
