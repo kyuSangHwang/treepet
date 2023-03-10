@@ -4,13 +4,16 @@ import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/sign/pet_register_complete_screen.dart';
 
 class PetRegisterScreen2 extends StatefulWidget {
-  const PetRegisterScreen2({Key? key}) : super(key: key);
+  bool? first;
+
+  PetRegisterScreen2({Key? key}) : super(key: key);
 
   @override
   State<PetRegisterScreen2> createState() => _PetRegisterScreen2State();
 }
 
 class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
+  String nextPage = '';
   String _selectedMedicalHistory = '선택해주세요';
   final List<String> _medicalHistoryList = [
     '선택해주세요',
@@ -329,8 +332,13 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
         height: 70,
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => PetRegisterCompleteScreen()));
+            if(widget!.first == true) {
+              // nextPage = '/petRegisterCompleteScreen';
+            Navigator.of(context).pushNamed('/petRegisterCompleteScreen');
+            } else {
+              // nextPage = '/petTreeViewAll';
+              Navigator.popUntil(context, ModalRoute.withName('/petTreeViewAll'));
+            }
           },
           child: Text(
             '등록 완료',

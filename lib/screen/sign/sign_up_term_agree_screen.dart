@@ -234,12 +234,7 @@ class _SignUpTermAgreeScreenState extends State<SignUpTermAgreeScreen> {
                   (_isChecked2 == true && _isChecked3 == true)
               ? () {
                   // 모든 체크박스가 선택되어 있을 때만 실행됨
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            MobileNumberAuthenticationScreen()),
-                  );
+                  Navigator.of(context).pushNamed('/mobileNumberAuthenticationScreen');
                 }
               : null, // 모든 체크박스가 선택되어 있지 않으면 버튼이 비활성화됨
         ),

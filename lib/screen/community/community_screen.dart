@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/component/community_post.dart';
+import 'package:treepet/component/treepet_bottom_navigation_bar.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/layout/screen_layout.dart';
 import 'package:treepet/screen/community/community_post_create_screen.dart';
@@ -22,9 +23,7 @@ class CommunityScreen extends StatelessWidget {
   FloatingActionButton renderFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => CommunityPostCreateScreen()));
-        // Navigator.of(context).pushNamed('CommunityPostCreateScreen');
+        Navigator.of(context).pushNamed('/communityPostCreateScreen');
       },
       backgroundColor: MAIN_COLOR,
       child: const Icon(

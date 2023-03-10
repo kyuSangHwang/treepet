@@ -34,7 +34,7 @@ class PetRegisterCompleteScreen extends StatelessWidget {
           backgroundColor: Colors.grey[300],
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeScreen()));
+          Navigator.of(context).pushNamed('/');
         },
         child: Text('트리펫 시작하기', style: not_pet_register_button),
       ),

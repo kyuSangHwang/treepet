@@ -65,7 +65,7 @@ class SettingsAnnouncementListScreen extends StatelessWidget {
             .map(
               (post) => GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => AnnouncementPostDetailScreen()));
+                  Navigator.of(context).pushNamed('/announcementPostDetailScreen');
 
                 },
                 behavior: HitTestBehavior.opaque,

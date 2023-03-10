@@ -342,7 +342,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
               decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
-                hintText: 'dddd',
+                hintText: '입력해주세요',
                 suffixStyle: const TextStyle(
                   fontSize: 12.0,
                 ),
@@ -381,8 +381,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                         (_profileUserNickController.length >= 2 &&
                             _profileUserNickController.length <= 8)) ==
                     true
-                ? Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => AddressSearchScreen()))
+                ? Navigator.of(context).pushNamed('/addressSearchScreen')
                 : null;
           },
           style: (_profileUserNameController.isNotEmpty &&

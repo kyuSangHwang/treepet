@@ -23,7 +23,7 @@ class CommunityPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) => CommunityPostDetailScreen()));
+        Navigator.of(context).pushNamed('/communityPostDetailScreen');
         // Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyHomePage()));
       },
       child: Container(

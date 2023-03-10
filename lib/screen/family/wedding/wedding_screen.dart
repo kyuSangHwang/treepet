@@ -75,12 +75,6 @@ class _WeddingScreenState extends State<WeddingScreen>
         body: _WeddingScreenBody(),
         appBarBottom: _WeddingScreenAppBarBottom(),
         screenKey: 'wedding',
-        bottomNavigationBar: TreepetBottomNavigationBar(selectedIndex: 0),
-
-        // bottomNavigationBar: MyBottomNavigationBar(
-        //   currentIndex: _bottomNavagationBarSelectedIndex,
-        //   onTap: _onItemTapped,
-        // ),
       ),
     );
   }
@@ -349,8 +343,7 @@ class _WeddingScreenState extends State<WeddingScreen>
   FloatingActionButton renderFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => const WeddingPostCreateScreen1()));
+        Navigator.of(context).pushNamed('/weddingPostCreateScreen1');
       },
       backgroundColor: MAIN_COLOR,
       child: const Icon(

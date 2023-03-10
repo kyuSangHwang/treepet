@@ -8,7 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:treepet/screen/sign/pet_register_screen2.dart';
 
 class PetRegisterScreen extends StatefulWidget {
-  PetRegisterScreen({Key? key}) : super(key: key);
+  bool? first;
+
+  PetRegisterScreen({
+    this.first,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PetRegisterScreen> createState() => _PetRegisterScreenState();
@@ -423,9 +428,15 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
           Text('몸무게', style: pet_register_category_title),
           const SizedBox(height: 5),
           TextFormField(
-            controller: tec..selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length)),
+            controller: tec
+              ..selection = TextSelection.fromPosition(
+                  TextPosition(offset: tec.text.length)),
             keyboardType: TextInputType.number,
-            inputFormatters: [determiningStartingNumber == true ? LengthLimitingTextInputFormatter(3) : LengthLimitingTextInputFormatter(4)],
+            inputFormatters: [
+              determiningStartingNumber == true
+                  ? LengthLimitingTextInputFormatter(3)
+                  : LengthLimitingTextInputFormatter(4)
+            ],
             style: pet_weight,
             decoration: InputDecoration(
               hintText: '3.2',
@@ -434,20 +445,21 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
               helperStyle: pet_weight_hel,
             ),
             onChanged: (newValue) {
-              if(newValue.length > _previousValue.length) {
-                if(newValue.substring(0, 1) == "0" && newValue.length == 1) {
+              if (newValue.length > _previousValue.length) {
+                if (newValue.substring(0, 1) == "0" && newValue.length == 1) {
                   setState(() {
                     determiningStartingNumber = true;
                   });
 
                   tec.text = "0.";
-                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                  tec.selection = TextSelection.fromPosition(
+                      TextPosition(offset: tec.text.length));
                   firstNumber = true;
-
-                } else if (newValue.isNotEmpty && double.tryParse(newValue) == null) {
+                } else if (newValue.isNotEmpty &&
+                    double.tryParse(newValue) == null) {
                   tec.text = "0.";
-                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
-
+                  tec.selection = TextSelection.fromPosition(
+                      TextPosition(offset: tec.text.length));
                 } else if (double.tryParse(newValue) != null) {
                   if (firstNumber != true) {
                     setState(() {
@@ -456,35 +468,42 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                   }
 
                   if (newValue.length == 2) {
-                    tec.text = "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
-                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                    tec.text =
+                        "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
+                    tec.selection = TextSelection.fromPosition(
+                        TextPosition(offset: tec.text.length));
                   } else if (newValue.length == 4) {
-                    tec.text = "${newValue.substring(0, 1)}${newValue.substring(2, 3)}.${newValue.substring(3, 4)}";
-                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                    tec.text =
+                        "${newValue.substring(0, 1)}${newValue.substring(2, 3)}.${newValue.substring(3, 4)}";
+                    tec.selection = TextSelection.fromPosition(
+                        TextPosition(offset: tec.text.length));
                   } else {
-                    tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                    tec.selection = TextSelection.fromPosition(
+                        TextPosition(offset: tec.text.length));
                   }
-
                 }
                 _previousValue = newValue;
-
-              } else if(newValue.length < _previousValue.length) {
+              } else if (newValue.length < _previousValue.length) {
                 if (newValue.isEmpty) firstNumber = false;
 
                 if (newValue.length == 3 && newValue.substring(2, 3) == ".") {
-                  tec.text = "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
+                  tec.text =
+                      "${newValue.substring(0, 1)}.${newValue.substring(1, 2)}";
                   newValue = tec.text;
-                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                  tec.selection = TextSelection.fromPosition(
+                      TextPosition(offset: tec.text.length));
                 }
 
-                if (newValue.length == 2 && newValue.substring(0, 1) != "0" && newValue.substring(1, 2) == ".") {
+                if (newValue.length == 2 &&
+                    newValue.substring(0, 1) != "0" &&
+                    newValue.substring(1, 2) == ".") {
                   tec.text = newValue.substring(0, 1);
                   newValue = tec.text;
-                  tec.selection = TextSelection.fromPosition(TextPosition(offset: tec.text.length));
+                  tec.selection = TextSelection.fromPosition(
+                      TextPosition(offset: tec.text.length));
                 }
 
                 _previousValue = newValue;
-
               }
 
               if (newValue.isNotEmpty) {
@@ -596,10 +615,11 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _petSexController.isNotEmpty &&
                         _petNeuteredController.isNotEmpty &&
                         _petWeightController.isNotEmpty &&
-                        _petVaccinationController.isNotEmpty) ==
+                        _petVaccinationController.isNotEmpty) &&
+                        widget.first ==
                     true
-                ? Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const PetRegisterScreen2()))
+                ?
+              Navigator.of(context).pushNamed('/petRegisterScreen2', arguments: {'first': true})
                 : null;
           },
           style: ElevatedButton.styleFrom(

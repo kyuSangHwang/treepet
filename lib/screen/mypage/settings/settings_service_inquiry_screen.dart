@@ -91,7 +91,7 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
         children: ServiceInquiry.map(
           (inquiry) => GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => ServiceInquiryDetailScreen()));
+              Navigator.of(context).pushNamed('/serviceInquiryDetailScreen');
             },
             behavior: HitTestBehavior.opaque,
             child: Column(
@@ -158,7 +158,7 @@ class SettingsServiceInquiryScreen extends StatelessWidget {
             backgroundColor: MAIN_COLOR,
           ),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => ServiceInquiryCreateScreen()));
+            Navigator.of(context).pushNamed('/serviceInquiryCreateScreen');
           },
           child: Text('등록하기', style: big_long_button_text),
         ),

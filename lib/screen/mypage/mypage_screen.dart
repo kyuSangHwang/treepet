@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treepet/component/alarm_screen.dart';
+import 'package:treepet/component/treepet_bottom_navigation_bar.dart';
 import 'package:treepet/const/color.dart';
 import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/mypage/activity/activity_detail_screen.dart';
@@ -32,6 +33,7 @@ class MyPageScreen extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 
@@ -54,8 +56,7 @@ class MyPageScreen extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => SettingsScreen()));
+            Navigator.of(context).pushNamed('/settingsScreen');
           },
           icon: Icon(
             Icons.settings,
@@ -87,28 +88,21 @@ class MyPageScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('육아일기'),
-                    Text('3'),
+                    Text('육아일기3'),
                     const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) =>
-                                FollowListScreen(selectedIndex: 0)));
+                        Navigator.of(context).pushNamed('/followerListScreen', arguments: {'selectedIndex': 0});
                       },
-                      child: Text('팔로워'),
+                      child: Text('팔로워20'),
                     ),
-                    Text('20'),
                     const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) =>
-                                FollowListScreen(selectedIndex: 1)));
+                        Navigator.of(context).pushNamed('/followListScreen', arguments: {'selectedIndex': 1});
                       },
-                      child: const Text('팔로우'),
+                      child: const Text('팔로우28'),
                     ),
-                    Text('28'),
                   ],
                 ),
               ),
@@ -120,7 +114,7 @@ class MyPageScreen extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => ProfileUpdateScreen()));
+                  Navigator.of(context).pushNamed('/profileUpdateScreen');
                 },
                 child: Text('프로필 수정'),
               ),
@@ -173,8 +167,7 @@ class MyPageScreen extends StatelessWidget {
               const Text('뭉치아빠의 가족들'),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => PetTreeViewAll()));
+                  Navigator.of(context).pushNamed('/petTreeViewAll');
                 },
                 child: const Text('전체보기'),
               ),
@@ -205,82 +198,79 @@ class MyPageScreen extends StatelessWidget {
   }
 
   Widget _RenderPetFamily(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        height: 180,
-        decoration: BoxDecoration(
-            border: Border.all(width: 1, color: BLACK_COLOR),
-            borderRadius: BorderRadius.circular(20)),
-        child: Column(
-          children: [
-            // 내 반려동물
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              child: Row(
-                children: [
-                  CircleAvatar(),
-                  SizedBox(
-                    width: 15,
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.92,
+      height: 180,
+      decoration: BoxDecoration(
+          border: Border.all(width: 1, color: BLACK_COLOR),
+          borderRadius: BorderRadius.circular(20)),
+      child: Column(
+        children: [
+          // 내 반려동물
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            child: Row(
+              children: [
+                CircleAvatar(),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('뭉치'),
+                          Row(
+                            children: [Text('말티즈'), Icon(Icons.male)],
+                          ),
+                          Row(
+                            children: [
+                              Text('여아'),
+                              Text('2살'),
+                              Text('3kg'),
+                              Text('중성화 O'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('뭉치'),
-                            Row(
-                              children: [Text('말티즈'), Icon(Icons.male)],
-                            ),
-                            Row(
-                              children: [
-                                Text('여아'),
-                                Text('2살'),
-                                Text('3kg'),
-                                Text('중성화 O'),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Icon(Icons.settings_ethernet)
-                ],
-              ),
+                ),
+                Icon(Icons.settings_ethernet)
+              ],
             ),
-            // TODO : 가로로 되긴 하는데 가족당 가로 넓이에 문제가 있는듯...
-            Divider(height: 5),
-            // 내 반려동물 가족
-            Container(
-              height: 90,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  List pet = [
-                    '안녕',
-                    '로미',
-                    '루이',
-                    '2라ㅣ라라라',
-                    '임꺽정입니다',
-                    '룰루랄ㄹ',
-                    '123123',
-                    '호에호에호에',
-                    '이이이이잉',
-                    '안녕하쇼'
-                  ];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: RenderPetBro(pet[index]),
-                  );
-                },
-              ),
+          ),
+          // TODO : 가로로 되긴 하는데 가족당 가로 넓이에 문제가 있는듯...
+          Divider(height: 5),
+          // 내 반려동물 가족
+          Container(
+            height: 90,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                List pet = [
+                  '안녕',
+                  '로미',
+                  '루이',
+                  '2라ㅣ라라라',
+                  '임꺽정입니다',
+                  '룰루랄ㄹ',
+                  '123123',
+                  '호에호에호에',
+                  '이이이이잉',
+                  '안녕하쇼'
+                ];
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  child: RenderPetBro(pet[index]),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -306,8 +296,7 @@ class MyPageScreen extends StatelessWidget {
           // 활동내역 타이틀
           TextButton(
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ActivityDetailScreen()));
+              Navigator.of(context).pushNamed('/activityDetailScreen');
             },
             child: Row(
               children: [
@@ -321,8 +310,7 @@ class MyPageScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => InterestedScreen()));
+              Navigator.of(context).pushNamed('/interestedScreen');
             },
             child: Row(
               children: [

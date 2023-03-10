@@ -14,7 +14,6 @@ class FamilyScreen extends StatelessWidget {
         title: '가족 만들기',
         screenKey: 'familyScreen',
         body: _FamilyScreenBody(context),
-        // bottomNavigationBar: TreepetBottomNavigationBar(selectedIndex: 0),
       ),
     );
   }
@@ -34,7 +33,7 @@ class FamilyScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeddingScreen()));
+                      Navigator.pushNamed(context, '/weddingScreen');
                     },
                     iconSize: 150,
                     icon: const CircleAvatar(

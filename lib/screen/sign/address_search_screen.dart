@@ -99,8 +99,7 @@ class _AddressSearchScreenState extends State<AddressSearchScreen> {
         height: 70,
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => UserSignUpCompleteScreen()));
+            Navigator.of(context).pushNamed('/userSignUpCompleteScreen');
           },
           child: Text(
             '다음',

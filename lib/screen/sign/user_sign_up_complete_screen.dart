@@ -5,7 +5,7 @@ import 'package:treepet/screen/home_screen.dart';
 import 'package:treepet/screen/sign/pet_register_screen.dart';
 
 class UserSignUpCompleteScreen extends StatelessWidget {
-  const UserSignUpCompleteScreen({Key? key}) : super(key: key);
+  UserSignUpCompleteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class UserSignUpCompleteScreen extends StatelessWidget {
           backgroundColor: MAIN_COLOR,
         ),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => PetRegisterScreen()));
+          Navigator.of(context).pushNamed('/petRegisterScreen', arguments: {'first': true});
         },
         child: Text('반려동물 등록하기', style: pet_register_button),
       ),
@@ -53,7 +53,7 @@ class UserSignUpCompleteScreen extends StatelessWidget {
           backgroundColor: Colors.grey[300],
         ),
         onPressed: () {
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomeScreen()), (route) => false);
+          Navigator.of(context).pushNamed('/');
         },
         child: Text('트리펫 시작하기', style: not_pet_register_button),
       ),

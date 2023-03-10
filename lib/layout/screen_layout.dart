@@ -61,8 +61,7 @@ class ScreenLayout extends StatelessWidget {
             ? [
                 IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const WeddingFilterScreen()));
+                    Navigator.of(context).pushNamed('/weddingFilterScreen');
                   },
                   icon: const Icon(
                     Icons.search,
@@ -89,8 +88,7 @@ class ScreenLayout extends StatelessWidget {
                     ? [
                         IconButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => const CommunitySearchScreen()));
+                            Navigator.of(context).pushNamed('/communitySearchScreen');
                           },
                           icon: const Icon(
                             Icons.search,

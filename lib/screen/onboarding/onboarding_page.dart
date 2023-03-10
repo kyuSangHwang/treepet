@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:treepet/const/style.dart';
+import 'package:treepet/screen/family/family_screen.dart';
 import 'package:treepet/screen/home_screen.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -31,8 +32,7 @@ class OnboardingPage extends StatelessWidget {
       ],
       done: const Text('시작하기'),
       onDone: () {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => HomeScreen()));
+        Navigator.of(context).pushNamed('/');
       },
       next: const Text('다음'),
 
