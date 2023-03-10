@@ -36,7 +36,7 @@ class UserSignUpCompleteScreen extends StatelessWidget {
           backgroundColor: MAIN_COLOR,
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/petRegisterScreen', arguments: {'first': true});
+          Navigator.of(context).pushNamed('/petRegisterScreen', arguments: {'firstRegisterValue': true});
         },
         child: Text('반려동물 등록하기', style: pet_register_button),
       ),

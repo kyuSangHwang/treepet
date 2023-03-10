@@ -52,7 +52,8 @@ class _PetTreeViewAllState extends State<PetTreeViewAll> {
         GestureDetector(
         behavior: HitTestBehavior.opaque,
           onTap: () {
-            Navigator.of(context).pushNamed('/petRegisterScreen');
+            Navigator.of(context).pushNamed('/petRegisterScreen', arguments: {'firstRegisterValue': false});
+
           },
           child: SizedBox(
             width: 80,

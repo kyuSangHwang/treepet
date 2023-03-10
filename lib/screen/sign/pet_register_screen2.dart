@@ -4,9 +4,12 @@ import 'package:treepet/const/style.dart';
 import 'package:treepet/screen/sign/pet_register_complete_screen.dart';
 
 class PetRegisterScreen2 extends StatefulWidget {
-  bool? first;
+  bool? firstRegisterValue2;
 
-  PetRegisterScreen2({Key? key}) : super(key: key);
+  PetRegisterScreen2({
+    this.firstRegisterValue2,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PetRegisterScreen2> createState() => _PetRegisterScreen2State();
@@ -42,6 +45,8 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     return Scaffold(
       appBar: PetRegisterScreen2AppBar(context),
       body: GestureDetector(
@@ -79,7 +84,7 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
                 ),
               ),
             ),
-            RenderProfileRegisterButton2(context),
+            RenderProfileRegisterButton2(arguments, context),
           ],
         ),
       ),
@@ -325,19 +330,20 @@ class _PetRegisterScreen2State extends State<PetRegisterScreen2> {
   }
 
   // 다음 버튼
-  Widget RenderProfileRegisterButton2(BuildContext context) {
+  Widget RenderProfileRegisterButton2(Map<String, dynamic> arguments, BuildContext context) {
     return BottomAppBar(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 70,
         child: ElevatedButton(
           onPressed: () {
-            if(widget!.first == true) {
+            if (arguments["firstRegisterValue2"] == true) {
               // nextPage = '/petRegisterCompleteScreen';
-            Navigator.of(context).pushNamed('/petRegisterCompleteScreen');
+              Navigator.of(context).pushNamed('/petRegisterCompleteScreen');
             } else {
               // nextPage = '/petTreeViewAll';
-              Navigator.popUntil(context, ModalRoute.withName('/petTreeViewAll'));
+              Navigator.popUntil(
+                  context, ModalRoute.withName('/petTreeViewAll'));
             }
           },
           child: Text(

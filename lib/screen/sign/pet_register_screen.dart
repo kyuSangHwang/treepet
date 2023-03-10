@@ -8,10 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:treepet/screen/sign/pet_register_screen2.dart';
 
 class PetRegisterScreen extends StatefulWidget {
-  bool? first;
+  bool? firstRegisterValue;
 
   PetRegisterScreen({
-    this.first,
+    this.firstRegisterValue,
     Key? key,
   }) : super(key: key);
 
@@ -62,6 +62,8 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     return Scaffold(
       appBar: PetRegisterScreenAppBar(context),
       body: GestureDetector(
@@ -106,7 +108,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                   ),
                 ),
               ),
-              RenderProfileRegisterButton(context),
+              RenderProfileRegisterButton(arguments, context),
             ],
           ),
         ),
@@ -585,7 +587,7 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
     );
   }
 
-  Widget RenderProfileRegisterButton(BuildContext context) {
+  Widget RenderProfileRegisterButton(Map<String, dynamic> arguments, BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -616,11 +618,8 @@ class _PetRegisterScreenState extends State<PetRegisterScreen> {
                         _petNeuteredController.isNotEmpty &&
                         _petWeightController.isNotEmpty &&
                         _petVaccinationController.isNotEmpty) &&
-                        widget.first ==
-                    true
-                ?
-              Navigator.of(context).pushNamed('/petRegisterScreen2', arguments: {'first': true})
-                : null;
+                arguments["firstRegisterValue"] == true ? Navigator.of(context).pushNamed('/petRegisterScreen2', arguments: {'firstRegisterValue2': widget.firstRegisterValue})
+                : Navigator.of(context).pushNamed('/petRegisterScreen2', arguments: {'firstRegisterValue2': arguments["firstRegisterValue"]});
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: (_petTypeController.isNotEmpty &&

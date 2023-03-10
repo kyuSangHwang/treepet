@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
         '/profileRegisterScreen': (context) => const ProfileRegisterScreen(),
         '/addressSearchScreen': (context) => const AddressSearchScreen(),
         '/userSignUpCompleteScreen': (context) => UserSignUpCompleteScreen(),
-        '/petRegisterScreen': (context) => PetRegisterScreen(first: true),
+        '/petRegisterScreen': (context) => PetRegisterScreen(firstRegisterValue: true),
         '/petRegisterScreen2': (context) => PetRegisterScreen2(),
         '/petRegisterCompleteScreen': (context) => const PetRegisterCompleteScreen(),
 
